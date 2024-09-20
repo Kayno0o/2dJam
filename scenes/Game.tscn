@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=7 format=4 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
-[ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="3_jpl88"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="4_tnmtm"]
 [ext_resource type="Texture2D" uid="uid://biosawgtbm7ni" path="res://assets/tilemap/dirt-grass.png" id="5_pxxdj"]
 
@@ -429,17 +428,12 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAD///3/AAAIAAQAAAD9/wAAAAAGAAQ
 tile_set = SubResource("TileSet_w3r77")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
-position = Vector2(-197, 207)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
 editor_draw_drag_margin = true
-
-[node name="Curieux" parent="." instance=ExtResource("3_jpl88")]
-position = Vector2(218, -123)
 
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("4_tnmtm")
