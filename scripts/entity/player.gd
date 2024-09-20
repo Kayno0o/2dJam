@@ -6,7 +6,7 @@ var maxSpeed = 150_000
 var acceleration = 10_000
 
 var rotationVelocity = .05
-var velocityPercent = 0.20
+var velocityPercent = 0.10
 
 func _ready() -> void:
 	return
@@ -31,4 +31,4 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy'):
 		speed = min(speed + acceleration, maxSpeed)
-		area.get_parent().queue_free()
+		area.get_parent().HEALTH -= 1
