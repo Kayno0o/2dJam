@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt1ljp5hmc4lc"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemy.gd" id="1_bu721"]
+[ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="2_1wqlq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eq6c7"]
+radius = 24.0
+
+[node name="Curieux" type="CharacterBody2D"]
+script = ExtResource("1_bu721")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="HitBox" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_eq6c7")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.578125, 0.578125)
+texture = ExtResource("2_1wqlq")
