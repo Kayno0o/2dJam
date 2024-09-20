@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt1ljp5hmc4lc"]
+[gd_scene load_steps=4 format=3 uid="uid://cfakrybbgvpkk"]
 
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_520df"]
 [ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="1_pok46"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eq6c7"]
 radius = 24.0
 
-[node name="Enemy" type="Area2D" groups=["enemy"]]
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_520df")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Enemy" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_eq6c7")
 debug_color = Color(0.489687, 0.433176, 1, 0.42)
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn8sllk7410hw"]
+
+[ext_resource type="Script" path="res://scripts/Bouton_Main_Menu.gd" id="1_wysxy"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 529.0
+offset_top = 300.0
+offset_right = 743.0
+offset_bottom = 394.0
+text = "Start"
+script = ExtResource("1_wysxy")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
