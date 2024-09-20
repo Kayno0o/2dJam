@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do77ayfbvjtcw"]
 
-[ext_resource type="Script" path="res://scripts/menu/main/start.gd" id="1_v6daj"]
+[ext_resource type="Script" path="res://scripts/menu/main/start.gd" id="1_2esep"]
 
 [node name="MainMenu" type="Node2D"]
 
@@ -10,6 +10,6 @@ offset_top = 300.0
 offset_right = 743.0
 offset_bottom = 394.0
 text = "Start"
-script = ExtResource("1_v6daj")
+script = ExtResource("1_2esep")
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
