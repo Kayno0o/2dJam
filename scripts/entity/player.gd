@@ -18,6 +18,10 @@ func _ready() -> void:
 	worldSizeInPixels = mapRect.size * tileSize
 	position = worldSizeInPixels / 2
 
+func _process(_delta: float) -> void:
+	if speed < 0:
+		queue_free()
+
 func _physics_process(delta: float) -> void:
 	# Rotate the player based on input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
@@ -29,14 +33,11 @@ func _physics_process(delta: float) -> void:
 
 	# Apply decay to reduce velocity over time
 	var decay = speed * velocityPercent * delta
-	var minSpeedDecay = maxSpeed * 0.01 * delta
+	var minSpeedDecay = maxSpeed * 0.02 * delta
 	speed -= max(decay, minSpeedDecay)
 
 	# Apply the movement
-	if speed < 0:
-		free()
-	else:
-		move_and_slide()
+	move_and_slide()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
