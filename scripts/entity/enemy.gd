@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var player
+var HEALTH = 1
 const SPEED = 5000
 const MAX_DISTANCE = 250
 const MIN_DISTANCE = 200
@@ -10,6 +11,8 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta: float) -> void:
+	if HEALTH < 1 :
+		queue_free()
 	pass
 
 func _physics_process(delta: float) -> void:
