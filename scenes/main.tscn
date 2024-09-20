@@ -1,20 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_15lf6"]
-[ext_resource type="PackedScene" uid="uid://cfth53boo1ee6" path="res://scenes/Player.tscn" id="2_wqw82"]
-[ext_resource type="PackedScene" uid="uid://cfakrybbgvpkk" path="res://scenes/Enemy.tscn" id="3_jpl88"]
+[ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/Player.tscn" id="2_wqw82"]
+[ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/Enemy.tscn" id="3_jpl88"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="4_tnmtm"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_15lf6")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
-position = Vector2(354, 586)
+position = Vector2(-197, 207)
 
 [node name="Enemy" parent="." instance=ExtResource("3_jpl88")]
-position = Vector2(347, 264)
+position = Vector2(218, -123)
 
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("4_tnmtm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

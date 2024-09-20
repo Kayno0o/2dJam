@@ -1,37 +1,30 @@
 extends Node2D
 
-var ENNEMIE = preload("res://scenes/Enemy.tscn")
-var PLAYER_GROUP
-var PLAYER
-var SPAWNING_RANGE = 800
+const SPAWNING_RANGE = 800
 
-# Called when the node enters the scene tree for the first time.
+var enemy = preload("res://scenes/Enemy.tscn")
+var player
+
 func _ready() -> void:
-	
-		#Get all nodes that are attributed to the player group
-	PLAYER_GROUP = get_tree().get_nodes_in_group("player")
-	
-	#Get the player ID
-	PLAYER = PLAYER_GROUP[0]
+	player = get_tree().get_first_node_in_group("player")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
 
 func _draw() -> void:
 	pass
 
-
 func _on_timer_timeout():
-	
-	# Create a new ennemie
-	var Spawnling = ENNEMIE.instantiate()
-	
-	#Give him a position
-	Spawnling.position = Vector2(PLAYER.position.x + randi_range(SPAWNING_RANGE, -SPAWNING_RANGE), PLAYER.position.y + randi_range(SPAWNING_RANGE, -SPAWNING_RANGE))
-	
-	#Spawn the ennemie
-	add_child(Spawnling)
+	# Create a new enemy
+	var newEnemy = enemy.instantiate()
+
+	# Get a random position for the new enemy
+	var randX = randi_range(-SPAWNING_RANGE, SPAWNING_RANGE)
+	var randY = randi_range(-SPAWNING_RANGE, SPAWNING_RANGE)
+
+	# Give him a position
+	newEnemy.position = Vector2(player.position.x + randX, player.position.y + randY)
+
+	# Spawn the enemy
+	add_child(newEnemy)
 	pass # Replace with function body.
