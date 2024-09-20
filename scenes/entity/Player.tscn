@@ -23,4 +23,7 @@ texture = SubResource("CompressedTexture2D_gpu22")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_2pba1")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2pba1")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

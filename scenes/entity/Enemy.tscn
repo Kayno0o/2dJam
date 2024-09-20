@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://8qbrkhhlfi7f"]
+[gd_scene load_steps=5 format=3 uid="uid://8qbrkhhlfi7f"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy.gd" id="1_c1siw"]
 [ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="2_s1juo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eq6c7"]
 radius = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cj7l"]
+radius = 16.0
+height = 50.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_c1siw")
@@ -18,3 +22,6 @@ debug_color = Color(0.489687, 0.433176, 1, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.578125, 0.578125)
 texture = ExtResource("2_s1juo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8cj7l")
