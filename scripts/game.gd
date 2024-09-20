@@ -2,7 +2,7 @@ extends Node2D
 
 const SPAWNING_RANGE = 800
 
-var enemy = preload("res://scenes/entity/Enemy.tscn")
+var enemy = preload("res://scenes/entity/Curieux.tscn")
 var player
 
 func _ready() -> void:
