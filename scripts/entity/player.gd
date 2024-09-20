@@ -1,15 +1,22 @@
 extends CharacterBody2D
 
-var speed = 15_000
-var maxSpeed = 150_000
+var speed = 20_000
+var maxSpeed = 40_000
 
-var acceleration = 10_000
+var acceleration = 2_000
 
 var rotationVelocity = .05
 var velocityPercent = 0.10
 
+var worldSizeInPixels: Vector2
+
+@export var tilemap: TileMapLayer
+
 func _ready() -> void:
-	return
+	var mapRect = tilemap.get_used_rect()
+	var tileSize = tilemap.tile_set.tile_size
+	worldSizeInPixels = mapRect.size * tileSize
+	position = worldSizeInPixels / 2
 
 func _physics_process(delta: float) -> void:
 	# Rotate the player based on input
@@ -22,10 +29,14 @@ func _physics_process(delta: float) -> void:
 
 	# Apply decay to reduce velocity over time
 	var decay = speed * velocityPercent * delta
-	speed -= decay
+	var minSpeedDecay = maxSpeed * 0.01 * delta
+	speed -= max(decay, minSpeedDecay)
 
 	# Apply the movement
-	move_and_slide()
+	if speed < 0:
+		free()
+	else:
+		move_and_slide()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
