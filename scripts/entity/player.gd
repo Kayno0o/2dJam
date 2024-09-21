@@ -1,34 +1,64 @@
 extends CharacterBody2D
 
-var speed = 15_000
-var maxSpeed = 150_000
+var levelUpScene = preload("res://scenes/menu/ItemShop.tscn")
 
-var acceleration = 10_000
+var actualLevel = 0
+var actualXp = 0
+var levelUpXp = 10
 
-var rotationVelocity = .05
-var velocityPercent = 0.10
+var instance
 
 func _ready() -> void:
 	return
 
+func _input(event):
+	#pauses when pressing P
+	if event is InputEventKey :
+		if event.keycode == 80 && event.is_pressed() == true:
+			get_tree().paused = true
+
 func _physics_process(delta: float) -> void:
+	
+	if actualXp >= levelUpXp :
+		_level_up()
+	
 	# Rotate the player based on input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
-		rotate(rotation_direction * rotationVelocity)
+		rotate(rotation_direction * PlayerStats.rotationVelocity)
 
 	# Accelerate the player forward
-	velocity = Vector2(speed, 0).rotated(rotation - deg_to_rad(90)) * delta
+	velocity = Vector2(PlayerStats.speed, 0).rotated(rotation - deg_to_rad(90)) * delta
 
 	# Apply decay to reduce velocity over time
-	var decay = speed * velocityPercent * delta
-	speed -= decay
+	var decay = PlayerStats.speed * PlayerStats.velocityPercent * delta
+	PlayerStats.speed -= decay
 
 	# Apply the movement
 	move_and_slide()
 
-
+func _level_up() :
+	print("LEVEL UP")
+	PlayerStats.playerPos = position
+	instance = levelUpScene.instantiate()
+	get_parent().add_child(instance)
+	print(PlayerStats.damage)
+	#Leveling up
+	actualLevel += 1
+	
+	#Getting excess xp to the next level and reseting the xp
+	actualXp -= levelUpXp
+	
+	#Make more Xp necessary to level up
+	levelUpXp = levelUpXp + levelUpXp * 0.1
+	
+func _print_lvlup_screen() :
+	
+	pass
+	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy'):
-		speed = min(speed + acceleration, maxSpeed)
-		area.get_parent().HEALTH -= 1
+		PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.maxSpeed)
+		actualXp += area.get_parent().xpGain
+		print(actualXp)
+		area.get_parent().HEALTH -= PlayerStats.damage

@@ -6,6 +6,7 @@ const SPEED = 5000
 const MAX_DISTANCE = 250
 const MIN_DISTANCE = 200
 
+const xpGain = 10
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
