@@ -6,24 +6,25 @@
 load_path = "res://.godot/imported/boulette.png-bf4aab83cb95c9276015202e520e0e62.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pba1"]
-radius = 16.0
+radius = 17.0
 height = 50.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_3gbrn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4, -1)
-rotation = -1.5708
+position = Vector2(1, 4)
 scale = Vector2(0.4, 0.4)
 texture = SubResource("CompressedTexture2D_gpu22")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2pba1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2pba1")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
