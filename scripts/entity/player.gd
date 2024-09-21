@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-var speed = 20_000
-var maxSpeed = 40_000
+var speed = 500
+var maxSpeed = 1500
+var speedOnCollision = 50
 
-var acceleration = 2_000
+var acceleration = 100
 
-var rotationVelocity = .05
+var rotationVelocity = 3
 var velocityPercent = 0.10
 
 var worldSizeInPixels: Vector2
@@ -13,32 +14,44 @@ var worldSizeInPixels: Vector2
 @export var tilemap: TileMapLayer
 
 func _ready() -> void:
+	# set initial position
 	var mapRect = tilemap.get_used_rect()
 	var tileSize = tilemap.tile_set.tile_size
-	worldSizeInPixels = mapRect.size * tileSize
+	worldSizeInPixels = mapRect.size * tileSize * Vector2i(tilemap.scale)
 	position = worldSizeInPixels / 2
+	# set initial speed
+	velocity = Vector2(speed, 0)
 
 func _process(_delta: float) -> void:
 	if speed < 0:
 		queue_free()
 
 func _physics_process(delta: float) -> void:
-	# Rotate the player based on input
+	# rotate player depending on user input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
-		rotate(rotation_direction * rotationVelocity)
+		var angle = rotation_direction * rotationVelocity * delta
+		rotate(angle)
+		velocity = velocity.rotated(angle)
 
-	# Accelerate the player forward
-	velocity = Vector2(speed, 0).rotated(rotation - deg_to_rad(90)) * delta
+	# bounce on walls on collision
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		var normal = collision.get_normal()
+		velocity = velocity.bounce(normal)
+		rotation = velocity.angle()
+		speed -= speedOnCollision
 
-	# Apply decay to reduce velocity over time
+	# lose speed over time
 	var decay = speed * velocityPercent * delta
 	var minSpeedDecay = maxSpeed * 0.02 * delta
 	speed -= max(decay, minSpeedDecay)
 
-	# Apply the movement
-	move_and_slide()
+	# limit speed to max speed
+	speed = min(speed, maxSpeed)
 
+	# apply speed
+	velocity = velocity.normalized() * speed
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy'):

@@ -28,4 +28,6 @@ func create_wall(rect: Rect2) -> void:
 	wall.collision_layer = 1
 	wall.collision_mask = 1
 
+	wall.add_to_group("world border")
+
 	add_child(wall)
