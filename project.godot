@@ -15,6 +15,10 @@ run/main_scene="res://scenes/menu/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+PlayerStats="*res://scripts/entity/playerStats.gd"
+
 [display]
 
 window/size/viewport_width=1280
