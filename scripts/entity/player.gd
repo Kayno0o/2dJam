@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var speed = 500
 var maxSpeed = 1500
-var bouncing = false
 
 var acceleration = 100
 
@@ -30,11 +29,12 @@ func _physics_process(delta: float) -> void:
 	# rotate player depending on user input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
-		rotate(rotation_direction * rotationVelocity * delta)
-		velocity = velocity.rotated(rotation_direction * rotationVelocity * delta)
+		var angle = rotation_direction * rotationVelocity * delta
+		rotate(angle)
+		velocity = velocity.rotated(angle)
 
+	# bounce on walls on collision
 	var collision = move_and_collide(velocity * delta)
-
 	if collision:
 		var normal = collision.get_normal()
 		velocity = velocity.bounce(normal)
