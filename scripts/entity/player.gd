@@ -15,7 +15,7 @@ var worldSizeInPixels: Vector2
 func _ready() -> void:
 	var mapRect = tilemap.get_used_rect()
 	var tileSize = tilemap.tile_set.tile_size
-	worldSizeInPixels = mapRect.size * tileSize
+	worldSizeInPixels = mapRect.size * tileSize * Vector2i(tilemap.scale)
 	position = worldSizeInPixels / 2
 
 func _process(_delta: float) -> void:
