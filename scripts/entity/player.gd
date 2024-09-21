@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed = 500
 var maxSpeed = 1500
+var speedOnCollision = 50
 
 var acceleration = 100
 
@@ -39,11 +40,15 @@ func _physics_process(delta: float) -> void:
 		var normal = collision.get_normal()
 		velocity = velocity.bounce(normal)
 		rotation = velocity.angle()
+		speed -= speedOnCollision
 
 	# lose speed over time
 	var decay = speed * velocityPercent * delta
 	var minSpeedDecay = maxSpeed * 0.02 * delta
 	speed -= max(decay, minSpeedDecay)
+
+	# limit speed to max speed
+	speed = min(speed, maxSpeed)
 
 	# apply speed
 	velocity = velocity.normalized() * speed
