@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddy1fgshm1wlk"]
+
+[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/PerksCards.gd" id="1_heok4"]
+[ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_bnmxv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwvj8"]
+bg_color = Color(0.114091, 0.160246, 0.440514, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuax0"]
+atlas = ExtResource("2_bnmxv")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o14lh"]
+atlas = ExtResource("2_bnmxv")
+region = Rect2(96, 32, 32, 32)
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(150, 200)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwvj8")
+script = ExtResource("1_heok4")
+rarity = 1
+icon = SubResource("AtlasTexture_xuax0")
+statDescription = "3 %"
+description = "acceleration"
+upgrade = 2
+statsNumber = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_o14lh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "+ 1 %"
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Acceleration"
+horizontal_alignment = 1
