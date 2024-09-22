@@ -16,40 +16,42 @@ var worldSizeInPixels: Vector2
 @export var tilemap: TileMapLayer
 
 func _ready() -> void:
+	
 	# set initial position
 	var mapRect = tilemap.get_used_rect()
 	var tileSize = tilemap.tile_set.tile_size
 	worldSizeInPixels = mapRect.size * tileSize * Vector2i(tilemap.scale)
 	position = worldSizeInPixels / 2
+	
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
 
 func _input(event):
-	#pauses when pressing P
+	# pauses when pressing P
 	if event is InputEventKey :
 		if event.keycode == 80 && event.is_pressed() == true:
 			get_tree().paused = true
 
 func _process(_delta: float) -> void:
+	
+	# check if you need to level up
 	if actualXp >= levelUpXp:
 		_level_up()
 
+	# check if you need to die, skill issue
 	if PlayerStats.speed < 0:
 		queue_free()
 
 func _level_up() :
-	print("LEVEL UP")
-	PlayerStats.playerPos = position
+	
+	# get the camera position for the upgrade screen then call it
+	Globals.cameraPos = $PlayerCamera.get_screen_center_position()
 	instance = levelUpScene.instantiate()
 	get_parent().add_child(instance)
-	print(PlayerStats.damage)
-	#Leveling up
+	
+	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
 	actualLevel += 1
-	
-	#Getting excess xp to the next level and reseting the xp
 	actualXp -= levelUpXp
-	
-	#Make more Xp necessary to level up
 	levelUpXp = levelUpXp + levelUpXp * 0.1
 
 

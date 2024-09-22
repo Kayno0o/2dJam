@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnumid3yjajsr"]
+[gd_scene load_steps=6 format=3 uid="uid://dc6f1iee1dnyg"]
 
-[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/PerksCards.gd" id="1_tovfd"]
-[ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_we8lj"]
+[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/PerksCards.gd" id="1_lefbn"]
+[ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_f8j8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwvj8"]
 bg_color = Color(0.254902, 0.184314, 0.0862745, 0.8)
@@ -15,21 +15,22 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2fugn"]
-atlas = ExtResource("2_we8lj")
-region = Rect2(64, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuax0"]
+atlas = ExtResource("2_f8j8y")
+region = Rect2(96, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqtoe"]
-atlas = ExtResource("2_we8lj")
-region = Rect2(64, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o14lh"]
+atlas = ExtResource("2_f8j8y")
+region = Rect2(96, 32, 32, 32)
 
-[node name="Panel2" type="Panel"]
+[node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(150, 200)
 theme_override_styles/panel = SubResource("StyleBoxFlat_qwvj8")
-script = ExtResource("1_tovfd")
-icon = SubResource("AtlasTexture_2fugn")
-statDescription = "+ 1"
-description = "Damage"
+script = ExtResource("1_lefbn")
+icon = SubResource("AtlasTexture_xuax0")
+statDescription = "1 %"
+description = "acceleration"
+upgrade = 2
 statsNumber = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -48,7 +49,7 @@ theme_override_constants/margin_right = 10
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_vqtoe")
+texture = SubResource("AtlasTexture_o14lh")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -56,7 +57,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "+ 1"
+text = "+ 1 %"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
@@ -65,5 +66,5 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Damage"
+text = "Acceleration"
 horizontal_alignment = 1

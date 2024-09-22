@@ -1,16 +1,22 @@
 extends Panel
 @export var rarity : PlayerStats.raritys
-@export var icon : CompressedTexture2D
+@export var icon : AtlasTexture
+@export var statDescription : String
 @export var description : String
 @export var upgrade : PlayerStats.upgrades
 @export var statsNumber : float
 signal upgrade_selected
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+	
+	# set up the upgrade card
 	$VBoxContainer/MarginContainer/TextureRect.texture = icon
-	$VBoxContainer/MarginContainer2/Label.text = description
+	$VBoxContainer/MarginContainer2/Label.text = statDescription
+	$VBoxContainer/MarginContainer3/Label.text = description
 
 func apply_upgrade():
+	
+	# apply the upgrade to the player
 	PlayerStats.add_upgrades(upgrade, statsNumber)
 	upgrade_selected.emit()

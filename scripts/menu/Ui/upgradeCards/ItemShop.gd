@@ -2,14 +2,16 @@ extends Control
 
 @onready var upgradeCardContainer = $Background/HBoxContainer
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	position = PlayerStats.playerPos
+	
+	# set the upgrade screen position and pause the game
+	position = Globals.cameraPos
 	get_tree().paused = true
-#	for node in upgradeCardContainer.get_children() :
-#		node.upgrade_selected.connect(_quit)
 
 func _input(event):
+	
+	# check if mouse click on upgrade and select the one clicked on
 	var mousePosition = get_global_mouse_position()
 	
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed() :
@@ -20,8 +22,6 @@ func _input(event):
 
 
 func _quit():
+	# unpause the game and free the upgrade screen
 	get_tree().paused = false
 	queue_free()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

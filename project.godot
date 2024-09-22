@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 PlayerStats="*res://scripts/entity/playerStats.gd"
+Globals="*res://scripts/Globals.gd"
 
 [display]
 
