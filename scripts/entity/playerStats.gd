@@ -1,7 +1,7 @@
 extends Node
 
 enum raritys {COMMON, RARE, LEGENDARY}
-enum upgrades {ADD_DAMAGE, ADD_MAX_SPEED, ADD_ACCELERATION, ADD_ROTATION_VELOCITY, ADD_VELOCITY_PERCENT}
+enum upgrades {ADD_DAMAGE, ADD_MAX_SPEED, ADD_ACCELERATION, ADD_ROTATION_VELOCITY, ADD_VELOCITY_PERCENT, ADD_SIZE}
 
 var playerPos : Vector2
 
@@ -14,6 +14,8 @@ var acceleration = 100
 
 var rotationVelocity = 3
 var velocityPercent = 0.10
+
+var size = 1.0
 
 func add_upgrades(upgrade, stats) :
 	if upgrade == upgrades.ADD_DAMAGE :
@@ -33,5 +35,9 @@ func add_upgrades(upgrade, stats) :
 		pass
 	
 	if upgrade == upgrades.ADD_VELOCITY_PERCENT :
+		velocityPercent -= stats / 100
+		pass
+	
+	if upgrade == upgrades.ADD_SIZE :
 		velocityPercent -= stats / 100
 		pass

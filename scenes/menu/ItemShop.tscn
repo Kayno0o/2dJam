@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dncyeonb0qnjo"]
+[gd_scene load_steps=3 format=3 uid="uid://dncyeonb0qnjo"]
 
-[ext_resource type="Script" path="res://scripts/menu/Ui/ItemShop.gd" id="1_37y1w"]
-[ext_resource type="Texture2D" uid="uid://c0t6gwv7w0xb8" path="res://assets/icons/DamageUp.png" id="1_y8wgw"]
-[ext_resource type="PackedScene" uid="uid://dnumid3yjajsr" path="res://scenes/upgradeCards/common/damageUp.tscn" id="2_aqo23"]
+[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/ItemShop.gd" id="1_37y1w"]
+[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/SpawnCards.gd" id="2_ey0lj"]
 
 [node name="SelectUpgrade" type="Control"]
 process_mode = 3
+layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.509804, 0.509804, 0.509804, 0.392157)
+color = Color(0.72549, 0.717647, 0.666667, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background"]
 layout_mode = 1
@@ -30,15 +30,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -152.0
+offset_top = -100.0
+offset_right = 152.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Panel" parent="Background/HBoxContainer" instance=ExtResource("2_aqo23")]
-layout_mode = 2
-icon = ExtResource("1_y8wgw")
-description = "damage + 1"
-statsNumber = 1.0
+theme_override_constants/separation = 100
+alignment = 1
+script = ExtResource("2_ey0lj")
