@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dynvtgiyamiri"]
 
 [ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/PerksCards.gd" id="1_8wi3j"]
-[ext_resource type="Texture2D" uid="uid://cl414ohixiiqn" path="res://assets/icons/icons.png" id="2_1rfpd"]
+[ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_1rfpd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwvj8"]
 bg_color = Color(0.254902, 0.184314, 0.0862745, 0.8)
