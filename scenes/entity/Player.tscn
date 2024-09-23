@@ -1,21 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1x5sdgoud7vw"]
+[gd_scene load_steps=6 format=3 uid="uid://b1x5sdgoud7vw"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_3gbrn"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpu22"]
-load_path = "res://.godot/imported/boulette.png-bf4aab83cb95c9276015202e520e0e62.ctex"
+[ext_resource type="Material" uid="uid://dluiawykgsa6p" path="res://material/particles/flame-material.tres" id="2_wbltw"]
+[ext_resource type="Texture2D" uid="uid://c1yvxmlaapmfp" path="res://material/particles/flame-texture.tres" id="3_b486v"]
+[ext_resource type="Texture2D" uid="uid://duhny1bu7e4n1" path="res://assets/boulette.png" id="3_kll0c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pba1"]
 radius = 17.0
 height = 50.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movementParticles") groups=["player"]]
 script = ExtResource("1_3gbrn")
+movementParticles = NodePath("FlameParticles")
+
+[node name="FlameParticles" type="GPUParticles2D" parent="."]
+amount = 200
+process_material = ExtResource("2_wbltw")
+texture = ExtResource("3_b486v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 4)
-scale = Vector2(0.4, 0.4)
-texture = SubResource("CompressedTexture2D_gpu22")
+rotation = 1.5708
+scale = Vector2(1.67, 1.67)
+texture = ExtResource("3_kll0c")
 
 [node name="Area2D" type="Area2D" parent="."]
 
