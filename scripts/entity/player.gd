@@ -45,17 +45,20 @@ func _process(_delta: float) -> void:
 	var particleMaterial: ParticleProcessMaterial = movementParticles.process_material
 	if particleMaterial is ParticleProcessMaterial:
 		# spread goes from 1 to 90 degrees, depending on the speed compared to max speed
-		particleMaterial.spread = lerp(90, 1, PlayerStats.speed / PlayerStats.maxSpeed)
+		particleMaterial.spread = lerp(90, 5, PlayerStats.speed / PlayerStats.maxSpeed)
 		particleMaterial.scale_max = lerp(1, 5, PlayerStats.speed / PlayerStats.maxSpeed)
 
 		# Calculate the normalized direction vector once
 		var normalized_velocity = velocity.normalized()
-		var particle_direction = Vector3(-normalized_velocity.x, -normalized_velocity.y, 0)
+		var particle_direction = Vector3(abs(velocity.x), 0, 0)
 
 		# direction for the particles is the opposite of the velocity
 		particleMaterial.direction = particle_direction
 		particleMaterial.initial_velocity_min = PlayerStats.speed / 8
 		particleMaterial.initial_velocity_max = PlayerStats.speed / 3
+
+		# make the particle spawn a bit behind
+		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -16, 0, 0)
 
 func _level_up():
 	# get the camera position for the upgrade screen then call it
@@ -99,6 +102,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('enemy'):
 		PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.maxSpeed)
-		# actualXp += area.get_parent().xpGain
-		print(actualXp)
+		actualXp += area.get_parent().xpGain
 		area.get_parent().HEALTH -= 1
