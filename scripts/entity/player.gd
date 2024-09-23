@@ -45,8 +45,8 @@ func _process(_delta: float) -> void:
 	var particleMaterial: ParticleProcessMaterial = movementParticles.process_material
 	if particleMaterial is ParticleProcessMaterial:
 		# spread goes from 1 to 90 degrees, depending on the speed compared to max speed
-		particleMaterial.spread = lerp(90, 5, PlayerStats.speed / PlayerStats.maxSpeed)
-		particleMaterial.scale_max = lerp(1, 5, PlayerStats.speed / PlayerStats.maxSpeed)
+		particleMaterial.spread = lerp(90.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
+		particleMaterial.scale_max = lerp(1.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
 
 		# Calculate the normalized direction vector once
 		var normalized_velocity = velocity.normalized()
