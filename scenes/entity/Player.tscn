@@ -1,6 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1x5sdgoud7vw"]
+[gd_scene load_steps=9 format=3 uid="uid://b1x5sdgoud7vw"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_3gbrn"]
+
+[sub_resource type="Curve" id="Curve_6u0on"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.855346, 0.211875), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_egsgy"]
+curve = SubResource("Curve_6u0on")
+
+[sub_resource type="Curve" id="Curve_pchs4"]
+max_value = 5.0
+_data = [Vector2(0, 4), 0.0, 0.194141, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_nc5mf"]
+curve = SubResource("Curve_pchs4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gq875"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_max = 2.0
+scale_over_velocity_max = 200.0
+scale_over_velocity_curve = SubResource("CurveTexture_nc5mf")
+alpha_curve = SubResource("CurveTexture_egsgy")
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpu22"]
 load_path = "res://.godot/imported/boulette.png-bf4aab83cb95c9276015202e520e0e62.ctex"
@@ -9,8 +46,13 @@ load_path = "res://.godot/imported/boulette.png-bf4aab83cb95c9276015202e520e0e62
 radius = 17.0
 height = 50.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movementParticles") groups=["player"]]
 script = ExtResource("1_3gbrn")
+movementParticles = NodePath("GPUParticles2D")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_gq875")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 4)
