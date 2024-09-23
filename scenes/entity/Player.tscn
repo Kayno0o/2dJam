@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1x5sdgoud7vw"]
+[gd_scene load_steps=6 format=3 uid="uid://b1x5sdgoud7vw"]
 
 [ext_resource type="Script" path="res://scripts/entity/player.gd" id="1_3gbrn"]
-[ext_resource type="Texture2D" uid="uid://c6boe1ipv00e3" path="res://assets/particles/flame.png" id="2_31npy"]
-[ext_resource type="Material" uid="uid://dluiawykgsa6p" path="res://material/particles/flame.tres" id="2_wbltw"]
+[ext_resource type="Material" uid="uid://dluiawykgsa6p" path="res://material/particles/flame-material.tres" id="2_wbltw"]
+[ext_resource type="Texture2D" uid="uid://c1yvxmlaapmfp" path="res://material/particles/flame-texture.tres" id="3_b486v"]
 [ext_resource type="Texture2D" uid="uid://duhny1bu7e4n1" path="res://assets/boulette.png" id="3_kll0c"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qxuap"]
-atlas = ExtResource("2_31npy")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2pba1"]
 radius = 17.0
@@ -15,12 +11,12 @@ height = 50.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movementParticles") groups=["player"]]
 script = ExtResource("1_3gbrn")
-movementParticles = NodePath("GPUParticles2D")
+movementParticles = NodePath("FlameParticles")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="FlameParticles" type="GPUParticles2D" parent="."]
 amount = 200
 process_material = ExtResource("2_wbltw")
-texture = SubResource("AtlasTexture_qxuap")
+texture = ExtResource("3_b486v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
