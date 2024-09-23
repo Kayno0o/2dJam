@@ -15,4 +15,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var targetValue = initialValue * lerp(1.0, 0.75, PlayerStats.speed / PlayerStats.maxSpeed)
-	# zoom = lerp(zoom, targetValue, 5 * delta)
+	zoom = lerp(zoom, targetValue, 5 * delta)
