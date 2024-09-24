@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 var levelUpScene = preload("res://scenes/menu/ItemShop.tscn")
 
-# speed lost when boucing on walls
-var speedOnCollision = 50
-
 var actualLevel = 0
 var actualXp = 0
 var levelUpXp = 10
@@ -13,15 +10,11 @@ var instance
 
 var worldSizeInPixels: Vector2
 
-@export var tilemap: TileMapLayer
 @export var movementParticles: GPUParticles2D
 
 func _ready() -> void:
 	# set initial position
-	var mapRect = tilemap.get_used_rect()
-	var tileSize = tilemap.tile_set.tile_size
-	worldSizeInPixels = mapRect.size * tileSize * Vector2i(tilemap.scale)
-	position = worldSizeInPixels / 2
+	position = Globals.worldSize / 2
 	
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
@@ -46,7 +39,7 @@ func _process(_delta: float) -> void:
 	if particleMaterial is ParticleProcessMaterial:
 		# spread goes from 1 to 90 degrees, depending on the speed compared to max speed
 		particleMaterial.spread = lerp(90.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
-		particleMaterial.scale_max = lerp(1.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
+		particleMaterial.scale_max = lerp(1.0, 3.5, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
 
 		# Calculate the normalized direction vector once
 		var normalized_velocity = velocity.normalized()
@@ -58,7 +51,7 @@ func _process(_delta: float) -> void:
 		particleMaterial.initial_velocity_max = PlayerStats.speed / 3
 
 		# make the particle spawn a bit behind
-		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -16, 0, 0)
+		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
 
 func _level_up():
 	# get the camera position for the upgrade screen then call it
@@ -83,10 +76,11 @@ func _physics_process(delta: float) -> void:
 	# bounce on walls on collision
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		print_debug(collision)
 		var normal = collision.get_normal()
 		velocity = velocity.bounce(normal)
 		rotation = velocity.angle()
-		PlayerStats.speed -= speedOnCollision
+		PlayerStats.speed -= PlayerStats.acceleration
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.velocityPercent * delta
