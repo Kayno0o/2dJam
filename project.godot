@@ -28,6 +28,7 @@ window/size/viewport_height=720
 [global_group]
 
 "world border"=""
+tilemap=""
 
 [layer_names]
 
