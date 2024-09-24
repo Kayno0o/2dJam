@@ -4,7 +4,6 @@ var box = preload("res://scenes/props/box.tscn")
 
 func _ready() -> void:
 	wait_time = 1.4
-	start()
 
 func _on_timeout():
 	var newBox = box.instantiate()

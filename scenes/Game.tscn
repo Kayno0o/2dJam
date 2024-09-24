@@ -1603,33 +1603,39 @@ editor_draw_drag_margin = true
 script = ExtResource("4_6c0gq")
 
 [node name="MobsSpawn" type="Timer" parent="." node_paths=PackedStringArray("player")]
+autostart = true
 script = ExtResource("4_tnmtm")
 player = NodePath("../Player")
 
 [node name="PropsSpawn" type="Timer" parent="."]
+autostart = true
 script = ExtResource("10_y7m5n")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UiCanvas" type="CanvasLayer" parent="."]
 
-[node name="Ui" type="Control" parent="CanvasLayer"]
+[node name="Ui" type="Control" parent="UiCanvas" groups=["ui"]]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -15.0
-offset_top = -15.0
-offset_right = -15.0
-offset_bottom = -15.0
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 208.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Ui"]
-layout_mode = 0
-offset_left = -16.0
-offset_right = 240.0
-offset_bottom = 16.0
 rotation = -1.5708
+pivot_offset = Vector2(16, 0)
 value = 100.0
 texture_under = SubResource("GradientTexture2D_dlrpm")
 texture_progress = SubResource("GradientTexture2D_uv4fi")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dncyeonb0qnjo"]
 
-[ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/ItemShop.gd" id="1_37y1w"]
-[ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/SpawnCards.gd" id="2_ey0lj"]
+[ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/ItemShop.gd" id="1_ie2ya"]
+[ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/SpawnCards.gd" id="2_vl6px"]
 
-[node name="SelectUpgrade" type="Control"]
+[node name="UpgradeMenu" type="Control"]
 process_mode = 3
 layout_direction = 1
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_37y1w")
+script = ExtResource("1_ie2ya")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,9 +21,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.72549, 0.717647, 0.666667, 1)
+color = Color(0, 0, 0, 0.32549)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,4 +38,4 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100
 alignment = 1
-script = ExtResource("2_ey0lj")
+script = ExtResource("2_vl6px")

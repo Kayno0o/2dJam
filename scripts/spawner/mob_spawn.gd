@@ -6,7 +6,7 @@ var enemy = preload("res://scenes/entity/Curieux.tscn")
 
 func _ready():
 	wait_time = .8
-	start()
+	# start()
 
 func _get_random_position() -> Vector2:
 	var randX = randi_range(0, Globals.worldSize.x)

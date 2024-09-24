@@ -7,6 +7,7 @@
 size = Vector2(32, 32)
 
 [node name="Box" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_roxeu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

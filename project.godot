@@ -29,6 +29,7 @@ window/size/viewport_height=720
 
 "world border"=""
 tilemap=""
+ui=""
 
 [layer_names]
 
