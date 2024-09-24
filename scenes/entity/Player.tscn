@@ -17,6 +17,7 @@ movementParticles = NodePath("FlameParticles")
 amount = 200
 process_material = ExtResource("2_wbltw")
 texture = ExtResource("3_b486v")
+interpolate = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
