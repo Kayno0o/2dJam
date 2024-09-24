@@ -19,14 +19,7 @@ func _ready() -> void:
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
 
-func _input(event):
-	# pauses when pressing P
-	if event is InputEventKey:
-		if event.keycode == 80 && event.is_pressed() == true:
-			get_tree().paused = true
-
 func _process(_delta: float) -> void:
-	
 	# check if you need to level up
 	if actualXp >= levelUpXp:
 		_level_up()
