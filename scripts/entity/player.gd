@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 func _level_up() :
 	
 	# get the camera position for the upgrade screen then call it
-	Globals.cameraPos = $PlayerCamera.get_screen_center_position()
+	Globals.cameraPos = $"../PlayerCamera".get_screen_center_position()
 	instance = levelUpScene.instantiate()
 	get_parent().add_child(instance)
 	
