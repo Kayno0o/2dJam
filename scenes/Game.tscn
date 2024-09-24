@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=21 format=4 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
@@ -6,9 +6,10 @@
 [ext_resource type="Script" path="res://scripts/map_boundaries.gd" id="3_vwt15"]
 [ext_resource type="Texture2D" uid="uid://dcgtj03a1sh7k" path="res://assets/tilemap/grass.png" id="4_4thwv"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="4_6c0gq"]
-[ext_resource type="Script" path="res://scripts/timer.gd" id="4_tnmtm"]
+[ext_resource type="Script" path="res://scripts/entity/mob_spawn.gd" id="4_tnmtm"]
 [ext_resource type="Texture2D" uid="uid://biosawgtbm7ni" path="res://assets/tilemap/dirt-grass.png" id="5_pxxdj"]
 [ext_resource type="Texture2D" uid="uid://d1prmd0jen1gb" path="res://assets/tilemap/road.png" id="5_slk0w"]
+[ext_resource type="Script" path="res://scripts/menu/Ui/texture_progress_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/props/props_spawn.gd" id="10_y7m5n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
@@ -1554,6 +1555,22 @@ sources/1 = SubResource("TileSetAtlasSource_mdykx")
 sources/2 = SubResource("TileSetAtlasSource_4h4kn")
 sources/3 = SubResource("TileSetAtlasSource_784pi")
 
+[sub_resource type="Gradient" id="Gradient_w0e4c"]
+colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dlrpm"]
+gradient = SubResource("Gradient_w0e4c")
+width = 256
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_m4xxa"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv4fi"]
+gradient = SubResource("Gradient_m4xxa")
+width = 256
+height = 16
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_15lf6")
 
@@ -1565,7 +1582,15 @@ script = ExtResource("3_vwt15")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
 
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../PlayerCamera")
+update_rotation = false
+update_scale = false
+
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource("4_tnmtm")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
 limit_left = 0
 limit_top = 0
@@ -1574,11 +1599,46 @@ position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("4_6c0gq")
 
+[node name="Ui" type="Control" parent="PlayerCamera"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -16.0
+offset_right = -32.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -1.5708
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PlayerCamera/Ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -32.0
+offset_right = 272.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+texture_under = SubResource("GradientTexture2D_dlrpm")
+texture_progress = SubResource("GradientTexture2D_uv4fi")
+script = ExtResource("8_nh0vy")
+
 [node name="MobsSpawn" type="Timer" parent="."]
 script = ExtResource("4_tnmtm")
 
 [node name="PropsSpawn" type="Timer" parent="."]
 script = ExtResource("10_y7m5n")
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="MobsSpawn" to="MobsSpawn" method="_on_timeout"]
 [connection signal="timeout" from="PropsSpawn" to="PropsSpawn" method="_on_timeout"]

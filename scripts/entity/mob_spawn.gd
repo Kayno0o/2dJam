@@ -1,5 +1,7 @@
 extends Timer
 
+@export var player: CharacterBody2D
+
 var enemy = preload("res://scenes/entity/Curieux.tscn")
 
 func _ready():
