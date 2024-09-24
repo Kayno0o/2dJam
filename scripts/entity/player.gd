@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var levelUpScene = preload("res://scenes/menu/ItemShop.tscn")
+var levelUpScene = preload("res://scenes/menu/UpgradeMenu.tscn")
 
 var actualLevel = 0
 var actualXp = 0
@@ -19,14 +19,7 @@ func _ready() -> void:
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
 
-func _input(event):
-	# pauses when pressing P
-	if event is InputEventKey:
-		if event.keycode == 80 && event.is_pressed() == true:
-			get_tree().paused = true
-
 func _process(_delta: float) -> void:
-	
 	# check if you need to level up
 	if actualXp >= levelUpXp:
 		_level_up()
@@ -54,15 +47,13 @@ func _process(_delta: float) -> void:
 		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
 
 func _level_up():
-	# get the camera position for the upgrade screen then call it
-	Globals.cameraPos = $"../PlayerCamera".get_screen_center_position()
-	instance = levelUpScene.instantiate()
-	get_parent().add_child(instance)
+	# show level up menu
+	Globals.ui_node.add_child(levelUpScene.instantiate())
 	
 	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
 	actualLevel += 1
 	actualXp -= levelUpXp
-	levelUpXp = levelUpXp + levelUpXp * 0.1
+	levelUpXp = levelUpXp + levelUpXp * 0.15
 
 
 func _physics_process(delta: float) -> void:
@@ -74,13 +65,14 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.rotated(angle)
 
 	# bounce on walls on collision
-	var collision = move_and_collide(velocity * delta)
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
-		print_debug(collision)
 		var normal = collision.get_normal()
-		velocity = velocity.bounce(normal)
-		rotation = velocity.angle()
-		PlayerStats.speed -= PlayerStats.acceleration
+		var collider: Node2D = collision.get_collider()
+		if collider is Node2D and collider.is_in_group("world border"):
+			velocity = velocity.bounce(normal)
+			rotation = velocity.angle()
+			PlayerStats.speed -= PlayerStats.acceleration
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.velocityPercent * delta

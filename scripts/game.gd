@@ -1,7 +1,8 @@
-extends Node2D
+extends Control
 
 func _ready() -> void:
-	pass
+	Globals.set_game_start_time()
+	Globals.ui_node = $UiCanvas/Ui
 
 func _process(_delta: float) -> void:
 	pass

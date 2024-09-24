@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=23 format=4 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
@@ -6,11 +6,13 @@
 [ext_resource type="Script" path="res://scripts/map_boundaries.gd" id="3_vwt15"]
 [ext_resource type="Texture2D" uid="uid://dcgtj03a1sh7k" path="res://assets/tilemap/grass.png" id="4_4thwv"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="4_6c0gq"]
-[ext_resource type="Script" path="res://scripts/entity/mob_spawn.gd" id="4_tnmtm"]
+[ext_resource type="Script" path="res://scripts/spawner/mob_spawn.gd" id="4_tnmtm"]
 [ext_resource type="Texture2D" uid="uid://biosawgtbm7ni" path="res://assets/tilemap/dirt-grass.png" id="5_pxxdj"]
 [ext_resource type="Texture2D" uid="uid://d1prmd0jen1gb" path="res://assets/tilemap/road.png" id="5_slk0w"]
-[ext_resource type="Script" path="res://scripts/menu/Ui/texture_progress_bar.gd" id="8_nh0vy"]
-[ext_resource type="Script" path="res://scripts/props/props_spawn.gd" id="10_y7m5n"]
+[ext_resource type="Script" path="res://scripts/menu/ui/texture_progress_bar.gd" id="8_nh0vy"]
+[ext_resource type="Script" path="res://scripts/spawner/prop_spawn.gd" id="10_y7m5n"]
+[ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
+[ext_resource type="PackedScene" uid="uid://kpcuumkbw6dg" path="res://scenes/props/box.tscn" id="13_hu5er"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
 texture = ExtResource("5_pxxdj")
@@ -1571,7 +1573,13 @@ gradient = SubResource("Gradient_m4xxa")
 width = 256
 height = 16
 
-[node name="Node2D" type="Node2D"]
+[node name="GameControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_15lf6")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
@@ -1587,9 +1595,6 @@ remote_path = NodePath("../../PlayerCamera")
 update_rotation = false
 update_scale = false
 
-[node name="Timer" type="Timer" parent="."]
-script = ExtResource("4_tnmtm")
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
 limit_left = 0
@@ -1599,46 +1604,54 @@ position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("4_6c0gq")
 
-[node name="Ui" type="Control" parent="PlayerCamera"]
-layout_direction = 1
+[node name="MobsSpawn" type="Timer" parent="." node_paths=PackedStringArray("player")]
+autostart = true
+script = ExtResource("4_tnmtm")
+player = NodePath("../Player")
+
+[node name="PropsSpawn" type="Timer" parent="."]
+autostart = true
+script = ExtResource("10_y7m5n")
+
+[node name="UiCanvas" type="CanvasLayer" parent="."]
+
+[node name="Ui" type="Control" parent="UiCanvas" groups=["ui"]]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -16.0
-offset_right = -32.0
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 208.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = -1.5708
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="PlayerCamera/Ui"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -32.0
-offset_right = 272.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
+pivot_offset = Vector2(16, 0)
 value = 100.0
 texture_under = SubResource("GradientTexture2D_dlrpm")
 texture_progress = SubResource("GradientTexture2D_uv4fi")
 script = ExtResource("8_nh0vy")
 
-[node name="MobsSpawn" type="Timer" parent="."]
-script = ExtResource("4_tnmtm")
+[node name="KeyboardInput" type="Control" parent="."]
+process_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_poooh")
 
-[node name="PropsSpawn" type="Timer" parent="."]
-script = ExtResource("10_y7m5n")
+[node name="Box" parent="." instance=ExtResource("13_hu5er")]
+position = Vector2(3949, 2021)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="MobsSpawn" to="MobsSpawn" method="_on_timeout"]
 [connection signal="timeout" from="PropsSpawn" to="PropsSpawn" method="_on_timeout"]

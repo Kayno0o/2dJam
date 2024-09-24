@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc6f1iee1dnyg"]
 
-[ext_resource type="Script" path="res://scripts/menu/Ui/upgradeCards/PerksCards.gd" id="1_lefbn"]
+[ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/PerksCards.gd" id="1_lefbn"]
 [ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_f8j8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwvj8"]

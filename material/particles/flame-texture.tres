@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c1yvxmlaapmfp"]
 
-[ext_resource type="Texture2D" uid="uid://c6boe1ipv00e3" path="res://assets/particles/flame.png" id="1_2rguc"]
+[ext_resource type="Texture2D" uid="uid://pjs0wnqgyb2g" path="res://material/particles/particles-set.tres" id="1_t8kah"]
 
 [resource]
-atlas = ExtResource("1_2rguc")
+atlas = ExtResource("1_t8kah")
 region = Rect2(0, 0, 16, 16)
