@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do77ayfbvjtcw"]
 
-[ext_resource type="Script" path="res://scripts/menu/main/start.gd" id="1_2esep"]
+[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_jnksd"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jnksd")
 
 [node name="StartButton" type="Button" parent="."]
 clip_contents = true
@@ -26,6 +27,6 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
-script = ExtResource("1_2esep")
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
