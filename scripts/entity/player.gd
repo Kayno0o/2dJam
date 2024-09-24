@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 	if particleMaterial is ParticleProcessMaterial:
 		# spread goes from 1 to 90 degrees, depending on the speed compared to max speed
 		particleMaterial.spread = lerp(90.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
-		particleMaterial.scale_max = lerp(1.0, 5.0, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
+		particleMaterial.scale_max = lerp(1.0, 3.5, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
 
 		# Calculate the normalized direction vector once
 		var normalized_velocity = velocity.normalized()
@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 		particleMaterial.initial_velocity_max = PlayerStats.speed / 3
 
 		# make the particle spawn a bit behind
-		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -16, 0, 0)
+		particleMaterial.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
 
 func _level_up():
 	# get the camera position for the upgrade screen then call it
