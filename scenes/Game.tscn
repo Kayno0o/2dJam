@@ -1593,9 +1593,6 @@ remote_path = NodePath("../../PlayerCamera")
 update_rotation = false
 update_scale = false
 
-[node name="Timer" type="Timer" parent="."]
-script = ExtResource("4_tnmtm")
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
 limit_left = 0
