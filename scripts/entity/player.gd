@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 var levelUpScene = preload("res://scenes/menu/ItemShop.tscn")
 
-# speed lost when boucing on walls
-var speedOnCollision = 50
-
 var actualLevel = 0
 var actualXp = 0
 var levelUpXp = 10
@@ -13,15 +10,11 @@ var instance
 
 var worldSizeInPixels: Vector2
 
-@export var tilemap: TileMapLayer
 @export var movementParticles: GPUParticles2D
 
 func _ready() -> void:
 	# set initial position
-	var mapRect = tilemap.get_used_rect()
-	var tileSize = tilemap.tile_set.tile_size
-	worldSizeInPixels = mapRect.size * tileSize * Vector2i(tilemap.scale)
-	position = worldSizeInPixels / 2
+	position = Globals.worldSize / 2
 	
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
@@ -83,10 +76,11 @@ func _physics_process(delta: float) -> void:
 	# bounce on walls on collision
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		print_debug(collision)
 		var normal = collision.get_normal()
 		velocity = velocity.bounce(normal)
 		rotation = velocity.angle()
-		PlayerStats.speed -= speedOnCollision
+		PlayerStats.speed -= PlayerStats.acceleration
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.velocityPercent * delta
