@@ -76,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	# bounce on walls on collision
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		print_debug(collision)
 		var normal = collision.get_normal()
 		velocity = velocity.bounce(normal)
 		rotation = velocity.angle()

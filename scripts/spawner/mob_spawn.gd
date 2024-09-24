@@ -11,7 +11,6 @@ func _ready():
 func _get_random_position() -> Vector2:
 	var randX = randi_range(0, Globals.worldSize.x)
 	var randY = randi_range(0, Globals.worldSize.y)
-	print_debug(Globals.worldSize.x)
 
 	return Vector2(randX, randY)
 
