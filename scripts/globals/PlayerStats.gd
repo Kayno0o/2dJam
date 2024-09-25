@@ -39,5 +39,5 @@ func add_upgrades(upgrade, stats) :
 		pass
 	
 	if upgrade == upgrades.ADD_SIZE :
-		velocityPercent -= stats / 100
+		size += stats / 100
 		pass
