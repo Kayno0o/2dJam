@@ -9,7 +9,7 @@ const SPEED = 5000
 const MAX_DISTANCE = 250
 const MIN_DISTANCE = 200
 
-const xpGain = 1
+const xp_gain = 1
 
 var is_move_toward = false
 
@@ -43,7 +43,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		particles.emitting = true
 
 		if health <= 0:
-			PlayerStats.xp += xpGain
+			PlayerStats.xp += xp_gain
 			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
 
 			queue_free()
