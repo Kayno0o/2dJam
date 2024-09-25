@@ -1,6 +1,6 @@
 extends Control
 
-@onready var upgradeCardContainer = $HBoxContainer
+@onready var upgrade_card_container = $HBoxContainer
 
 
 func _ready():
@@ -12,7 +12,7 @@ func _input(event):
 	var mousePosition = get_global_mouse_position()
 	
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
-		for node in upgradeCardContainer.get_children():
+		for node in upgrade_card_container.get_children():
 			if node.get_global_rect().has_point(mousePosition):
 				node.apply_upgrade()
 				_quit()

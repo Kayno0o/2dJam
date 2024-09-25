@@ -8,8 +8,8 @@ func _ready() -> void:
 func _on_timeout():
 	var newBox = box.instantiate()
 
-	var randX = randi_range(0, Globals.worldSize.x)
-	var randY = randi_range(0, Globals.worldSize.y)
+	var randX = randi_range(0, Globals.world_size.x)
+	var randY = randi_range(0, Globals.world_size.y)
 
 	newBox.position = Vector2(randX, randY)
 

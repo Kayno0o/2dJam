@@ -27,7 +27,7 @@ func _ready() -> void:
 	create_wall(Rect2(Vector2(world_size_in_pixels.x, 0), Vector2(tile_size.x, world_size_in_pixels.y))) # Right
 	create_wall(Rect2(Vector2(0, world_size_in_pixels.y), Vector2(world_size_in_pixels.x, tile_size.y))) # Bottom
 	
-	Globals.worldSize = world_size_in_pixels * Vector2i(scale)
+	Globals.world_size = world_size_in_pixels * Vector2i(scale)
 
 func generate_map(width: int, height: int):
 	noise.seed = randi()

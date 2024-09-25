@@ -14,8 +14,8 @@ func _ready():
 	# start()
 
 func _get_random_position() -> Vector2:
-	var randX = randi_range(0, Globals.worldSize.x)
-	var randY = randi_range(0, Globals.worldSize.y)
+	var randX = randi_range(0, Globals.world_size.x)
+	var randY = randi_range(0, Globals.world_size.y)
 
 	return Vector2(randX, randY)
 
@@ -33,8 +33,8 @@ func _on_timeout() -> void:
 	var rand_y = player.position.y + sin(angle) * distance
 
 	# ensure the position stays within the world bounds
-	rand_x = clamp(rand_x, 0, Globals.worldSize.x)
-	rand_y = clamp(rand_y, 0, Globals.worldSize.y)
+	rand_x = clamp(rand_x, 0, Globals.world_size.x)
+	rand_y = clamp(rand_y, 0, Globals.world_size.y)
 
 	new_enemy.position = Vector2(rand_x, rand_y)
 

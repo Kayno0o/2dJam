@@ -11,7 +11,7 @@ const MIN_DISTANCE = 200
 
 const xpGain = 1
 
-var moveToward = false
+var is_move_toward = false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -20,12 +20,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# make the enemy goal position to the player if far enough
 	if position.distance_to(player.position) > MAX_DISTANCE:
-		moveToward = true
+		is_move_toward = true
 	# make the enemy goal position away from the player if too close
 	elif position.distance_to(player.position) < MIN_DISTANCE:
-		moveToward = false
+		is_move_toward = false
 
-	if moveToward:
+	if is_move_toward:
 		velocity = position.direction_to(player.position) * delta * SPEED
 	else:
 		velocity = -position.direction_to(player.position) * delta * SPEED
@@ -44,6 +44,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 		if health <= 0:
 			PlayerStats.xp += xpGain
-			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.maxSpeed)
+			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
 
 			queue_free()

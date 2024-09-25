@@ -85,9 +85,9 @@ animations = [{
 radius = 17.0
 height = 64.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movementParticles") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_particles") groups=["player"]]
 script = ExtResource("1_3gbrn")
-movementParticles = NodePath("FlameParticles")
+movement_particles = NodePath("FlameParticles")
 
 [node name="FlameParticles" type="GPUParticles2D" parent="."]
 amount = 200
