@@ -16,6 +16,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aohou"]
 gradient = SubResource("Gradient_stlgq")
+width = 48
 height = 3
 
 [sub_resource type="Gradient" id="Gradient_vwtdg"]
@@ -24,6 +25,7 @@ colors = PackedColorArray(1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6dcf7"]
 gradient = SubResource("Gradient_vwtdg")
+width = 48
 height = 3
 
 [node name="Curieux" type="CharacterBody2D"]
@@ -55,10 +57,10 @@ offset_bottom = 40.0
 
 [node name="HealthBar" type="TextureProgressBar" parent="Ui"]
 layout_mode = 0
-offset_left = -32.0
-offset_top = -34.0
-offset_right = 32.0
-offset_bottom = -31.0
+offset_left = -24.0
+offset_top = -37.0
+offset_right = 24.0
+offset_bottom = -34.0
 value = 50.0
 texture_under = SubResource("GradientTexture2D_aohou")
 texture_progress = SubResource("GradientTexture2D_6dcf7")
