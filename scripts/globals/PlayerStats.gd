@@ -15,7 +15,7 @@ var size: float
 
 var level: int
 var xp: int
-var required_xp: int
+var required_xp: float
 
 func _init() -> void:
 	damage = 1
@@ -31,7 +31,7 @@ func _init() -> void:
 
 	level = 0
 	xp = 0
-	required_xp = 10
+	required_xp = 10.0
 
 func add_upgrades(upgrade, stats):
 	if upgrade == upgrades.ADD_DAMAGE:
