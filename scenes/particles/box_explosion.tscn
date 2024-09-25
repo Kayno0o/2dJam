@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctvlm0uiwlqnm"]
 
-[ext_resource type="Material" uid="uid://djr2ato6ssbqe" path="res://material/particles/box-explosion-material.tres" id="1_sr77q"]
+[ext_resource type="Material" uid="uid://bls4tregmn1l1" path="res://material/particles/box-explosion-material.tres" id="1_sr77q"]
 [ext_resource type="Texture2D" uid="uid://bds2gx7u37uvo" path="res://material/particles/box-explosion-texture.tres" id="2_45tne"]
 
 [node name="BoxExplosion" type="GPUParticles2D"]

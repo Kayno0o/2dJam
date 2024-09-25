@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://i31fd172rdit"]
 
-[ext_resource type="Material" uid="uid://bcpa0827jat2e" path="res://material/particles/mob-kill-material.tres" id="1_n05kq"]
+[ext_resource type="Material" uid="uid://88hupnobcro0" path="res://material/particles/mob-kill-material.tres" id="1_n05kq"]
 [ext_resource type="Texture2D" uid="uid://do17a8ypmt2xn" path="res://material/particles/mob-kill-texture.tres" id="2_uwidr"]
 
 [node name="MobKill" type="GPUParticles2D"]

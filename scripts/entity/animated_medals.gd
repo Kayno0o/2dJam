@@ -8,11 +8,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var speedRatio = PlayerStats.speed / PlayerStats.maxSpeed * 100
-	if speedRatio < 30 :
+	var speed_ratio = PlayerStats.speed / PlayerStats.max_speed * 100
+	if speed_ratio < 30:
 		play("slow")
-	elif speedRatio >= 30 and speedRatio <= 80 :
+	elif speed_ratio >= 30 and speed_ratio <= 80:
 		play("medium")
-	if speedRatio > 80 :
+	if speed_ratio > 80:
 		play("fast")
 	pass

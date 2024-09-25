@@ -1,4 +1,4 @@
 extends TextureProgressBar
 
-func _process(delta):
-	value = (PlayerStats.speed / PlayerStats.maxSpeed) * 100
+func _process(_delta):
+	value = (PlayerStats.speed / PlayerStats.max_speed) * 100

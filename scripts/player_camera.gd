@@ -1,13 +1,13 @@
 extends Camera2D
 
-var initialValue: Vector2
+var initial_value: Vector2
 
 func _ready() -> void:
-	limit_right = Globals.worldSize.x
-	limit_bottom = Globals.worldSize.y
+	limit_right = Globals.world_size.x
+	limit_bottom = Globals.world_size.y
 
-	initialValue = zoom
+	initial_value = zoom
 
 func _process(delta: float) -> void:
-	var targetValue = initialValue * lerp(1.0, 0.75, float(PlayerStats.speed) / float(PlayerStats.maxSpeed))
+	var targetValue = initial_value * lerp(1.0, 0.75, float(PlayerStats.speed) / float(PlayerStats.max_speed))
 	zoom = lerp(zoom, targetValue, 5 * delta)
