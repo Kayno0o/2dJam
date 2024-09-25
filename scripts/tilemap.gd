@@ -34,6 +34,9 @@ func generate_map(width: int, height: int):
 
 	var max_value = -INF
 	var min_value = INF
+
+	var grass_tileset = tile_set.get_source(2)
+	var grass_tile_count = grass_tileset.get_tiles_count()
 	
 	# get min/max values
 	for x in range(width):
@@ -43,7 +46,8 @@ func generate_map(width: int, height: int):
 			max_value = max(max_value, value)
 			min_value = min(min_value, value)
 
-	var grass_cells = []
+			set_cell(Vector2i(x, y), 2, grass_tileset.get_tile_id(randi_range(0, grass_tile_count - 1)))
+
 	var water_cells = []
 
 	for x in range(width):
@@ -53,11 +57,8 @@ func generate_map(width: int, height: int):
 			var cell_pos = Vector2i(x, y)
 			if value > lerp(min_value, max_value, 0.6):
 				water_cells.append(cell_pos)
-			else:
-				grass_cells.append(cell_pos)
 
 	set_cells_terrain_connect(water_cells, 0, terrain_water)
-	set_cells_terrain_connect(grass_cells, 0, terrain_grass, false)
 
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()
