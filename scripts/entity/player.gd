@@ -2,10 +2,6 @@ extends CharacterBody2D
 
 var levelUpScene = preload("res://scenes/menu/UpgradeMenu.tscn")
 
-var actualLevel = 0
-var actualXp = 0
-var levelUpXp = 10
-
 var instance
 
 var worldSizeInPixels: Vector2
@@ -21,7 +17,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# check if you need to level up
-	if actualXp >= levelUpXp:
+	if PlayerStats.xp >= PlayerStats.requiredXp:
 		_level_up()
 
 	# check if you need to die, skill issue
@@ -49,12 +45,11 @@ func _process(_delta: float) -> void:
 func _level_up():
 	# show level up menu
 	Globals.ui_node.add_child(levelUpScene.instantiate())
-	
-	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
-	actualLevel += 1
-	actualXp -= levelUpXp
-	levelUpXp = levelUpXp + levelUpXp * 0.15
 
+	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
+	PlayerStats.level += 1
+	PlayerStats.xp -= PlayerStats.requiredXp
+	PlayerStats.requiredXp *= 1.15
 
 func _physics_process(delta: float) -> void:
 	
@@ -89,9 +84,3 @@ func _physics_process(delta: float) -> void:
 
 	# apply speed
 	velocity = velocity.normalized() * PlayerStats.speed
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group('enemy'):
-		PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.maxSpeed)
-		actualXp += area.get_parent().xpGain
-		area.get_parent().HEALTH -= 1
