@@ -14,7 +14,7 @@ var rotation_velocity: float
 var size: float
 
 var level: int
-var xp: int
+var xp: float
 var required_xp: float
 
 func _init() -> void:
@@ -30,7 +30,7 @@ func _init() -> void:
 	size = 1.0
 
 	level = 0
-	xp = 0
+	xp = 0.0
 	required_xp = 10.0
 
 func add_upgrades(upgrade, stats):
