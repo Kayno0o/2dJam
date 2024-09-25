@@ -10,9 +10,9 @@ var ui_node: Control
 
 var game_start_time: int = 0
 
-func set_game_start_time():
+func set_game_start_time() -> void:
 	game_start_time = Time.get_ticks_msec()
 
 # get elapsed time in seconds
-func get_game_elapsed_time():
+func get_game_elapsed_time() -> float:
 	return (Time.get_ticks_msec() - game_start_time) / 1000.0
