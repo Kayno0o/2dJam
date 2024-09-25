@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var progress_bar: TextureProgressBar
+signal hurt(health: int, max_health: int)
 
 var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
@@ -22,8 +22,6 @@ func _ready() -> void:
 	health = 1 + floor(Globals.get_game_elapsed_time() / 25.0)
 	max_health = health
 
-	progress_bar.visible = false
-
 func _physics_process(delta: float) -> void:
 	# make the enemy goal position to the player if far enough
 	if position.distance_to(player.position) > MAX_DISTANCE:
@@ -43,9 +41,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
 		health -= PlayerStats.damage
 
-		progress_bar.max_value = max_health
-		progress_bar.value = health
-		progress_bar.visible = true
+		hurt.emit(health, max_health)
 
 		var particles: GPUParticles2D = particles_scene.instantiate()
 		particles.position = position

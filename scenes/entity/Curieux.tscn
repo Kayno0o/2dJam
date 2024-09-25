@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt1ljp5hmc4lc"]
+[gd_scene load_steps=10 format=3 uid="uid://bt1ljp5hmc4lc"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy.gd" id="1_bu721"]
 [ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="2_1wqlq"]
+[ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="3_f7fjr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
@@ -25,11 +26,10 @@ colors = PackedColorArray(1, 0, 0, 1)
 gradient = SubResource("Gradient_vwtdg")
 height = 3
 
-[node name="Curieux" type="CharacterBody2D" node_paths=PackedStringArray("progress_bar")]
+[node name="Curieux" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_bu721")
-progress_bar = NodePath("Ui/HealthBar")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
@@ -62,5 +62,7 @@ offset_bottom = -31.0
 value = 50.0
 texture_under = SubResource("GradientTexture2D_aohou")
 texture_progress = SubResource("GradientTexture2D_6dcf7")
+script = ExtResource("3_f7fjr")
 
+[connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
