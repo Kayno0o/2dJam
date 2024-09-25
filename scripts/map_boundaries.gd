@@ -40,7 +40,7 @@ func generate_map(width: int, height: int):
 			var value = noise.get_noise_2d(x * noise_scale, y * noise_scale)
 			var cell_pos = Vector2i(x, y)
 
-			print(value)
+			#print(value)
 
 			if value > 0.9:
 				water_cells.append(cell_pos)

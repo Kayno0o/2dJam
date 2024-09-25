@@ -8,7 +8,8 @@ const SPEED = 5000
 const MAX_DISTANCE = 250
 const MIN_DISTANCE = 200
 
-const xpGain = 100000
+const xpGain = 1
+
 
 var moveToward = false
 
@@ -17,6 +18,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if HEALTH < 1:
+		print("argh")
+		#Globals.ennemy_death.emit()
 		queue_free()
 	pass
 

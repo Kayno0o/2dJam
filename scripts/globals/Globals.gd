@@ -10,6 +10,9 @@ var ui_node: Control
 
 var game_start_time: int = 0
 
+signal ennemy_death
+
+
 func set_game_start_time():
 	game_start_time = Time.get_ticks_msec()
 
