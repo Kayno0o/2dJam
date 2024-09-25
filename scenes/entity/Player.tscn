@@ -152,10 +152,12 @@ radius = 17.0
 height = 64.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_particles") groups=["player"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_3gbrn")
-movement_particles = NodePath("FlameParticles")
+movement_particles = NodePath("MovementParticles")
 
-[node name="FlameParticles" type="GPUParticles2D" parent="."]
+[node name="MovementParticles" type="GPUParticles2D" parent="."]
 amount = 200
 process_material = ExtResource("2_wbltw")
 texture = ExtResource("3_b486v")
@@ -176,12 +178,6 @@ sprite_frames = SubResource("SpriteFrames_fpyle")
 animation = &"Laugh"
 frame_progress = 0.0849373
 script = ExtResource("8_o3dh7")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_2pba1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

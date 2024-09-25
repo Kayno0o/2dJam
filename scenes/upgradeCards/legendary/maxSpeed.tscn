@@ -29,10 +29,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwvj8")
 script = ExtResource("1_nf1j7")
 rarity = 2
 icon = SubResource("AtlasTexture_oyvfa")
-statDescription = "+ 20%"
+stat_description = "+ 20%"
 description = "Max Speed"
 upgrade = 1
-statsNumber = 20.0
+stats_number = 20.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

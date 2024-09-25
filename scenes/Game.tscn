@@ -1597,6 +1597,7 @@ map_width = 125
 noise = SubResource("FastNoiseLite_tcc1e")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
+position = Vector2(-1, 0)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -1604,6 +1605,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2(-1, 0)
 process_callback = 0
 limit_left = 0
 limit_top = 0

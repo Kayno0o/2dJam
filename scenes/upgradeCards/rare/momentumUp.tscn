@@ -29,10 +29,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qwvj8")
 script = ExtResource("1_sljqt")
 rarity = 1
 icon = SubResource("AtlasTexture_rpcq5")
-statDescription = "+ 3"
+stat_description = "+ 3"
 description = "Momentum"
 upgrade = 4
-statsNumber = 3.0
+stats_number = 3.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
