@@ -10,8 +10,7 @@ extends Timer
 var enemy = preload("res://scenes/entity/Curieux.tscn")
 
 func _ready():
-	wait_time = .8
-	# start()
+	wait_time = 1
 
 func _get_random_position() -> Vector2:
 	var randX = randi_range(0, Globals.world_size.x)

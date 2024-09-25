@@ -3,7 +3,7 @@ extends Timer
 var box = preload("res://scenes/props/box.tscn")
 
 func _ready() -> void:
-	wait_time = 1.4
+	wait_time = 2
 
 func _on_timeout():
 	var newBox = box.instantiate()
