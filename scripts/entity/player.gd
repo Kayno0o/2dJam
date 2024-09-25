@@ -58,6 +58,7 @@ func _level_up():
 
 func _physics_process(delta: float) -> void:
 	# rotate player depending on user input
+	scale = Vector2(PlayerStats.size, PlayerStats.size)
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
 		var angle = rotation_direction * PlayerStats.rotationVelocity * delta

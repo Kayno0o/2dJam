@@ -6,7 +6,7 @@ const SPEED = 5000
 const MAX_DISTANCE = 250
 const MIN_DISTANCE = 200
 
-const xpGain = 1
+const xpGain = 10000
 
 var moveToward = false
 
