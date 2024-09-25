@@ -54,6 +54,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		particles.emitting = true
 
 		if health <= 0:
+			Globals.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
 			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
 
