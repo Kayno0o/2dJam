@@ -3,21 +3,35 @@ extends Node
 enum raritys {COMMON, RARE, LEGENDARY}
 enum upgrades {ADD_DAMAGE, ADD_MAX_SPEED, ADD_ACCELERATION, ADD_ROTATION_VELOCITY, ADD_VELOCITY_PERCENT, ADD_SIZE}
 
-var damage = 1.0
+var damage: int
+var speed: float
+var max_speed: float
+var acceleration: float
+var velocity_percent: float
 
-var speed = 600.0
-var max_speed = 1200.0
+var rotation_velocity: float
 
-var acceleration = 75.0
+var size: float
 
-var rotation_velocity = 3
-var velocity_percent = 0.15
+var level: int
+var xp: int
+var required_xp: int
 
-var size = 1.0
+func _init() -> void:
+	damage = 1
 
-var level = 0
-var xp = 0
-var required_xp = 10
+	speed = 600.0
+	max_speed = 1200.0
+	acceleration = 75.0
+	velocity_percent = 0.15
+
+	rotation_velocity = 3
+
+	size = 1.0
+
+	level = 0
+	xp = 0
+	required_xp = 10
 
 func add_upgrades(upgrade, stats):
 	if upgrade == upgrades.ADD_DAMAGE:
