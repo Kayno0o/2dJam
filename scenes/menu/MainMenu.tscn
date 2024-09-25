@@ -29,3 +29,4 @@ grow_vertical = 2
 text = "Start"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
