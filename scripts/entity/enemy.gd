@@ -32,8 +32,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area is Area2D and area.get_parent().is_in_group("player"):
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body.is_in_group("player"):
 		health -= PlayerStats.damage
 
 		var particles: GPUParticles2D = particles_scene.instantiate()
