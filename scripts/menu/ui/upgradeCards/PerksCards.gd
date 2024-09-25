@@ -4,7 +4,7 @@ extends Panel
 @export var stat_description: String
 @export var description: String
 @export var upgrade: PlayerStats.upgrades
-@export var statsNumber: float
+@export var stats_number: float
 signal upgrade_selected
 
 
@@ -18,5 +18,5 @@ func _ready():
 func apply_upgrade():
 	
 	# apply the upgrade to the player
-	PlayerStats.add_upgrades(upgrade, statsNumber)
+	PlayerStats.add_upgrades(upgrade, stats_number)
 	upgrade_selected.emit()
