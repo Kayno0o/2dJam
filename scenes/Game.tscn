@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
 [ext_resource type="Texture2D" uid="uid://chjuocu0x4idw" path="res://assets/tilemap/water-grass.png" id="3_38us5"]
-[ext_resource type="Script" path="res://scripts/map_boundaries.gd" id="3_vwt15"]
+[ext_resource type="Script" path="res://scripts/tilemap.gd" id="3_vwt15"]
 [ext_resource type="Texture2D" uid="uid://dcgtj03a1sh7k" path="res://assets/tilemap/grass.png" id="4_4thwv"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="4_6c0gq"]
 [ext_resource type="Script" path="res://scripts/spawner/mob_spawn.gd" id="4_tnmtm"]
@@ -1556,11 +1556,10 @@ sources/1 = SubResource("TileSetAtlasSource_mdykx")
 sources/2 = SubResource("TileSetAtlasSource_4h4kn")
 sources/3 = SubResource("TileSetAtlasSource_784pi")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vx8yi"]
-noise_type = 0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tcc1e"]
+frequency = 0.02
 fractal_type = 3
-fractal_octaves = 1
-fractal_ping_pong_strength = 1.0
+fractal_weighted_strength = 1.0
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
@@ -1591,7 +1590,8 @@ script = ExtResource("1_15lf6")
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_w3r77")
 script = ExtResource("3_vwt15")
-noise = SubResource("FastNoiseLite_vx8yi")
+map_width = 125
+noise = SubResource("FastNoiseLite_tcc1e")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
 

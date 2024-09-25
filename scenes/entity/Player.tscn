@@ -103,7 +103,6 @@ texture = ExtResource("3_kll0c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_6mlw3")
 animation = &"fast"
-frame_progress = 0.19025
 script = ExtResource("6_vr812")
 
 [node name="Area2D" type="Area2D" parent="."]

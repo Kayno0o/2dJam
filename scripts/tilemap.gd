@@ -7,7 +7,6 @@ var world_size_in_pixels: Vector2i
 @export var noise: Noise
 
 var river_width: float = 3.0
-var noise_scale: float = 0.75
 var river_path_curve: Curve2D = Curve2D.new()
 
 var terrain_dirt = 0
@@ -15,7 +14,6 @@ var terrain_water = 1
 var terrain_grass = 2
 
 func _ready() -> void:
-	noise.seed = randi()
 	generate_map(map_width, map_height)
 
 	# get world size
@@ -32,23 +30,34 @@ func _ready() -> void:
 	Globals.worldSize = world_size_in_pixels * Vector2i(scale)
 
 func generate_map(width: int, height: int):
-	var grass_cells = []
-	var water_cells = []
+	noise.seed = randi()
+
+	var max_value = -INF
+	var min_value = INF
 	
+	# get min/max values
 	for x in range(width):
 		for y in range(height):
-			var value = noise.get_noise_2d(x * noise_scale, y * noise_scale)
+			var value = noise.get_noise_2d(x, y)
+
+			max_value = max(max_value, value)
+			min_value = min(min_value, value)
+
+	var grass_cells = []
+	var water_cells = []
+
+	for x in range(width):
+		for y in range(height):
+			var value = noise.get_noise_2d(x, y)
+
 			var cell_pos = Vector2i(x, y)
-
-			print(value)
-
-			if value > 0.9:
+			if value > lerp(min_value, max_value, 0.6):
 				water_cells.append(cell_pos)
 			else:
 				grass_cells.append(cell_pos)
-	
+
 	set_cells_terrain_connect(water_cells, 0, terrain_water)
-	set_cells_terrain_connect(grass_cells, 0, terrain_grass)
+	set_cells_terrain_connect(grass_cells, 0, terrain_grass, false)
 
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()
