@@ -36,14 +36,14 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Area2D && area.get_parent().is_in_group("player"):
 		health -= PlayerStats.damage
 
+		var particles: GPUParticles2D = particles_scene.instantiate()
+		particles.position = position
+
+		get_parent().add_child(particles)
+		particles.emitting = true
+
 		if health <= 0:
 			PlayerStats.xp += xpGain
 			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.maxSpeed)
-
-			var particles: GPUParticles2D = particles_scene.instantiate()
-			particles.position = position
-
-			get_parent().add_child(particles)
-			particles.emitting = true
 
 			queue_free()
