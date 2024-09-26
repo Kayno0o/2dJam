@@ -1698,6 +1698,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("12_poooh")
 
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+
 [connection signal="loading" from="TileMapLayer" to="UiCanvas/Ui/LoadingScreen" method="_on_tile_map_layer_loading"]
 [connection signal="level_up" from="Player" to="UiCanvas/Ui" method="_on_player_level_up"]
 [connection signal="timeout" from="MobsSpawn" to="MobsSpawn" method="_on_timeout"]
