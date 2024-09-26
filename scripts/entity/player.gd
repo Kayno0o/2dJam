@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-var levelUpScene = preload("res://scenes/menu/UpgradeMenu.tscn")
-
-var instance
-
 @export var movement_particles: GPUParticles2D
+
+signal level_up
+
+var was_last_move_collision = false
 
 func _ready() -> void:
 	# set initial position
@@ -16,11 +16,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# check if you need to level up
 	if PlayerStats.xp >= PlayerStats.required_xp:
-		_level_up()
+		level_up.emit()
 
 	# check if you need to die, skill issue
 	if PlayerStats.speed < 0:
-		queue_free()
+		get_tree().paused = true
+		get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
 
 	var particle_material: ParticleProcessMaterial = movement_particles.process_material
 	if particle_material is ParticleProcessMaterial:
@@ -40,21 +41,10 @@ func _process(_delta: float) -> void:
 		# make the particle spawn a bit behind
 		particle_material.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
 
-func _level_up():
-	# show level up menu
-	Globals.ui_node.add_child(levelUpScene.instantiate())
-
-	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
-	PlayerStats.level += 1
-	PlayerStats.xp -= PlayerStats.required_xp
-	PlayerStats.required_xp *= 1.15
-
 func _physics_process(delta: float) -> void:
-	
-	# Modifying player size
+	# update player size
 	scale = Vector2(PlayerStats.size, PlayerStats.size)
-	
-	
+
 	# rotate player depending on user input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
@@ -64,13 +54,17 @@ func _physics_process(delta: float) -> void:
 
 	# bounce on walls on collision
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
-	if collision:
+	if collision and not was_last_move_collision:
+		was_last_move_collision = true
 		var normal = collision.get_normal()
 		var collider: Node2D = collision.get_collider()
+
 		if collider is Node2D and collider.is_in_group("world border"):
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
 			PlayerStats.speed -= PlayerStats.acceleration
+	else:
+		was_last_move_collision = false
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.velocity_percent * delta

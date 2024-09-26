@@ -2,15 +2,18 @@ extends Timer
 
 @export var player: CharacterBody2D
 
-@export var min_distance: int = 400
-@export var max_distance_init: int = 500
-@export var max_distance_over_time: int = 2000
-@export var max_distance_time: int = 30
+var min_distance: int = 400
+var max_distance_init: int = 500
+var max_distance_over_time: int = 3000
+var max_distance_time: int = 60
 
 var enemy = preload("res://scenes/entity/Curieux.tscn")
 
 func _ready():
 	wait_time = 1
+
+	for i in range(10):
+		spawn_enemy()
 
 func _get_random_position() -> Vector2:
 	var randX = randi_range(0, Globals.world_size.x)
@@ -19,6 +22,9 @@ func _get_random_position() -> Vector2:
 	return Vector2(randX, randY)
 
 func _on_timeout() -> void:
+	spawn_enemy()
+
+func spawn_enemy() -> void:
 	var new_enemy = enemy.instantiate()
 
 	# random angle between 0 and 2 * PI

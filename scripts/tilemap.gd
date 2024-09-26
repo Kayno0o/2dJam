@@ -60,6 +60,9 @@ func generate_map(width: int, height: int):
 
 	set_cells_terrain_connect(water_cells, 0, terrain_water)
 
+func get_layer(layer: int) -> int:
+	return int(pow(2, layer - 1))
+
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()
 	var collider = CollisionShape2D.new()
@@ -72,8 +75,8 @@ func create_wall(rect: Rect2) -> void:
 	wall.add_child(collider)
 
 	# Make sure walls and player are on the same collision layer/mask
-	wall.collision_layer = 1
-	wall.collision_mask = 1
+	wall.collision_layer = get_layer(1) + get_layer(2) + get_layer(3)
+	wall.collision_mask = get_layer(1) + get_layer(2) + get_layer(3)
 
 	wall.add_to_group("world border")
 

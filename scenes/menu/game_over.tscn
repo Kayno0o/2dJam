@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://nt24igtqd0hs"]
+
+[ext_resource type="Script" path="res://scripts/menu/game_over.gd" id="1_lue72"]
+
+[sub_resource type="Theme" id="Theme_uxdhp"]
+default_font_size = 32
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lue72")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -213.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uxdhp")
+text = "Score: XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -267.0
+offset_bottom = -222.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uxdhp")
+text = "Time: XXXs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -74.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uxdhp")
+text = "HighScore: XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -318.0
+offset_right = 55.5
+offset_bottom = -287.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart game"
+
+[node name="GoToMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -276.0
+offset_right = 55.5
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back to menu"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GoToMenu" to="." method="_on_go_to_menu_pressed"]
