@@ -1664,5 +1664,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("12_poooh")
 
+[connection signal="level_up" from="Player" to="UiCanvas/Ui" method="_on_player_level_up"]
 [connection signal="timeout" from="MobsSpawn" to="MobsSpawn" method="_on_timeout"]
 [connection signal="timeout" from="PropsSpawn" to="PropsSpawn" method="_on_timeout"]
