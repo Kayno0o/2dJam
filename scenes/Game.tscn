@@ -1629,6 +1629,7 @@ offset_bottom = 23.0
 script = ExtResource("12_bvh67")
 
 [node name="LoadingScreen" parent="UiCanvas/Ui" instance=ExtResource("14_mbb0q")]
+visible = false
 layout_mode = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
