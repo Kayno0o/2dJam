@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=30 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
 [ext_resource type="Texture2D" uid="uid://chjuocu0x4idw" path="res://assets/tilemap/water-grass.png" id="3_38us5"]
 [ext_resource type="Script" path="res://scripts/tilemap.gd" id="3_vwt15"]
 [ext_resource type="Texture2D" uid="uid://dcgtj03a1sh7k" path="res://assets/tilemap/grass.png" id="4_4thwv"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="4_6c0gq"]
+[ext_resource type="Script" path="res://scripts/menu/level_bar.gd" id="4_i5vmn"]
 [ext_resource type="Script" path="res://scripts/spawner/mob_spawn.gd" id="4_tnmtm"]
 [ext_resource type="Texture2D" uid="uid://biosawgtbm7ni" path="res://assets/tilemap/dirt-grass.png" id="5_pxxdj"]
 [ext_resource type="Texture2D" uid="uid://d1prmd0jen1gb" path="res://assets/tilemap/road.png" id="5_slk0w"]
@@ -20,16 +21,34 @@ colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dlrpm"]
 gradient = SubResource("Gradient_w0e4c")
-width = 256
-height = 16
+width = 384
+height = 24
 
 [sub_resource type="Gradient" id="Gradient_m4xxa"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uv4fi"]
 gradient = SubResource("Gradient_m4xxa")
-width = 256
-height = 16
+width = 384
+height = 24
+
+[sub_resource type="Gradient" id="Gradient_16bhl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lrpj"]
+gradient = SubResource("Gradient_16bhl")
+width = 512
+height = 10
+
+[sub_resource type="Gradient" id="Gradient_mendx"]
+offsets = PackedFloat32Array(0.00793651, 1)
+colors = PackedColorArray(0.811241, 1, 0.792306, 1, 0, 0.78852, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5obn"]
+gradient = SubResource("Gradient_mendx")
+width = 510
+height = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
 resource_name = "Dirt-Grass"
@@ -1603,16 +1622,12 @@ script = ExtResource("11_3h1yb")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -32.0
-offset_right = 208.0
-offset_bottom = -16.0
-grow_horizontal = 0
+offset_left = -6.0
+offset_top = -24.0
+offset_right = 378.0
 grow_vertical = 0
 rotation = -1.5708
 pivot_offset = Vector2(16, 0)
@@ -1626,7 +1641,24 @@ layout_mode = 1
 offset_left = 8.0
 offset_right = 48.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
 script = ExtResource("12_bvh67")
+
+[node name="LevelBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 16.0
+grow_horizontal = 2
+value = 50.0
+texture_under = SubResource("GradientTexture2D_6lrpj")
+texture_progress = SubResource("GradientTexture2D_r5obn")
+texture_progress_offset = Vector2(1, 1)
+script = ExtResource("4_i5vmn")
 
 [node name="LoadingScreen" parent="UiCanvas/Ui" instance=ExtResource("14_mbb0q")]
 visible = false

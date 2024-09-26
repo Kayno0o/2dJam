@@ -11,7 +11,6 @@ func _ready() -> void:
 
 
 func _on_tile_map_layer_loading(loading_value: int, loading_max_value: int) -> void:
-	print_debug(loading_value, " - ", loading_max_value)
 	progress_bar.value = loading_value
 	progress_bar.max_value = loading_max_value
 

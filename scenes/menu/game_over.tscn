@@ -95,6 +95,3 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_3fpam")
 text = "Back to menu"
-
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="GoToMenu" to="." method="_on_go_to_menu_pressed"]
