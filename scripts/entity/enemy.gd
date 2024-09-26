@@ -3,7 +3,8 @@ extends CharacterBody2D
 signal hurt(health: int, max_health: int)
 
 @export var score_on_death: int = 500
-@export var particles: GPUParticles2D
+
+var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
 var player
 var max_health = 1.0
@@ -45,6 +46,10 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 
 		hurt.emit(health, max_health)
 
+		var particles: GPUParticles2D = particles_scene.instantiate()
+		particles.position = position
+
+		get_parent().add_child(particles)
 		particles.emitting = true
 
 		if health <= 0:
