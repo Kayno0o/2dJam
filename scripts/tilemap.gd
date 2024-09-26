@@ -75,8 +75,8 @@ func create_wall(rect: Rect2) -> void:
 	wall.add_child(collider)
 
 	# Make sure walls and player are on the same collision layer/mask
-	wall.collision_layer = get_layer(1) + get_layer(3)
-	wall.collision_mask = get_layer(1) + get_layer(3)
+	wall.collision_layer = get_layer(1) + get_layer(2) + get_layer(3)
+	wall.collision_mask = get_layer(1) + get_layer(2) + get_layer(3)
 
 	wall.add_to_group("world border")
 
