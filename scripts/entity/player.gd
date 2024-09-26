@@ -20,7 +20,6 @@ func _process(_delta: float) -> void:
 
 	# check if you need to die, skill issue
 	if PlayerStats.speed < 0:
-		get_tree().paused = true
 		get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
 
 	var particle_material: ParticleProcessMaterial = movement_particles.process_material
