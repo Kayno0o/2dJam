@@ -1,6 +1,5 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=25 format=3 uid="uid://bf0ha836ro2xb"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
 [ext_resource type="Texture2D" uid="uid://chjuocu0x4idw" path="res://assets/tilemap/water-grass.png" id="3_38us5"]
 [ext_resource type="Script" path="res://scripts/tilemap.gd" id="3_vwt15"]
@@ -1590,7 +1589,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_15lf6")
 
 [node name="UiCanvas" type="CanvasLayer" parent="."]
 
