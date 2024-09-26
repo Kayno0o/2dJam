@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 var levelUpScene = preload("res://scenes/menu/UpgradeMenu.tscn")
 
-var instance
-
 @export var movement_particles: GPUParticles2D
+
+var was_last_move_collision = false
 
 func _ready() -> void:
 	# set initial position
@@ -50,11 +50,9 @@ func _level_up():
 	PlayerStats.required_xp *= 1.15
 
 func _physics_process(delta: float) -> void:
-	
-	# Modifying player size
+	# update player size
 	scale = Vector2(PlayerStats.size, PlayerStats.size)
-	
-	
+
 	# rotate player depending on user input
 	var rotation_direction := Input.get_axis("ui_left", "ui_right")
 	if rotation_direction:
@@ -64,13 +62,17 @@ func _physics_process(delta: float) -> void:
 
 	# bounce on walls on collision
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
-	if collision:
+	if collision and not was_last_move_collision:
+		was_last_move_collision = true
 		var normal = collision.get_normal()
 		var collider: Node2D = collision.get_collider()
+
 		if collider is Node2D and collider.is_in_group("world border"):
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
 			PlayerStats.speed -= PlayerStats.acceleration
+	else:
+		was_last_move_collision = false
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.velocity_percent * delta
