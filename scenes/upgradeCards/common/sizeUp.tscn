@@ -1,37 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtseow7asf4w0"]
+[gd_scene load_steps=5 format=3 uid="uid://dtseow7asf4w0"]
 
 [ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/PerksCards.gd" id="1_qq7qw"]
 [ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_pkxfn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwvj8"]
-bg_color = Color(0.254902, 0.184314, 0.0862745, 0.8)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojwev"]
+bg_color = Color(0.255, 0.184, 0.086, 0.8)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ym3c"]
 atlas = ExtResource("2_pkxfn")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlr3f"]
-atlas = ExtResource("2_pkxfn")
-region = Rect2(64, 64, 32, 32)
-
 [node name="Panel2" type="Panel"]
 custom_minimum_size = Vector2(150, 200)
-theme_override_styles/panel = SubResource("StyleBoxFlat_qwvj8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojwev")
 script = ExtResource("1_qq7qw")
 icon = SubResource("AtlasTexture_2ym3c")
-stat_description = "+ 10 %"
+stat_description = "+ 10"
 description = "Size"
 upgrade = 5
-stats_number = 10.0
+stats_number = 0.1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -49,7 +45,7 @@ theme_override_constants/margin_right = 10
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("AtlasTexture_hlr3f")
+texture = SubResource("AtlasTexture_2ym3c")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,7 +53,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "+ 10 %"
+text = "+ 10"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
