@@ -12,6 +12,7 @@ var enemy = preload("res://scenes/entity/Curieux.tscn")
 func _ready():
 	wait_time = 1
 
+	Globals.set_game_start_time()
 	for i in range(10):
 		spawn_enemy()
 
