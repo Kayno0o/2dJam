@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	look_at(player.position)
+	$SpriteController.look_at(player.position)
 	
 	# make the enemy goal position to the player if far enough
 	if position.distance_to(player.position) > DISTANCE_MOVE_TOWARD:
