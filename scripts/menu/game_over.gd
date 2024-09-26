@@ -9,10 +9,8 @@ func _ready() -> void:
 
 
 func _on_restart_pressed() -> void:
-	print("_on_restart_pressed")
 	get_tree().change_scene_to_file("res://scenes/Game.tscn")
 
 
 func _on_go_to_menu_pressed() -> void:
-	print("_on_go_to_menu_pressed")
 	get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
