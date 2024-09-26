@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
-[ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="14_mbb0q"]
+[ext_resource type="PackedScene" path="res://scenes/menu/loading_screen.tscn" id="14_mbb0q"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
