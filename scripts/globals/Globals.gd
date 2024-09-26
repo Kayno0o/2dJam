@@ -17,7 +17,6 @@ var high_score: int = 0
 func init():
 	score = 0
 	set_game_start_time()
-	PlayerStats._init()
 
 func set_game_start_time():
 	game_stop_time = 0
