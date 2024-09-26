@@ -11,6 +11,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jnksd")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.126001, 0.124656, 0.167117, 1)
+
 [node name="StartButton" type="Button" parent="."]
 clip_contents = true
 custom_minimum_size = Vector2(150, 50)

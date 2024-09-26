@@ -2,8 +2,8 @@ extends TileMapLayer
 
 var world_size_in_pixels: Vector2i
 
-@export var map_width: int = 75
-@export var map_height: int = 75
+@export var map_width: int = 125
+@export var map_height: int = 100
 @export var noise: Noise
 
 var river_width: float = 3.0
@@ -12,6 +12,8 @@ var river_path_curve: Curve2D = Curve2D.new()
 var terrain_dirt = 0
 var terrain_water = 1
 var terrain_grass = 2
+
+signal loading(loading_value: int, loading_max_value: int)
 
 func _ready() -> void:
 	generate_map(map_width, map_height)
@@ -58,7 +60,24 @@ func generate_map(width: int, height: int):
 			if value > lerp(min_value, max_value, 0.6):
 				water_cells.append(cell_pos)
 
-	set_cells_terrain_connect(water_cells, 0, terrain_water)
+	get_tree().paused = true
+
+	# Split water_cells into 10 chunks
+	var chunk_size = ceil(float(water_cells.size()) / 10)
+	var max_chunks = range(0, water_cells.size(), chunk_size)
+	var index = 0
+	for i in max_chunks:
+		var chunk = water_cells.slice(i, chunk_size)
+		set_cells_terrain_connect(chunk, 0, terrain_water)
+		
+		# Update the progress bar and allow UI to refresh
+		index += 1
+		# print_debug(index, " - ", max_chunks.size())
+		loading.emit(index, max_chunks.size())
+		await get_tree().create_timer(.1).timeout
+		await get_tree().process_frame
+
+	get_tree().paused = false
 
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()

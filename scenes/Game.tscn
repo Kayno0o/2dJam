@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=26 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
@@ -14,6 +14,23 @@
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
+[ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="14_mbb0q"]
+
+[sub_resource type="Gradient" id="Gradient_w0e4c"]
+colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dlrpm"]
+gradient = SubResource("Gradient_w0e4c")
+width = 256
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_m4xxa"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv4fi"]
+gradient = SubResource("Gradient_m4xxa")
+width = 256
+height = 16
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
 resource_name = "Dirt-Grass"
@@ -1566,22 +1583,6 @@ fractal_octaves = 1
 fractal_lacunarity = 0.0
 fractal_weighted_strength = 1.0
 
-[sub_resource type="Gradient" id="Gradient_w0e4c"]
-colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dlrpm"]
-gradient = SubResource("Gradient_w0e4c")
-width = 256
-height = 16
-
-[sub_resource type="Gradient" id="Gradient_m4xxa"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv4fi"]
-gradient = SubResource("Gradient_m4xxa")
-width = 256
-height = 16
-
 [node name="GameControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -1590,34 +1591,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_15lf6")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
-scale = Vector2(2, 2)
-tile_set = SubResource("TileSet_w3r77")
-script = ExtResource("3_vwt15")
-map_width = 125
-noise = SubResource("FastNoiseLite_tcc1e")
-
-[node name="Player" parent="." instance=ExtResource("2_wqw82")]
-position = Vector2(-1, 0)
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-process_callback = 0
-limit_left = 0
-limit_top = 0
-limit_smoothed = true
-position_smoothing_enabled = true
-editor_draw_drag_margin = true
-script = ExtResource("4_6c0gq")
-
-[node name="MobsSpawn" type="Timer" parent="." node_paths=PackedStringArray("player")]
-autostart = true
-script = ExtResource("4_tnmtm")
-player = NodePath("../Player")
-
-[node name="PropsSpawn" type="Timer" parent="."]
-autostart = true
-script = ExtResource("10_y7m5n")
 
 [node name="UiCanvas" type="CanvasLayer" parent="."]
 
@@ -1657,6 +1630,36 @@ offset_right = 48.0
 offset_bottom = 23.0
 script = ExtResource("12_bvh67")
 
+[node name="LoadingScreen" parent="UiCanvas/Ui" instance=ExtResource("14_mbb0q")]
+layout_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_w3r77")
+script = ExtResource("3_vwt15")
+noise = SubResource("FastNoiseLite_tcc1e")
+
+[node name="Player" parent="." instance=ExtResource("2_wqw82")]
+position = Vector2(-1, 0)
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
+script = ExtResource("4_6c0gq")
+
+[node name="MobsSpawn" type="Timer" parent="." node_paths=PackedStringArray("player")]
+autostart = true
+script = ExtResource("4_tnmtm")
+player = NodePath("../Player")
+
+[node name="PropsSpawn" type="Timer" parent="."]
+autostart = true
+script = ExtResource("10_y7m5n")
+
 [node name="KeyboardInput" type="Control" parent="."]
 process_mode = 3
 anchors_preset = 0
@@ -1664,6 +1667,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("12_poooh")
 
+[connection signal="loading" from="TileMapLayer" to="UiCanvas/Ui/LoadingScreen" method="_on_tile_map_layer_loading"]
 [connection signal="level_up" from="Player" to="UiCanvas/Ui" method="_on_player_level_up"]
 [connection signal="timeout" from="MobsSpawn" to="MobsSpawn" method="_on_timeout"]
 [connection signal="timeout" from="PropsSpawn" to="PropsSpawn" method="_on_timeout"]
