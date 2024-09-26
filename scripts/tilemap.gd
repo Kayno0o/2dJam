@@ -78,6 +78,7 @@ func generate_map(width: int, height: int):
 		await get_tree().process_frame
 
 	get_tree().paused = false
+	Globals.init()
 
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()

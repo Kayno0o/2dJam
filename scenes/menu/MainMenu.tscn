@@ -14,8 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_jnksd")
 
 [node name="Background" parent="." instance=ExtResource("2_h3ykq")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1

@@ -31,8 +31,7 @@ grow_vertical = 2
 script = ExtResource("1_ptm7v")
 
 [node name="Background" parent="." instance=ExtResource("2_803i8")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
