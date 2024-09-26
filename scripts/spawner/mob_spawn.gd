@@ -2,10 +2,10 @@ extends Timer
 
 @export var player: CharacterBody2D
 
-@export var min_distance: int = 400
-@export var max_distance_init: int = 500
-@export var max_distance_over_time: int = 2000
-@export var max_distance_time: int = 30
+var min_distance: int = 400
+var max_distance_init: int = 500
+var max_distance_over_time: int = 3000
+var max_distance_time: int = 60
 
 var enemy = preload("res://scenes/entity/Curieux.tscn")
 

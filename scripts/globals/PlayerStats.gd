@@ -22,7 +22,7 @@ func _init() -> void:
 
 	speed = 800.0
 	max_speed = 1200.0
-	acceleration = 90.0
+	acceleration = 100.0
 	velocity_percent = 0.13
 
 	rotation_velocity = 3

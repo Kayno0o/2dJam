@@ -10,7 +10,7 @@ var player
 var max_health = 1.0
 var health = 1.0
 
-const SPEED_TOWARD = 3000
+const SPEED_TOWARD = 2500
 const SPEED_AWAY = 4000
 const DISTANCE_MOVE_TOWARD = 400
 const DISTANCE_MOVE_AWAY = 250
