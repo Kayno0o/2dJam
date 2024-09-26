@@ -11,15 +11,34 @@ config_version=5
 [application]
 
 config/name="2dJam"
+run/main_scene="res://scenes/menu/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+PlayerStats="*res://scripts/globals/PlayerStats.gd"
+Globals="*res://scripts/globals/Globals.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[global_group]
+
+"world border"=""
+tilemap=""
+ui=""
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
