@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
+@export var score_on_death: int = 500
+
 var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
 var player
@@ -53,5 +55,6 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 			Globals.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
 			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
+			Globals.score += score_on_death
 
 			queue_free()

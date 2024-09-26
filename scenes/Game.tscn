@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=24 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_15lf6"]
 [ext_resource type="PackedScene" uid="uid://b1x5sdgoud7vw" path="res://scenes/entity/Player.tscn" id="2_wqw82"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d1prmd0jen1gb" path="res://assets/tilemap/road.png" id="5_slk0w"]
 [ext_resource type="Script" path="res://scripts/menu/ui/texture_progress_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/spawner/prop_spawn.gd" id="10_y7m5n"]
+[ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
@@ -1646,6 +1647,13 @@ value = 100.0
 texture_under = SubResource("GradientTexture2D_dlrpm")
 texture_progress = SubResource("GradientTexture2D_uv4fi")
 script = ExtResource("8_nh0vy")
+
+[node name="Score" type="Label" parent="UiCanvas/Ui"]
+layout_mode = 1
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 23.0
+script = ExtResource("12_bvh67")
 
 [node name="KeyboardInput" type="Control" parent="."]
 process_mode = 3

@@ -10,6 +10,8 @@ var ui_node: Control
 
 var game_start_time: int = 0
 
+var score: int = 0
+
 signal ennemy_death
 
 
@@ -19,3 +21,6 @@ func set_game_start_time():
 # get elapsed time in seconds
 func get_game_elapsed_time() -> float:
 	return (Time.get_ticks_msec() - game_start_time) / 1000.0
+
+func get_score() -> int:
+	return int(get_game_elapsed_time() * 100) + score
