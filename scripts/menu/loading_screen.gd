@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	progress_bar.value = 5
 	progress_bar.max_value = 15
+	visible = true
 
 
 func _on_tile_map_layer_loading(loading_value: int, loading_max_value: int) -> void:
