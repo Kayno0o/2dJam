@@ -21,7 +21,7 @@ var is_move_toward = false
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-	health = 1 + floor(Globals.get_game_elapsed_time() / 25.0)
+	health = 1 + floor(Globals.get_game_elapsed_time() / 60.0)
 	max_health = health
 
 func _physics_process(delta: float) -> void:
