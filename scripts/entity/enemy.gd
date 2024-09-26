@@ -19,6 +19,9 @@ const xp_gain = 1
 
 var is_move_toward = false
 
+signal moving
+signal scared
+
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
@@ -26,11 +29,16 @@ func _ready() -> void:
 	max_health = health
 
 func _physics_process(delta: float) -> void:
+	
+	look_at(player.position)
+	
 	# make the enemy goal position to the player if far enough
 	if position.distance_to(player.position) > DISTANCE_MOVE_TOWARD:
+		moving.emit()
 		is_move_toward = true
 	# make the enemy goal position away from the player if too close
 	elif position.distance_to(player.position) < DISTANCE_MOVE_AWAY:
+		scared.emit()
 		is_move_toward = false
 
 	if is_move_toward:
