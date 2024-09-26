@@ -50,31 +50,31 @@ func generate_map(width: int, height: int):
 
 			set_cell(Vector2i(x, y), 2, grass_tileset.get_tile_id(randi_range(0, grass_tile_count - 1)))
 
-	var water_cells = []
+	var water_cells: Array[Vector2i] = []
 
 	for x in range(width):
 		for y in range(height):
 			var value = noise.get_noise_2d(x, y)
 
-			var cell_pos = Vector2i(x, y)
+			var cell_pos: Vector2i = Vector2i(x, y)
 			if value > lerp(min_value, max_value, 0.6):
 				water_cells.append(cell_pos)
 
 	get_tree().paused = true
 
-	# Split water_cells into 10 chunks
-	var chunk_size = ceil(float(water_cells.size()) / 10)
+	# Split water_cells into X chunks
+	var chunk_amount = 20.0
+	var chunk_size = ceil(float(water_cells.size()) / chunk_amount)
 	var max_chunks = range(0, water_cells.size(), chunk_size)
 	var index = 0
 	for i in max_chunks:
-		var chunk = water_cells.slice(i, chunk_size)
+		var chunk = water_cells.slice(i, i + chunk_size)
 		set_cells_terrain_connect(chunk, 0, terrain_water)
 		
 		# Update the progress bar and allow UI to refresh
 		index += 1
-		# print_debug(index, " - ", max_chunks.size())
 		loading.emit(index, max_chunks.size())
-		await get_tree().create_timer(.1).timeout
+
 		await get_tree().process_frame
 
 	get_tree().paused = false

@@ -81,7 +81,7 @@ texture = SubResource("AtlasTexture_rueyo")
 
 [node name="Scared" type="Sprite2D" parent="SpriteController"]
 visible = false
-rotation = -1.5708
+rotation = 1.5708
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_nv6qy")
 

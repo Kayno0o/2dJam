@@ -20,16 +20,16 @@ colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dlrpm"]
 gradient = SubResource("Gradient_w0e4c")
-width = 256
-height = 16
+width = 384
+height = 24
 
 [sub_resource type="Gradient" id="Gradient_m4xxa"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uv4fi"]
 gradient = SubResource("Gradient_m4xxa")
-width = 256
-height = 16
+width = 384
+height = 24
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
 resource_name = "Dirt-Grass"
@@ -1603,16 +1603,12 @@ script = ExtResource("11_3h1yb")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -32.0
-offset_right = 208.0
-offset_bottom = -16.0
-grow_horizontal = 0
+offset_left = -6.0
+offset_top = -24.0
+offset_right = 378.0
 grow_vertical = 0
 rotation = -1.5708
 pivot_offset = Vector2(16, 0)
@@ -1626,6 +1622,7 @@ layout_mode = 1
 offset_left = 8.0
 offset_right = 48.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
 script = ExtResource("12_bvh67")
 
 [node name="LoadingScreen" parent="UiCanvas/Ui" instance=ExtResource("14_mbb0q")]
