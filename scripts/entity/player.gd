@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var levelUpScene = preload("res://scenes/menu/UpgradeMenu.tscn")
-
 @export var movement_particles: GPUParticles2D
+
+signal level_up
 
 var was_last_move_collision = false
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# check if you need to level up
 	if PlayerStats.xp >= PlayerStats.required_xp:
-		_level_up()
+		level_up.emit()
 
 	# check if you need to die, skill issue
 	if PlayerStats.speed < 0:
@@ -39,15 +39,6 @@ func _process(_delta: float) -> void:
 
 		# make the particle spawn a bit behind
 		particle_material.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
-
-func _level_up():
-	# show level up menu
-	Globals.ui_node.add_child(levelUpScene.instantiate())
-
-	# leveling up, getting excess xp to the next level and reseting the xp then make more Xp necessary to level up
-	PlayerStats.level += 1
-	PlayerStats.xp -= PlayerStats.required_xp
-	PlayerStats.required_xp *= 1.15
 
 func _physics_process(delta: float) -> void:
 	# update player size

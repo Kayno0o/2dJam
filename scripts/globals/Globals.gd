@@ -6,8 +6,6 @@ const LEGENDARY_CARDS = ["res://scenes/upgradeCards/legendary/accelerationUp.tsc
 
 var world_size: Vector2i
 
-var ui_node: Control
-
 var game_start_time: int = 0
 
 var score: int = 0
