@@ -7,6 +7,8 @@ signal level_up
 var was_last_move_collision = false
 
 func _ready() -> void:
+	PlayerStats._init()
+
 	# set initial position
 	position = Globals.world_size / 2
 	
