@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://nt24igtqd0hs"]
+[gd_scene load_steps=5 format=3 uid="uid://nt24igtqd0hs"]
 
 [ext_resource type="Script" path="res://scripts/menu/game_over.gd" id="1_lue72"]
+[ext_resource type="Theme" uid="uid://djrpxahlfvckq" path="res://material/theme.tres" id="2_3fpam"]
+[ext_resource type="PackedScene" uid="uid://vni7l2y6murl" path="res://scenes/menu/background.tscn" id="2_edpxn"]
 
 [sub_resource type="Theme" id="Theme_uxdhp"]
 default_font_size = 32
@@ -13,6 +15,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lue72")
+
+[node name="Background" parent="." instance=ExtResource("2_edpxn")]
+layout_mode = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 1
@@ -72,6 +77,7 @@ offset_right = 55.5
 offset_bottom = -287.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_3fpam")
 text = "Restart game"
 
 [node name="GoToMenu" type="Button" parent="."]
@@ -81,12 +87,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -55.5
+offset_left = -85.5
 offset_top = -276.0
-offset_right = 55.5
-offset_bottom = -245.0
+offset_right = 85.5
+offset_bottom = -237.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_3fpam")
 text = "Back to menu"
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
