@@ -31,4 +31,11 @@ func get_game_elapsed_time() -> float:
 func get_score() -> int:
 	var value = int(get_game_elapsed_time() * 100) + score
 	high_score = max(high_score, value)
+	max(10, 10)
+	return value
+
+func get_layer(layers: Array[int]):
+	var value: int = 0
+	for layer in layers:
+		value += int(pow(2, layer - 1))
 	return value
