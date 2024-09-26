@@ -14,7 +14,6 @@ var score: int = 0
 
 signal ennemy_death
 
-
 func set_game_start_time():
 	game_start_time = Time.get_ticks_msec()
 

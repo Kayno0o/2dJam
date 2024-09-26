@@ -12,6 +12,9 @@ var enemy = preload("res://scenes/entity/Curieux.tscn")
 func _ready():
 	wait_time = 1
 
+	for i in range(10):
+		spawn_enemy()
+
 func _get_random_position() -> Vector2:
 	var randX = randi_range(0, Globals.world_size.x)
 	var randY = randi_range(0, Globals.world_size.y)
@@ -19,6 +22,9 @@ func _get_random_position() -> Vector2:
 	return Vector2(randX, randY)
 
 func _on_timeout() -> void:
+	spawn_enemy()
+
+func spawn_enemy() -> void:
 	var new_enemy = enemy.instantiate()
 
 	# random angle between 0 and 2 * PI
