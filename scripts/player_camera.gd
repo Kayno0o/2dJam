@@ -3,8 +3,8 @@ extends Camera2D
 var initial_value: Vector2
 
 func _ready() -> void:
-	limit_right = Globals.world_size.x
-	limit_bottom = Globals.world_size.y
+	limit_right = Game.world_size.x
+	limit_bottom = Game.world_size.y
 
 	position_smoothing_enabled = false
 	initial_value = zoom

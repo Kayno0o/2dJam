@@ -10,7 +10,7 @@ func _ready() -> void:
 	PlayerStats._init()
 
 	# set initial position
-	position = Globals.world_size / 2
+	position = Game.world_size / 2
 	
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
@@ -19,10 +19,6 @@ func _process(_delta: float) -> void:
 	# check if you need to level up
 	if PlayerStats.xp >= PlayerStats.required_xp:
 		level_up.emit()
-
-	# check if you need to die, skill issue
-	if PlayerStats.speed < 0:
-		get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
 
 	var particle_material: ParticleProcessMaterial = movement_particles.process_material
 	if particle_material is ParticleProcessMaterial:
@@ -42,6 +38,10 @@ func _process(_delta: float) -> void:
 		# make the particle spawn a bit behind
 		particle_material.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
 
+	# check if you need to die, skill issue
+	if PlayerStats.speed < 0:
+		Globals.goto_scene("res://scenes/menu/game_over.tscn")
+
 func _physics_process(delta: float) -> void:
 	# update player size
 	scale = Vector2(PlayerStats.size, PlayerStats.size)
@@ -54,13 +54,15 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.rotated(angle)
 
 	# bounce on walls on collision
-	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+	var movement: Vector2 = velocity * delta
+	var collision: KinematicCollision2D = move_and_collide(movement)
 	if collision and not was_last_move_collision:
 		was_last_move_collision = true
 		var normal = collision.get_normal()
 		var collider: Node2D = collision.get_collider()
 
 		if collider is Node2D and collider.is_in_group("world border"):
+			move_and_collide(-movement)
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
 			PlayerStats.speed -= PlayerStats.acceleration
