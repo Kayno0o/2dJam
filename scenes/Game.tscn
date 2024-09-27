@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://biosawgtbm7ni" path="res://assets/tilemap/dirt-grass.png" id="5_pxxdj"]
 [ext_resource type="Texture2D" uid="uid://d1prmd0jen1gb" path="res://assets/tilemap/road.png" id="5_slk0w"]
 [ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="6_0mrfq"]
-[ext_resource type="Script" path="res://scripts/menu/ui/texture_progress_bar.gd" id="8_nh0vy"]
+[ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
@@ -914,7 +914,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_3h1yb")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
+[node name="SpeedBar" type="TextureProgressBar" parent="UiCanvas/Ui"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
