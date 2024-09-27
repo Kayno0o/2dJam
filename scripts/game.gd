@@ -66,6 +66,9 @@ func spawn_box():
 	var rand_x = randi_range(0, Game.world_size.x)
 	var rand_y = randi_range(0, Game.world_size.y)
 
+	rand_x -= rand_x % Game.tile_size.x
+	rand_y -= rand_y % Game.tile_size.y
+
 	new_box.position = Vector2(rand_x, rand_y)
 
 	box_container.add_child(new_box)

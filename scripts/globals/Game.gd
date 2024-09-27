@@ -3,6 +3,7 @@ extends Node
 signal ennemy_death
 
 var world_size: Vector2i
+var tile_size: Vector2i
 
 var seconds: float = 0
 

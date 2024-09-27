@@ -29,6 +29,7 @@ func _ready() -> void:
 	create_wall(Rect2(Vector2(0, world_size_in_pixels.y), Vector2(world_size_in_pixels.x, tile_size.y))) # Bottom
 	
 	Game.world_size = world_size_in_pixels * Vector2i(scale)
+	Game.tile_size = tile_size * Vector2i(scale)
 
 	await get_tree().tree_changed
 
