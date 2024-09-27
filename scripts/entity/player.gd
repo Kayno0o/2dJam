@@ -4,8 +4,6 @@ extends CharacterBody2D
 
 signal level_up
 
-var was_last_move_collision = false
-
 func _ready() -> void:
 	PlayerStats._init()
 
@@ -56,8 +54,7 @@ func _physics_process(delta: float) -> void:
 	# bounce on walls on collision
 	var movement: Vector2 = velocity * delta
 	var collision: KinematicCollision2D = move_and_collide(movement)
-	if collision and not was_last_move_collision:
-		was_last_move_collision = true
+	if collision:
 		var normal = collision.get_normal()
 		var collider: Node2D = collision.get_collider()
 
@@ -66,8 +63,6 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
 			PlayerStats.speed -= PlayerStats.acceleration
-	else:
-		was_last_move_collision = false
 
 	# lose speed over time
 	var decay = PlayerStats.speed * PlayerStats.friction * delta

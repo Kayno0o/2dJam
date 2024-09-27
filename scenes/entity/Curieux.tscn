@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bt1ljp5hmc4lc"]
 
-[ext_resource type="Script" path="res://scripts/entity/enemy.gd" id="1_bu721"]
+[ext_resource type="Script" path="res://scripts/entity/enemy/curieux.gd" id="1_804xh"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="2_xg61o"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="3_f7fjr"]
 [ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_vqvkm"]
@@ -40,7 +40,7 @@ region = Rect2(416, 0, 32, 32)
 [node name="Curieux" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_bu721")
+script = ExtResource("1_804xh")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
