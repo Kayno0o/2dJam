@@ -10,7 +10,7 @@ func _ready() -> void:
 	PlayerStats._init()
 
 	# set initial position
-	position = Globals.world_size / 2
+	position = Game.world_size / 2
 	
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 
 	# check if you need to die, skill issue
 	if PlayerStats.speed < 0:
-		get_tree().change_scene_to_file("res://scenes/menu/game_over.tscn")
+		Globals.goto_scene("res://scenes/menu/game_over.tscn")
 
 	var particle_material: ParticleProcessMaterial = movement_particles.process_material
 	if particle_material is ParticleProcessMaterial:

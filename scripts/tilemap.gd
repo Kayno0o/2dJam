@@ -1,17 +1,16 @@
 extends TileMapLayer
 
-var world_size_in_pixels: Vector2i
-
 @export var map_width: int = 125
 @export var map_height: int = 100
 @export var noise: Noise
+
+var world_size_in_pixels: Vector2i
 
 var river_width: float = 3.0
 var river_path_curve: Curve2D = Curve2D.new()
 
 var terrain_dirt = 0
-var terrain_water = 1
-var terrain_grass = 2
+var terrain_water = 0
 
 signal loading(loading_value: int, loading_max_value: int)
 
@@ -29,7 +28,9 @@ func _ready() -> void:
 	create_wall(Rect2(Vector2(world_size_in_pixels.x, 0), Vector2(tile_size.x, world_size_in_pixels.y))) # Right
 	create_wall(Rect2(Vector2(0, world_size_in_pixels.y), Vector2(world_size_in_pixels.x, tile_size.y))) # Bottom
 	
-	Globals.world_size = world_size_in_pixels * Vector2i(scale)
+	Game.world_size = world_size_in_pixels * Vector2i(scale)
+
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 
 func generate_map(width: int, height: int):
 	noise.seed = randi()
@@ -60,8 +61,6 @@ func generate_map(width: int, height: int):
 			if value > lerp(min_value, max_value, 0.6):
 				water_cells.append(cell_pos)
 
-	get_tree().paused = true
-
 	# Split water_cells into X chunks
 	var chunk_amount = 20.0
 	var chunk_size = ceil(float(water_cells.size()) / chunk_amount)
@@ -77,9 +76,6 @@ func generate_map(width: int, height: int):
 
 		await get_tree().process_frame
 
-	get_tree().paused = false
-	Globals.init()
-
 func create_wall(rect: Rect2) -> void:
 	var wall = StaticBody2D.new()
 	var collider = CollisionShape2D.new()
@@ -92,8 +88,8 @@ func create_wall(rect: Rect2) -> void:
 	wall.add_child(collider)
 
 	# Make sure walls and player are on the same collision layer/mask
-	wall.collision_layer = Globals.get_layer([1, 2, 3])
-	wall.collision_mask = Globals.get_layer([1, 2, 3])
+	wall.collision_layer = Utils.get_layer([1, 2, 3])
+	wall.collision_mask = Utils.get_layer([1, 2, 3])
 
 	wall.add_to_group("world border")
 
