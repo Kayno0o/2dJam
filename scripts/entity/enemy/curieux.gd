@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
+@export var initial_health: int = 1
+@export var health_per_minute: int = 1
+
+@onready var health = initial_health + floor(Game.get_elapsed_time() / 60.0) * health_per_minute
+@onready var max_health = health
+
 @onready var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
 var score_on_death: int = 500
 
 var player
-var max_health = 1.0
-var health = 1.0
 
 const SPEED_TOWARD = 4000
 const SPEED_AWAY = 6000
@@ -24,9 +28,6 @@ signal scared
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-
-	health = 1 + floor(Game.get_elapsed_time() / 60.0)
-	max_health = health
 
 func _physics_process(delta: float) -> void:
 	$SpriteController.look_at(player.position)
