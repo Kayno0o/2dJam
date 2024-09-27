@@ -36,7 +36,7 @@ func spawn_curieux() -> void:
 	if curieux_mob_container.get_child_count() > curieux_limit:
 		return
 
-	var new_curieux: CharacterBody2D = resource_preloader.get_resource("entity-curieux").instantiate()
+	var new_curieux: CharacterBody2D = resource_preloader.get_resource("entity-courageux").instantiate()
 
 	# random angle between 0 and 2 * PI
 	var angle = randf_range(0, TAU)

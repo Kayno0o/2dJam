@@ -1,5 +1,7 @@
 extends Area2D
 
+signal destroyed
+
 @onready var particles_scene = preload("res://scenes/particles/box_explosion.tscn")
 
 func _on_body_entered(body: Node2D) -> void:
@@ -13,4 +15,5 @@ func _on_body_entered(body: Node2D) -> void:
 		get_parent().add_child(particles)
 		particles.emitting = true
 
+		destroyed.emit()
 		queue_free()
