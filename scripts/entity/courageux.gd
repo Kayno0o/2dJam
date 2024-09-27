@@ -2,27 +2,31 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
+@export var initial_health: int = 1
+@export var health_per_minute: int = 1
+
+@onready var health = initial_health + floor(Game.get_elapsed_time() / 60.0) * health_per_minute
+@onready var max_health = health
+
 @onready var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
 var score_on_death: int = 500
 
 var player
-var max_health = 1.0
-var health = 1.0
 
 const SPEED_TOWARD = 4000
 const SPEED_AWAY = 6000
 const DISTANCE_MOVE_TOWARD = 600
 const DISTANCE_MOVE_AWAY = 200
 
-const xp_gain = 10
+const xp_gain = 1
 
 var is_move_toward = false
 
+var box_destroyed : bool
+
 signal moving
 signal scared
-
-var box_destroyed : bool
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
