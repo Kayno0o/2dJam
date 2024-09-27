@@ -3,9 +3,12 @@ extends Control
 @onready var resource_preloader: ResourcePreloader = $Loader/ResourcePreloader
 @onready var player: CharacterBody2D = $Player
 @onready var tilemap: TileMapLayer = $TileMapLayer
+@onready var curieux_mob_container: Node = $MobContainer/Curieux
+@onready var box_container: Node = $BoxContainer
 
 var last_second = 0
 
+var curieux_limit = 20
 var curieux_min_distance: int = 400
 var curieux_max_distance_init: int = 500
 var curieux_max_distance_over_time: int = 3000
@@ -30,6 +33,9 @@ func _process(delta: float) -> void:
 	last_second = new_second
 
 func spawn_curieux() -> void:
+	if curieux_mob_container.get_child_count() > curieux_limit:
+		return
+
 	var new_curieux: CharacterBody2D = resource_preloader.get_resource("entity-curieux").instantiate()
 
 	# random angle between 0 and 2 * PI
@@ -52,7 +58,7 @@ func spawn_curieux() -> void:
 
 	new_curieux.position = Vector2(rand_x, rand_y)
 
-	add_child(new_curieux)
+	curieux_mob_container.add_child(new_curieux)
 
 func spawn_box():
 	var new_box = resource_preloader.get_resource("props-box").instantiate()
@@ -62,7 +68,7 @@ func spawn_box():
 
 	new_box.position = Vector2(rand_x, rand_y)
 
-	add_child(new_box)
+	box_container.add_child(new_box)
 
 
 func _on_loading_screen_finish() -> void:

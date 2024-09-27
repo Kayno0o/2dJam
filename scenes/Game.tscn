@@ -994,7 +994,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("12_poooh")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="MobContainer" type="Node" parent="."]
+
+[node name="Curieux" type="Node" parent="MobContainer"]
+
+[node name="BoxContainer" type="Node" parent="."]
 
 [connection signal="finish" from="Loader/LoadingScreen" to="." method="_on_loading_screen_finish"]
 [connection signal="loading" from="TileMapLayer" to="Loader/LoadingScreen" method="_on_load"]
