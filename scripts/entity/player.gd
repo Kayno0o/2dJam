@@ -20,10 +20,6 @@ func _process(_delta: float) -> void:
 	if PlayerStats.xp >= PlayerStats.required_xp:
 		level_up.emit()
 
-	# check if you need to die, skill issue
-	if PlayerStats.speed < 0:
-		Globals.goto_scene("res://scenes/menu/game_over.tscn")
-
 	var particle_material: ParticleProcessMaterial = movement_particles.process_material
 	if particle_material is ParticleProcessMaterial:
 		# spread goes from 1 to 90 degrees, depending on the speed compared to max speed
@@ -41,6 +37,10 @@ func _process(_delta: float) -> void:
 
 		# make the particle spawn a bit behind
 		particle_material.emission_shape_offset = Vector3(abs(normalized_velocity.x) * -32, 0, 0)
+
+	# check if you need to die, skill issue
+	if PlayerStats.speed < 0:
+		Globals.goto_scene("res://scenes/menu/game_over.tscn")
 
 func _physics_process(delta: float) -> void:
 	# update player size

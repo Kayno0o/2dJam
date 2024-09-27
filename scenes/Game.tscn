@@ -965,6 +965,8 @@ process_thread_messages = 0
 resources = [PackedStringArray("entity-curieux", "props-box"), [ExtResource("2_2b8ll"), ExtResource("4_b5ru5")]]
 
 [node name="LoadingScreen" parent="Loader" instance=ExtResource("6_0mrfq")]
+offset_left = 1.0
+offset_right = 1.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
 process_mode = 3
@@ -973,8 +975,6 @@ tile_set = SubResource("TileSet_w3r77")
 collision_enabled = false
 navigation_enabled = false
 script = ExtResource("3_vwt15")
-map_width = null
-map_height = null
 noise = SubResource("FastNoiseLite_tcc1e")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]
