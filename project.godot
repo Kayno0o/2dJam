@@ -17,8 +17,10 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-PlayerStats="*res://scripts/globals/PlayerStats.gd"
+Utils="*res://scripts/globals/Utils.gd"
 Globals="*res://scripts/globals/Globals.gd"
+Game="*res://scripts/globals/Game.gd"
+PlayerStats="*res://scripts/globals/PlayerStats.gd"
 
 [display]
 

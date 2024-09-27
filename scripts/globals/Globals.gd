@@ -1,41 +1,36 @@
 extends Node
 
-const COMMON_CARDS = ["res://scenes/upgradeCards/common/accelerationUp.tscn", "res://scenes/upgradeCards/common/damageUp.tscn", "res://scenes/upgradeCards/common/maxSpeed.tscn", "res://scenes/upgradeCards/common/momentumUp.tscn", "res://scenes/upgradeCards/common/rotationSpeedUp.tscn", "res://scenes/upgradeCards/common/sizeUp.tscn"]
-const RARE_CARDS = ["res://scenes/upgradeCards/rare/accelerationUp.tscn", "res://scenes/upgradeCards/rare/damageUp.tscn", "res://scenes/upgradeCards/rare/maxSpeed.tscn", "res://scenes/upgradeCards/rare/momentumUp.tscn", "res://scenes/upgradeCards/rare/rotationSpeedUp.tscn", "res://scenes/upgradeCards/rare/sizeUp.tscn"]
-const LEGENDARY_CARDS = ["res://scenes/upgradeCards/legendary/accelerationUp.tscn", "res://scenes/upgradeCards/legendary/damageUp.tscn", "res://scenes/upgradeCards/legendary/maxSpeed.tscn", "res://scenes/upgradeCards/legendary/momentumUp.tscn", "res://scenes/upgradeCards/legendary/rotationSpeedUp.tscn", "res://scenes/upgradeCards/legendary/sizeUp.tscn"]
+# @see https://docs.godotengine.org/en/4.3/tutorials/scripting/singletons_autoload.html
+var current_scene = null
 
-signal ennemy_death
+func _ready():
+	var root = get_tree().root
+	current_scene = root.get_child(root.get_child_count() - 1)
 
-var world_size: Vector2i
+func goto_scene(path):
+	# This function will usually be called from a signal callback,
+	# or some other function in the current scene.
+	# Deleting the current scene at this point is
+	# a bad idea, because it may still be executing code.
+	# This will result in a crash or unexpected behavior.
 
-var game_start_time: int = 0
-var game_stop_time: int = 0
+	# The solution is to defer the load to a later time, when
+	# we can be sure that no code from the current scene is running:
 
-var score: int = 0
-var high_score: int = 0
+	call_deferred("_deferred_goto_scene", path)
 
-func init():
-	score = 0
-	set_game_start_time()
+func _deferred_goto_scene(path):
+	# It is now safe to remove the current scene.
+	current_scene.free()
 
-func set_game_start_time():
-	game_stop_time = 0
-	game_start_time = Time.get_ticks_msec()
+	# Load the new scene.
+	var s = ResourceLoader.load(path)
 
-# get elapsed time in seconds
-func get_game_elapsed_time() -> float:
-	if game_stop_time != 0:
-		return game_stop_time / 1000.0
-	return (Time.get_ticks_msec() - game_start_time) / 1000.0
+	# Instance the new scene.
+	current_scene = s.instantiate()
 
-func get_score() -> int:
-	var value = int(get_game_elapsed_time() * 100) + score
-	high_score = max(high_score, value)
-	max(10, 10)
-	return value
+	# Add it to the active scene, as child of root.
+	get_tree().root.add_child(current_scene)
 
-func get_layer(layers: Array[int]):
-	var value: int = 0
-	for layer in layers:
-		value += int(pow(2, layer - 1))
-	return value
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = current_scene

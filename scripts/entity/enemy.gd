@@ -2,18 +2,18 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
-@export var score_on_death: int = 500
+@onready var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
 
-var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
+var score_on_death: int = 500
 
 var player
 var max_health = 1.0
 var health = 1.0
 
-const SPEED_TOWARD = 2500
-const SPEED_AWAY = 4000
-const DISTANCE_MOVE_TOWARD = 400
-const DISTANCE_MOVE_AWAY = 250
+const SPEED_TOWARD = 4000
+const SPEED_AWAY = 6000
+const DISTANCE_MOVE_TOWARD = 600
+const DISTANCE_MOVE_AWAY = 200
 
 const xp_gain = 1
 
@@ -25,11 +25,10 @@ signal scared
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-	health = 1 + floor(Globals.get_game_elapsed_time() / 60.0)
+	health = 1 + floor(Game.get_elapsed_time() / 60.0)
 	max_health = health
 
 func _physics_process(delta: float) -> void:
-	
 	$SpriteController.look_at(player.position)
 	
 	# make the enemy goal position to the player if far enough
@@ -61,9 +60,9 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		particles.emitting = true
 
 		if health <= 0:
-			Globals.ennemy_death.emit()
+			Game.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
 			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
-			Globals.score += score_on_death
+			Game.score += score_on_death
 
 			queue_free()
