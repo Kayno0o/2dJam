@@ -5,7 +5,7 @@ func _ready() -> void:
 	$ScoreLabel.text = "Score: " + str(Game.get_score())
 	$HighScoreLabel.text = "High Score: " + str(Game.high_score)
 	# set the time
-	$TimeLabel.text = "Time: " + str(Game.get_elapsed_time()) + "s"
+	$TimeLabel.text = "Time: " + str(floor(Game.get_elapsed_time())) + "s"
 
 
 func _on_restart_pressed() -> void:
