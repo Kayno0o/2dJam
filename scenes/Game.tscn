@@ -973,6 +973,8 @@ tile_set = SubResource("TileSet_w3r77")
 collision_enabled = false
 navigation_enabled = false
 script = ExtResource("3_vwt15")
+map_width = null
+map_height = null
 noise = SubResource("FastNoiseLite_tcc1e")
 
 [node name="Player" parent="." instance=ExtResource("2_wqw82")]

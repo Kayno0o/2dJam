@@ -30,6 +30,8 @@ func _ready() -> void:
 	
 	Game.world_size = world_size_in_pixels * Vector2i(scale)
 
+	await get_tree().tree_changed
+
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 
 func generate_map(width: int, height: int):
@@ -92,5 +94,7 @@ func create_wall(rect: Rect2) -> void:
 	wall.collision_mask = Utils.get_layer([1, 2, 3])
 
 	wall.add_to_group("world border")
+
+	wall.process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 
 	add_child(wall)

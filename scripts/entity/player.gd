@@ -54,13 +54,15 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.rotated(angle)
 
 	# bounce on walls on collision
-	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+	var movement: Vector2 = velocity * delta
+	var collision: KinematicCollision2D = move_and_collide(movement)
 	if collision and not was_last_move_collision:
 		was_last_move_collision = true
 		var normal = collision.get_normal()
 		var collider: Node2D = collision.get_collider()
 
 		if collider is Node2D and collider.is_in_group("world border"):
+			move_and_collide(-movement)
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
 			PlayerStats.speed -= PlayerStats.acceleration
