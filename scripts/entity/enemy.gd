@@ -10,10 +10,10 @@ var player
 var max_health = 1.0
 var health = 1.0
 
-const SPEED_TOWARD = 2500
-const SPEED_AWAY = 4000
-const DISTANCE_MOVE_TOWARD = 400
-const DISTANCE_MOVE_AWAY = 250
+const SPEED_TOWARD = 4000
+const SPEED_AWAY = 6000
+const DISTANCE_MOVE_TOWARD = 600
+const DISTANCE_MOVE_AWAY = 200
 
 const xp_gain = 1
 
@@ -29,7 +29,6 @@ func _ready() -> void:
 	max_health = health
 
 func _physics_process(delta: float) -> void:
-	
 	$SpriteController.look_at(player.position)
 	
 	# make the enemy goal position to the player if far enough
