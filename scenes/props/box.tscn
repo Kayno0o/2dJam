@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/prop/box.gd" id="1_roxeu"]
 [ext_resource type="Texture2D" uid="uid://di64crguh34iw" path="res://assets/props/box.png" id="2_a1sy1"]
-[ext_resource type="AudioStream" uid="uid://b6vg2ap2ihhkd" path="res://assets/sounds/hit_box.wav" id="3_10cwx"]
+[ext_resource type="AudioStream" uid="uid://dn72y42y4m1y6" path="res://assets/sounds/hit_box.wav" id="3_10cwx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkrdb"]
 size = Vector2(32, 32)

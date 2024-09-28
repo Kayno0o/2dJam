@@ -5,7 +5,7 @@ signal destroyed
 @export var deceleration_mult = 0.75
 
 @onready var particles_scene = Game.resource_preloader.get_resource("particles-box_explosion")
-@onready var break_sound = $BreakSound
+@onready var break_sound: AudioStreamPlayer = $BreakSound
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
@@ -20,13 +20,14 @@ func _deferred_disable_processing():
 	get_parent().add_child(particles)
 	particles.emitting = true
 
-	break_sound.play()
-	break_sound.process_mode = ProcessMode.PROCESS_MODE_ALWAYS
-
 	destroyed.emit()
 
+	# play sound and kill self
+	break_sound.play()
+
 	visible = false
-	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	set_physics_process(false)
+	set_process(false)
 
 	await break_sound.finished
 
