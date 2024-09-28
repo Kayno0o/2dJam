@@ -8,8 +8,8 @@ size = Vector2(32, 32)
 
 [node name="Box" type="Area2D"]
 scale = Vector2(1.5, 1.5)
-collision_layer = 10
-collision_mask = 10
+collision_layer = 14
+collision_mask = 14
 script = ExtResource("1_roxeu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
