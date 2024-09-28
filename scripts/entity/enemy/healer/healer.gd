@@ -34,7 +34,7 @@ var move_target
 signal moving
 signal heal(healing_amount: int, max_health: int)
 
-var casting_cooldown = 2.0
+var casting_cooldown = 5000.0
 
 func _ready() -> void:
 	healing_zone_instance = healing_zone_scene.instantiate()
@@ -72,6 +72,7 @@ func _find_closest(group):
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
+		casting_cooldown = 2.0
 		health -= PlayerStats.damage
 
 		hurt.emit(health, max_health)
