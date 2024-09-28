@@ -1,8 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://qjfwitthe0n5"]
+[gd_scene load_steps=7 format=3 uid="uid://qjfwitthe0n5"]
 
-[ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="1_ng16c"]
+[ext_resource type="Texture2D" uid="uid://cdrvkvngjge0a" path="res://assets/props/campfire.png" id="1_8f66b"]
+[ext_resource type="Texture2D" uid="uid://csenjkuqlev7l" path="res://assets/particles/particles.png" id="2_2giy4"]
+
+[sub_resource type="Curve" id="Curve_2l5g1"]
+_data = [Vector2(0, 0.511214), 0.0, -1.22363, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x2sr5"]
+curve = SubResource("Curve_2l5g1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kxnp4"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 6, 1)
+angle_min = -90.0
+angle_max = 90.0
+gravity = Vector3(0, -32, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 50.0
+scale_min = 1.5
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_x2sr5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njy6x"]
+atlas = ExtResource("2_2giy4")
+region = Rect2(32, 16, 16, 16)
 
 [node name="Campfire" type="Node2D" groups=["campfire"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ng16c")
+texture = ExtResource("1_8f66b")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_kxnp4")
+texture = SubResource("AtlasTexture_njy6x")
