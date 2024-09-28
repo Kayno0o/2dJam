@@ -1,16 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://doowua4gnftcj"]
+[gd_scene load_steps=13 format=3 uid="uid://bvh4ekt2l237d"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/healer/healer.gd" id="1_26165"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_2hxj8"]
+[ext_resource type="PackedScene" path="res://scenes/entity/healing_zone.tscn" id="2_j15oy"]
 [ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_xkqdv"]
 [ext_resource type="Texture2D" uid="uid://d36f1ci0iakc8" path="res://assets/ennemies/Healer.png" id="4_6oeue"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_ysycl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lns65"]
-radius = 47.0
 
 [sub_resource type="Gradient" id="Gradient_stlgq"]
 offsets = PackedFloat32Array(1)
@@ -39,16 +37,14 @@ collision_layer = 132
 collision_mask = 132
 script = ExtResource("1_26165")
 
+[node name="HealingZone" parent="." instance=ExtResource("2_j15oy")]
+
 [node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
 collision_mask = 2
 
 [node name="HitBox" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_uukpb")
-debug_color = Color(0.489687, 0.433176, 1, 0.42)
-
-[node name="HitBox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_lns65")
 debug_color = Color(0.489687, 0.433176, 1, 0.42)
 
 [node name="Ui" type="Control" parent="."]
@@ -83,5 +79,6 @@ scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_nv6qy")
 
 [connection signal="heal" from="." to="." method="_on_heal"]
+[connection signal="heal" from="." to="Ui/HealthBar" method="_on_healing"]
 [connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

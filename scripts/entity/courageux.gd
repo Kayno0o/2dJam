@@ -2,15 +2,17 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
-@export var initial_health: int = 1
-@export var health_per_minute: int = 1
+@export var initial_health: int = 5
+@export var health_per_minute: int = 2
 
 @onready var health = initial_health + floor(Game.get_elapsed_time() / 60.0) * health_per_minute
 @onready var max_health = health
 
-@onready var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
+@onready var particles_scene = Game.resource_preloader.get_resource("particles-mob_kill")
 
-var score_on_death: int = 500
+var score_on_death: int = 1000
+
+var acceleration_mult = 2
 
 var player
 
@@ -23,7 +25,7 @@ const xp_gain = 10
 
 var is_move_toward = false
 
-var box_destroyed : bool
+var box_destroyed: bool
 
 signal moving
 signal scared
@@ -32,15 +34,12 @@ signal heal(healing_amount: int, max_health: int)
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-	health = 5.0 + floor(Game.get_elapsed_time() / 60.0)
-	max_health = health
-
 func _physics_process(delta: float) -> void:
 	$SpriteController.look_at(player.position)
 	
-	if health < max_health :
+	if health < max_health:
 		add_to_group("hurt allied")
-	else :
+	else:
 		remove_from_group("hurt allied")
 	
 	# make the enemy goal position to the player if far enough
@@ -55,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 	var movement: Vector2 = velocity * delta
 	var collision: KinematicCollision2D = move_and_collide(movement)
-	if collision :
+	if collision:
 		var collider: Node2D = collision.get_collider()
 
 		if collider is Node2D and collider.is_in_group("world border"):
@@ -76,7 +75,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		if health <= 0:
 			Game.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
-			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration, PlayerStats.max_speed)
+			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration * acceleration_mult, PlayerStats.max_speed)
 			Game.score += score_on_death
 
 			queue_free()
@@ -91,5 +90,5 @@ func _on_box_destroyed():
 
 
 func _on_heal(healing_amount, max_health):
-	if health < max_health :
+	if health < max_health:
 		health += healing_amount
