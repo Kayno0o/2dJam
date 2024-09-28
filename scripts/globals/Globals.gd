@@ -38,3 +38,9 @@ func goto_scene(path: String):
 
 # 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 # 	get_tree().current_scene = current_scene
+
+func play_sound(sound_player: AudioStreamPlayer):
+	get_tree().root.add_child(sound_player)
+	sound_player.play()
+	await sound_player.finished
+	sound_player.queue_free()
