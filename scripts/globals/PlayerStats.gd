@@ -20,10 +20,10 @@ var required_xp: float
 func _init() -> void:
 	damage = 1
 
-	speed = 800.0
-	max_speed = 1200.0
-	acceleration = 75.0
-	friction = 0.13
+	speed = 600.0
+	max_speed = 800.0
+	acceleration = 60.0
+	friction = 0.15
 
 	rotation_velocity = 3
 

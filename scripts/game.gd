@@ -14,7 +14,7 @@ extends Control
 
 var last_second = 0
 
-var curieux_limit = 12
+var curieux_limit = 10
 var archer_limit = 4
 var courageux_limit = 4
 var healer_limit = 4
@@ -26,6 +26,9 @@ var mob_max_distance_time: int = 60
 
 func _init():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+
+func _ready():
+	Game.resource_preloader = resource_preloader
 
 func _process(delta: float) -> void:
 	Game.seconds += delta

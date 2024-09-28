@@ -10,6 +10,6 @@ func _ready() -> void:
 	initial_value = zoom
 
 func _process(delta: float) -> void:
-	var targetValue = initial_value * lerp(1.0, 0.75, float(PlayerStats.speed) / float(PlayerStats.max_speed))
+	var targetValue = initial_value * lerp(1.2, 0.7, float(PlayerStats.speed) / float(PlayerStats.max_speed))
 	zoom = lerp(zoom, targetValue, 5 * delta)
 	position_smoothing_enabled = true
