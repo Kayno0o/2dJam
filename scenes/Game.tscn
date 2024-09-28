@@ -944,8 +944,9 @@ script = ExtResource("8_nh0vy")
 [node name="Score" type="Label" parent="UiCanvas/Ui"]
 layout_mode = 1
 offset_left = 8.0
+offset_top = 7.0
 offset_right = 48.0
-offset_bottom = 23.0
+offset_bottom = 37.6
 theme_override_font_sizes/font_size = 32
 script = ExtResource("12_bvh67")
 
