@@ -5,8 +5,7 @@ signal hurt(health: int, max_health: int)
 @export var initial_health: int = 1
 @export var health_per_minute: int = 1
 
-@export var healing_range: int = 300
-@export var move_to_heal: int = 200
+@export var move_to_heal: int = 25
 
 @onready var health = initial_health + floor(Game.get_elapsed_time() / 60.0) * health_per_minute
 @onready var max_health = health
@@ -20,7 +19,8 @@ var player
 
 var healing_zone_instance
 
-const SPEED_TOWARD = 4000
+const SPEED_TOWARD_CAMPFIRE = 4000
+const SPEED_TOWARD_ALLY = 6000
 const DISTANCE_FROM_CAMPFIRE = 75
 
 const xp_gain = 1
@@ -39,34 +39,34 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	casting_cooldown -= delta
 	
-	if health < max_health :
+	if health < max_health:
 		add_to_group("hurt allied")
-	else :
+	else:
 		remove_from_group("hurt allied")
 	
 	if not get_tree().get_nodes_in_group("hurt allied").is_empty() and casting_cooldown <= 0:
 		move_target = _find_closest(get_tree().get_nodes_in_group("hurt allied"))
 		
-		if move_target.global_position.distance_to($".".global_position) > move_to_heal :
-			velocity = position.direction_to(move_target.position) * delta * SPEED_TOWARD
-		else :
+		if move_target.global_position.distance_to($".".global_position) > move_to_heal:
+			velocity = position.direction_to(move_target.position) * delta * SPEED_TOWARD_ALLY
+		else:
 			velocity = Vector2(0, 0)
-	elif not get_tree().get_nodes_in_group("campfire").is_empty() :
+	elif not get_tree().get_nodes_in_group("campfire").is_empty():
 		move_target = _find_closest(get_tree().get_nodes_in_group("campfire"))
-		if move_target.global_position.distance_to($".".global_position) > DISTANCE_FROM_CAMPFIRE :
-			velocity = position.direction_to(move_target.position) * delta * SPEED_TOWARD
-		else :
+		if move_target.global_position.distance_to($".".global_position) > DISTANCE_FROM_CAMPFIRE:
+			velocity = position.direction_to(move_target.position) * delta * SPEED_TOWARD_CAMPFIRE
+		else:
 			velocity = Vector2(0, 0)
-	if move_target :
+	if move_target:
 		look_at(move_target.position)
 	move_and_slide()
 
-func _find_closest(group) :
+func _find_closest(group):
 	var closest = group[0]
-	for node in group :
-		if node.global_position.distance_to($".".global_position) < closest.global_position.distance_to($".".global_position) :
+	for node in group:
+		if node.global_position.distance_to($".".global_position) < closest.global_position.distance_to($".".global_position):
 			closest = node
-	return(closest)
+	return (closest)
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
@@ -88,6 +88,6 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 
 			queue_free()
 
-func _on_heal(healing_amount, max_health):
-	if health < max_health :
+func _on_heal(healing_amount, ally_max_health):
+	if health < ally_max_health:
 		health += healing_amount

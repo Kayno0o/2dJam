@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qjfwitthe0n5"]
+
+[ext_resource type="Texture2D" uid="uid://cljgvdaqagmb2" path="res://assets/mage_gobeldeux.png" id="1_ng16c"]
+
+[node name="Campfire" type="Node2D" groups=["campfire"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ng16c")

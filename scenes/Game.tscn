@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=36 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bn3vxh5edu8rs" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
+[ext_resource type="PackedScene" uid="uid://bvh4ekt2l237d" path="res://scenes/entity/Healer.tscn" id="11_js36p"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
+[ext_resource type="PackedScene" uid="uid://qjfwitthe0n5" path="res://scenes/props/campfire.tscn" id="13_ck662"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
@@ -974,7 +976,7 @@ process_mode = 3
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("entity-archer", "entity-courageux", "entity-curieux", "props-box"), [ExtResource("6_0ytbt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("4_b5ru5")]]
+resources = [PackedStringArray("entity-archer", "entity-courageux", "entity-curieux", "entity-healer", "props-box", "props-campfire"), [ExtResource("6_0ytbt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("11_js36p"), ExtResource("4_b5ru5"), ExtResource("13_ck662")]]
 
 [node name="LoadingScreen" parent="Loader" instance=ExtResource("6_0mrfq")]
 visible = false
@@ -1004,7 +1006,17 @@ script = ExtResource("4_6c0gq")
 
 [node name="Curieux" type="Node" parent="MobContainer"]
 
-[node name="BoxContainer" type="Node" parent="."]
+[node name="Archer" type="Node" parent="MobContainer"]
+
+[node name="Courageux" type="Node" parent="MobContainer"]
+
+[node name="Healer" type="Node" parent="MobContainer"]
+
+[node name="PropsContainer" type="Node" parent="."]
+
+[node name="Box" type="Node" parent="PropsContainer"]
+
+[node name="Campfire" type="Node" parent="PropsContainer"]
 
 [connection signal="finish" from="Loader/LoadingScreen" to="." method="_on_loading_screen_finish"]
 [connection signal="loading" from="TileMapLayer" to="Loader/LoadingScreen" method="_on_load"]

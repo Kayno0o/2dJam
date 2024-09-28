@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 signal hurt(health: int, max_health: int)
 
-@export var initial_health: int = 1
-@export var health_per_minute: int = 1
+@export var initial_health: int = 5
+@export var health_per_minute: int = 2
 
 @onready var health = initial_health + floor(Game.get_elapsed_time() / 60.0) * health_per_minute
 @onready var max_health = health
@@ -23,7 +23,7 @@ const xp_gain = 10
 
 var is_move_toward = false
 
-var box_destroyed : bool
+var box_destroyed: bool
 
 signal moving
 signal scared
@@ -32,15 +32,12 @@ signal heal(healing_amount: int, max_health: int)
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-	health = 5.0 + floor(Game.get_elapsed_time() / 60.0)
-	max_health = health
-
 func _physics_process(delta: float) -> void:
 	$SpriteController.look_at(player.position)
 	
-	if health < max_health :
+	if health < max_health:
 		add_to_group("hurt allied")
-	else :
+	else:
 		remove_from_group("hurt allied")
 	
 	# make the enemy goal position to the player if far enough
@@ -55,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 	var movement: Vector2 = velocity * delta
 	var collision: KinematicCollision2D = move_and_collide(movement)
-	if collision :
+	if collision:
 		var collider: Node2D = collision.get_collider()
 
 		if collider is Node2D and collider.is_in_group("world border"):
@@ -91,5 +88,5 @@ func _on_box_destroyed():
 
 
 func _on_heal(healing_amount, max_health):
-	if health < max_health :
+	if health < max_health:
 		health += healing_amount
