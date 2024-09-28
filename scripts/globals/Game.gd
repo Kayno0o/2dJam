@@ -5,6 +5,9 @@ signal ennemy_death
 var world_size: Vector2i
 var tile_size: Vector2i
 
+var is_shop_open = false
+var is_paused = false
+
 var seconds: float = 0
 
 var score: int = 0

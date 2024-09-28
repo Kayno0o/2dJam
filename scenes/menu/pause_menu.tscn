@@ -1,0 +1,277 @@
+[gd_scene load_steps=12 format=3 uid="uid://bn3vxh5edu8rs"]
+
+[ext_resource type="Script" path="res://scripts/menu/pause_menu.gd" id="1_k60cj"]
+[ext_resource type="Texture2D" uid="uid://f8ddhnl4d1wl" path="res://assets/ui/panel.png" id="2_qchgp"]
+[ext_resource type="Script" path="res://scripts/menu/stats_container.gd" id="3_bcl8w"]
+[ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="3_cquig"]
+[ext_resource type="Theme" uid="uid://djrpxahlfvckq" path="res://material/theme.tres" id="5_61deh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwgho"]
+atlas = ExtResource("3_cquig")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaf28"]
+atlas = ExtResource("3_cquig")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8etnl"]
+atlas = ExtResource("3_cquig")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbvqk"]
+atlas = ExtResource("3_cquig")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngh3j"]
+atlas = ExtResource("3_cquig")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ktu7"]
+atlas = ExtResource("3_cquig")
+region = Rect2(0, 64, 32, 32)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k60cj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 118.0
+offset_right = 93.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Pause"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Stats" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 65.0
+offset_top = 393.0
+offset_right = 358.0
+offset_bottom = -29.0
+grow_vertical = 2
+texture = ExtResource("2_qchgp")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Title" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.5
+offset_top = 10.0
+offset_right = 68.5
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Stats"
+
+[node name="StatsContainer" type="VBoxContainer" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 77.0
+offset_right = -24.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+script = ExtResource("3_bcl8w")
+
+[node name="MaxSpeed" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/MaxSpeed"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wwgho")
+
+[node name="MaxSpeedLabel" type="Label" parent="Stats/StatsContainer/MaxSpeed"]
+layout_mode = 2
+theme = ExtResource("5_61deh")
+text = "Max Speed"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/MaxSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/MaxSpeed"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator" type="HSeparator" parent="Stats/StatsContainer"]
+layout_mode = 2
+
+[node name="Acceleration" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/Acceleration"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eaf28")
+
+[node name="AccelerationLabel" type="Label" parent="Stats/StatsContainer/Acceleration"]
+layout_mode = 2
+text = "Acceleration"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/Acceleration"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/Acceleration"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator2" type="HSeparator" parent="Stats/StatsContainer"]
+layout_mode = 2
+
+[node name="Rotation" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/Rotation"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8etnl")
+
+[node name="RotationLabel" type="Label" parent="Stats/StatsContainer/Rotation"]
+layout_mode = 2
+text = "Rotation"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/Rotation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/Rotation"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator3" type="HSeparator" parent="Stats/StatsContainer"]
+layout_mode = 2
+
+[node name="Damage" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/Damage"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lbvqk")
+
+[node name="DamageLabel" type="Label" parent="Stats/StatsContainer/Damage"]
+layout_mode = 2
+text = "Damage"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/Damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/Damage"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator4" type="HSeparator" parent="Stats/StatsContainer"]
+layout_mode = 2
+
+[node name="Friction" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/Friction"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ngh3j")
+
+[node name="FrictionLabel" type="Label" parent="Stats/StatsContainer/Friction"]
+layout_mode = 2
+text = "Friction"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/Friction"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/Friction"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator5" type="HSeparator" parent="Stats/StatsContainer"]
+layout_mode = 2
+
+[node name="Size" type="HBoxContainer" parent="Stats/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Stats/StatsContainer/Size"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5ktu7")
+
+[node name="SizeLabel" type="Label" parent="Stats/StatsContainer/Size"]
+layout_mode = 2
+text = "Size"
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/StatsContainer/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Stats/StatsContainer/Size"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -299.0
+offset_right = 123.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_61deh")
+text = "Resume
+"
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_61deh")
+text = "Restart Game"
+
+[node name="BackMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_61deh")
+text = "Back to main menu"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackMenu" to="." method="_on_back_menu_pressed"]

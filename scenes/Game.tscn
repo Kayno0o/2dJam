@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=34 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="6_0mrfq"]
 [ext_resource type="PackedScene" uid="uid://c4nk1mb2veohg" path="res://scenes/entity/Archer.tscn" id="6_0ytbt"]
 [ext_resource type="PackedScene" uid="uid://doxetv26vy8gq" path="res://scenes/entity/Courageux.tscn" id="6_jv2x1"]
+[ext_resource type="PackedScene" uid="uid://bn3vxh5edu8rs" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
@@ -35,22 +36,21 @@ gradient = SubResource("Gradient_m4xxa")
 width = 384
 height = 24
 
-[sub_resource type="Gradient" id="Gradient_16bhl"]
+[sub_resource type="Gradient" id="Gradient_5eqg5"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lrpj"]
-gradient = SubResource("Gradient_16bhl")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06ite"]
+gradient = SubResource("Gradient_5eqg5")
 width = 512
-height = 10
+height = 8
 
-[sub_resource type="Gradient" id="Gradient_mendx"]
-offsets = PackedFloat32Array(0.00793651, 1)
-colors = PackedColorArray(0.811241, 1, 0.792306, 1, 0, 0.78852, 0, 1)
+[sub_resource type="Gradient" id="Gradient_t7km0"]
+colors = PackedColorArray(0.488179, 1, 0.456277, 1, 0.764948, 1, 0.742479, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5obn"]
-gradient = SubResource("Gradient_mendx")
-width = 510
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6k4tx"]
+gradient = SubResource("Gradient_t7km0")
+width = 512
 height = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
@@ -905,6 +905,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tfrv0")
 
+[node name="KeyboardInput" type="Control" parent="."]
+process_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_poooh")
+
 [node name="UiCanvas" type="CanvasLayer" parent="."]
 
 [node name="Ui" type="Control" parent="UiCanvas" groups=["ui"]]
@@ -936,8 +943,9 @@ script = ExtResource("8_nh0vy")
 [node name="Score" type="Label" parent="UiCanvas/Ui"]
 layout_mode = 1
 offset_left = 8.0
+offset_top = 7.0
 offset_right = 48.0
-offset_bottom = 23.0
+offset_bottom = 37.6
 theme_override_font_sizes/font_size = 32
 script = ExtResource("12_bvh67")
 
@@ -946,16 +954,18 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -256.0
-offset_top = 8.0
-offset_right = 256.0
-offset_bottom = 16.0
+offset_left = -257.0
+offset_top = 11.0
+offset_right = 255.0
+offset_bottom = 19.0
 grow_horizontal = 2
 value = 50.0
-texture_under = SubResource("GradientTexture2D_6lrpj")
-texture_progress = SubResource("GradientTexture2D_r5obn")
-texture_progress_offset = Vector2(1, 1)
+texture_under = SubResource("GradientTexture2D_06ite")
+texture_progress = SubResource("GradientTexture2D_6k4tx")
 script = ExtResource("4_i5vmn")
+
+[node name="PauseMenu" parent="UiCanvas" instance=ExtResource("7_eglqn")]
+visible = false
 
 [node name="Loader" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -967,8 +977,7 @@ process_thread_messages = 0
 resources = [PackedStringArray("entity-archer", "entity-courageux", "entity-curieux", "props-box"), [ExtResource("6_0ytbt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("4_b5ru5")]]
 
 [node name="LoadingScreen" parent="Loader" instance=ExtResource("6_0mrfq")]
-offset_left = 1.0
-offset_right = 1.0
+visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
 process_mode = 3
@@ -990,13 +999,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("4_6c0gq")
-
-[node name="KeyboardInput" type="Control" parent="."]
-process_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("12_poooh")
 
 [node name="MobContainer" type="Node" parent="."]
 

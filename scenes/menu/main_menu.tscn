@@ -1,0 +1,135 @@
+[gd_scene load_steps=11 format=3 uid="uid://do77ayfbvjtcw"]
+
+[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_jnksd"]
+[ext_resource type="Theme" uid="uid://djrpxahlfvckq" path="res://material/theme.tres" id="2_ex0as"]
+[ext_resource type="PackedScene" uid="uid://vni7l2y6murl" path="res://scenes/menu/background.tscn" id="2_h3ykq"]
+[ext_resource type="Texture2D" uid="uid://c1yvxmlaapmfp" path="res://material/particles/flame-texture.tres" id="3_tttmp"]
+[ext_resource type="Texture2D" uid="uid://duhny1bu7e4n1" path="res://assets/boulette.png" id="4_edofy"]
+
+[sub_resource type="Curve" id="Curve_6u0on"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.855346, 0.211875), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_egsgy"]
+curve = SubResource("Curve_6u0on")
+
+[sub_resource type="Curve" id="Curve_pchs4"]
+max_value = 5.0
+_data = [Vector2(0, 4), 0.0, 0.194141, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_nc5mf"]
+curve = SubResource("Curve_pchs4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cs58h"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 30.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_min = 0.5
+scale_over_velocity_max = 100.0
+scale_over_velocity_curve = SubResource("CurveTexture_nc5mf")
+alpha_curve = SubResource("CurveTexture_egsgy")
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jnksd")
+
+[node name="Background" parent="." instance=ExtResource("2_h3ykq")]
+layout_mode = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 341.0
+offset_top = -161.0
+offset_right = 341.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.14319
+scale = Vector2(1.2, 1.2)
+
+[node name="MovementParticles" type="GPUParticles2D" parent="Control"]
+position = Vector2(0, 32)
+rotation = -1.5708
+scale = Vector2(1.71111, 1.71111)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_cs58h")
+texture = ExtResource("3_tttmp")
+lifetime = 0.75
+interpolate = false
+
+[node name="Boulette" type="Sprite2D" parent="Control"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_edofy")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -29.0
+offset_right = 54.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ex0as")
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="CreditButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -80.0
+offset_right = 166.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme = ExtResource("2_ex0as")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.0
+offset_top = 118.0
+offset_right = 315.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Perilous Propulsion"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CreditButton" to="." method="_on_credit_button_pressed"]

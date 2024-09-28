@@ -54,12 +54,12 @@ func _physics_process(delta: float) -> void:
 		velocity = position.direction_to(player.position) * delta * SPEED_TOWARD
 	elif cooldown <= 0 and is_move_toward == false:
 		_shoot()
-		velocity = Vector2(0,0)
+		velocity = Vector2(0, 0)
 
 	move_and_slide()
 
-func _shoot() :
-	var arrow : CharacterBody2D = arrow_scene.instantiate()
+func _shoot():
+	var arrow: CharacterBody2D = arrow_scene.instantiate()
 	arrow.global_position = $Bow.global_position
 	cooldown = 2.0
 	shooting.emit()

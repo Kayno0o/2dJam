@@ -4,6 +4,7 @@ extends Control
 
 
 func _ready():
+	Game.is_shop_open = true
 	get_tree().paused = true
 
 func _input(event):
@@ -21,4 +22,5 @@ func _input(event):
 func _quit():
 	# unpause the game and free the upgrade screen
 	get_tree().paused = false
+	Game.is_shop_open = false
 	queue_free()
