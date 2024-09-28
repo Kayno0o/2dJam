@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=34 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="6_0mrfq"]
 [ext_resource type="PackedScene" uid="uid://c4nk1mb2veohg" path="res://scenes/entity/Archer.tscn" id="6_0ytbt"]
 [ext_resource type="PackedScene" uid="uid://doxetv26vy8gq" path="res://scenes/entity/Courageux.tscn" id="6_jv2x1"]
+[ext_resource type="PackedScene" uid="uid://bn3vxh5edu8rs" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
@@ -905,6 +906,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tfrv0")
 
+[node name="KeyboardInput" type="Control" parent="."]
+process_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_poooh")
+
 [node name="UiCanvas" type="CanvasLayer" parent="."]
 
 [node name="Ui" type="Control" parent="UiCanvas" groups=["ui"]]
@@ -957,6 +965,9 @@ texture_progress = SubResource("GradientTexture2D_r5obn")
 texture_progress_offset = Vector2(1, 1)
 script = ExtResource("4_i5vmn")
 
+[node name="PauseMenu" parent="UiCanvas" instance=ExtResource("7_eglqn")]
+visible = false
+
 [node name="Loader" type="CanvasLayer" parent="."]
 process_mode = 3
 
@@ -990,13 +1001,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("4_6c0gq")
-
-[node name="KeyboardInput" type="Control" parent="."]
-process_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("12_poooh")
 
 [node name="MobContainer" type="Node" parent="."]
 

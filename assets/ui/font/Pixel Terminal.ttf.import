@@ -1,0 +1,40 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://ji4pwdisu4gw"
+path="res://.godot/imported/Pixel Terminal.ttf-8f28598285a3668f44163a26f78e62df.fontdata"
+
+[deps]
+
+source_file="res://assets/ui/font/Pixel Terminal.ttf"
+dest_files=["res://.godot/imported/Pixel Terminal.ttf-8f28598285a3668f44163a26f78e62df.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=true
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=false
+force_autohinter=false
+hinting=0
+subpixel_positioning=0
+oversampling=10.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
+}]
+language_support={}
+script_support={}
+opentype_features={}
