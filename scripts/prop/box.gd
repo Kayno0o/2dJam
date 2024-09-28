@@ -9,7 +9,7 @@ signal destroyed
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
-		PlayerStats.speed = min(PlayerStats.speed - PlayerStats.acceleration * deceleration_mult, PlayerStats.max_speed)
+		PlayerStats.accelerate(-deceleration_mult)
 
 		# spawn explosion particles in front of the player
 		var particles: GPUParticles2D = particles_scene.instantiate()

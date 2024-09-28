@@ -16,6 +16,7 @@ var self_destruct = 3.0
 
 const ARROW_SPEED = 175
 
+@export var deceleration_mult = 1
 
 func _ready() -> void:
 	
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	#check if the arrow lifetime is more than 0
 	self_destruct -= delta
-	if self_destruct <= 0 :
+	if self_destruct <= 0:
 		queue_free()
 	
 	#Move the Arrow
@@ -46,5 +47,5 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 
 		if health <= 0:
 			#slow the player if the arrow hit
-			PlayerStats.speed = min(PlayerStats.speed - PlayerStats.acceleration, PlayerStats.max_speed)
+			PlayerStats.accelerate(-deceleration_mult)
 			queue_free()

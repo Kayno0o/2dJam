@@ -17,13 +17,23 @@ var level: int
 var xp: float
 var required_xp: float
 
+func accelerate(ratio: float):
+	var min_ratio = PlayerStats.acceleration * ratio
+
+	var acceleration_rate = 1
+	if ratio < 0:
+		acceleration_rate = min_ratio
+	else:
+		acceleration_rate = lerp(min_ratio * 1.5, min_ratio, PlayerStats.speed / PlayerStats.max_speed)
+	PlayerStats.speed = clamp(PlayerStats.speed + acceleration_rate, 0, PlayerStats.max_speed)
+
 func _init() -> void:
 	damage = 1
 
 	speed = 600.0
 	max_speed = 800.0
 	acceleration = 60.0
-	friction = 0.15
+	friction = 0.13
 
 	rotation_velocity = 3
 

@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	# var minSpeedDecay = PlayerStats.max_speed * 0.04 * delta
 	# PlayerStats.speed -= max(decay, minSpeedDecay)
 
-	PlayerStats.speed -= PlayerStats.acceleration * PlayerStats.friction * 3 * delta
+	PlayerStats.speed -= PlayerStats.acceleration * PlayerStats.friction * 4 * delta
 
 	# limit speed to max speed
 	PlayerStats.speed = min(PlayerStats.speed, PlayerStats.max_speed)
