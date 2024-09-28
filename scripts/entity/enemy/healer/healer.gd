@@ -11,6 +11,7 @@ signal hurt(health: int, max_health: int)
 @onready var max_health = health
 
 @onready var particles_scene = Game.resource_preloader.get_resource("particles-mob_kill")
+@onready var death_sound: AudioStreamPlayer = $DeathSound
 @onready var healing_zone_scene = Game.resource_preloader.get_resource("entity-healing_zone")
 
 @onready var sprite = $SpriteController
@@ -89,8 +90,20 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 			PlayerStats.accelerate(acceleration_mult)
 			Game.score += score_on_death
 
-			queue_free()
+			call_deferred("_deferred_disable_processing")
 
 func _on_heal(healing_amount, ally_max_health):
 	if health < ally_max_health:
 		health += healing_amount
+
+func _deferred_disable_processing():
+	# play sound and kill self
+	death_sound.play()
+
+	visible = false
+	set_physics_process(false)
+	set_process(false)
+
+	await death_sound.finished
+
+	queue_free()
