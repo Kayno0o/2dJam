@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 
 	# lose speed over time
 	# var decay = PlayerStats.speed * PlayerStats.friction * delta
-	# var minSpeedDecay = PlayerStats.max_speed * 0.02 * delta
+	# var minSpeedDecay = PlayerStats.max_speed * 0.04 * delta
 	# PlayerStats.speed -= max(decay, minSpeedDecay)
 
 	PlayerStats.speed -= PlayerStats.acceleration * PlayerStats.friction * 3 * delta

@@ -2,6 +2,8 @@ extends Node
 
 signal ennemy_death
 
+var resource_preloader: ResourcePreloader
+
 var world_size: Vector2i
 var tile_size: Vector2i
 
