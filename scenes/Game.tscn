@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="PackedScene" uid="uid://byqdtl8wn3cnt" path="res://scenes/entity/Arrow.tscn" id="9_1xcjt"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
-[ext_resource type="PackedScene" uid="uid://bvh4ekt2l237d" path="res://scenes/entity/Healer.tscn" id="11_js36p"]
+[ext_resource type="PackedScene" uid="uid://doowua4gnftcj" path="res://scenes/entity/Healer.tscn" id="11_js36p"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]
 [ext_resource type="Script" path="res://scripts/keyboard_input.gd" id="12_poooh"]
 [ext_resource type="PackedScene" path="res://scenes/entity/healing_zone.tscn" id="13_4fd6u"]
