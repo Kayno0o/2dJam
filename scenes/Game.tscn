@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="6_0mrfq"]
 [ext_resource type="PackedScene" uid="uid://c4nk1mb2veohg" path="res://scenes/entity/Archer.tscn" id="6_0ytbt"]
 [ext_resource type="PackedScene" uid="uid://doxetv26vy8gq" path="res://scenes/entity/Courageux.tscn" id="6_jv2x1"]
-[ext_resource type="PackedScene" uid="uid://bn3vxh5edu8rs" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
+[ext_resource type="PackedScene" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
 [ext_resource type="Script" path="res://scripts/menu/score.gd" id="12_bvh67"]

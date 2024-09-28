@@ -84,5 +84,6 @@ texture = SubResource("AtlasTexture_nv6qy")
 position = Vector2(37, 0)
 
 [connection signal="heal" from="." to="." method="_on_heal"]
+[connection signal="heal" from="." to="Ui/HealthBar" method="_on_healing"]
 [connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
