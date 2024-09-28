@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://doxetv26vy8gq"]
+
+[ext_resource type="Script" path="res://scripts/entity/courageux.gd" id="1_hlj1m"]
+[ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_2oy64"]
+[ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_511qu"]
+[ext_resource type="Texture2D" uid="uid://bh64dka2aym2f" path="res://assets/ennemies/courageux-Sheet.png" id="4_q04sx"]
+[ext_resource type="PackedScene" uid="uid://kpcuumkbw6dg" path="res://scenes/props/box.tscn" id="5_s8nl5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
+radius = 30.0167
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lns65"]
+radius = 47.0
+
+[sub_resource type="Gradient" id="Gradient_stlgq"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aohou"]
+gradient = SubResource("Gradient_stlgq")
+width = 48
+height = 3
+
+[sub_resource type="Gradient" id="Gradient_vwtdg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6dcf7"]
+gradient = SubResource("Gradient_vwtdg")
+width = 48
+height = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oksic"]
+atlas = ExtResource("4_q04sx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47wdt"]
+atlas = ExtResource("4_q04sx")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Courageux" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_hlj1m")
+initial_health = 5
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_uukpb")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lns65")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="Ui"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -37.0
+offset_right = 24.0
+offset_bottom = -34.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_aohou")
+texture_progress = SubResource("GradientTexture2D_6dcf7")
+script = ExtResource("2_2oy64")
+
+[node name="SpriteController" type="Node2D" parent="."]
+script = ExtResource("3_511qu")
+
+[node name="Idle" type="Sprite2D" parent="SpriteController"]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_oksic")
+
+[node name="Scared" type="Sprite2D" parent="SpriteController"]
+visible = false
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_47wdt")
+
+[node name="Box" parent="SpriteController" instance=ExtResource("5_s8nl5")]
+position = Vector2(42, 0)
+
+[connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
+[connection signal="moving" from="." to="SpriteController" method="_on_curieux_moving"]
+[connection signal="scared" from="." to="SpriteController" method="_on_curieux_scared"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="destroyed" from="SpriteController/Box" to="." method="_on_box_destroyed"]

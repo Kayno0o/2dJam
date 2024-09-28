@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4nk1mb2veohg"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemy/archer.gd" id="1_aovkn"]
+[ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_vabvl"]
+[ext_resource type="Texture2D" uid="uid://byfsrys2c88dj" path="res://assets/ennemies/archer.png" id="4_68w0r"]
+[ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_jofwm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
+radius = 30.0167
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lns65"]
+radius = 47.0
+
+[sub_resource type="Gradient" id="Gradient_stlgq"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aohou"]
+gradient = SubResource("Gradient_stlgq")
+width = 48
+height = 3
+
+[sub_resource type="Gradient" id="Gradient_vwtdg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6dcf7"]
+gradient = SubResource("Gradient_vwtdg")
+width = 48
+height = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv6qy"]
+atlas = ExtResource("4_jofwm")
+region = Rect2(416, 0, 32, 32)
+
+[node name="Archer" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_aovkn")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_uukpb")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lns65")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="Ui"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -37.0
+offset_right = 24.0
+offset_bottom = -34.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_aohou")
+texture_progress = SubResource("GradientTexture2D_6dcf7")
+script = ExtResource("2_vabvl")
+
+[node name="SpriteController" type="Node2D" parent="."]
+
+[node name="Idle" type="Sprite2D" parent="SpriteController"]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_68w0r")
+
+[node name="Shooting" type="Sprite2D" parent="SpriteController"]
+visible = false
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_nv6qy")
+
+[node name="Bow" type="Node2D" parent="."]
+position = Vector2(37, 0)
+
+[connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
