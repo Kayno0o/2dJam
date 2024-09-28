@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnn5actr8f4ln"]
+
+[ext_resource type="PackedScene" uid="uid://doowua4gnftcj" path="res://scenes/entity/Healer.tscn" id="1_sdc28"]
+[ext_resource type="PackedScene" uid="uid://dknoglcn475n0" path="res://scenes/entity/healing_zone.tscn" id="2_w0wyq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Healer" parent="." instance=ExtResource("1_sdc28")]
+
+[node name="Node2D" parent="Healer" instance=ExtResource("2_w0wyq")]
