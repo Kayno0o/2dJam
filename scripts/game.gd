@@ -14,10 +14,13 @@ extends Control
 
 var last_second = 0
 
-var curieux_limit = 10
-var archer_limit = 4
-var courageux_limit = 4
-var healer_limit = 4
+var curieux_limit
+var archer_limit
+var archer_increase_per_minute = 0.25
+var courageux_limit
+var courageux_increase_per_minute = 0.2
+var healer_limit
+var healer_increase_per_minute = 0.1
 
 var mob_min_distance: int = 400
 var mob_max_distance_init: int = 500
@@ -29,6 +32,7 @@ func _init():
 
 func _ready():
 	Game.resource_preloader = resource_preloader
+	compute_limits()
 
 func _process(delta: float) -> void:
 	Game.seconds += delta
@@ -37,13 +41,15 @@ func _process(delta: float) -> void:
 
 	# new second, spawn entities
 	if last_second != new_second:
+		compute_limits()
+
 		spawn_curieux()
 
-		if randf() < 0.25:
+		if randf() < 0.10:
 			spawn_healer()
-		if randf() < 0.25:
+		if randf() < 0.15:
 			spawn_courageux()
-		if randf() < 0.25:
+		if randf() < 0.30:
 			spawn_archer()
 
 		# spawn boxes every 2 seconds
@@ -51,6 +57,14 @@ func _process(delta: float) -> void:
 			spawn_box()
 
 	last_second = new_second
+
+	curieux_limit = 14
+
+func compute_limits():
+	curieux_limit = 14
+	archer_limit = 8 + floor((Game.seconds / 60.0) * archer_increase_per_minute)
+	courageux_limit = 6 + floor((Game.seconds / 60.0) * courageux_increase_per_minute)
+	healer_limit = 3 + floor((Game.seconds / 60.0) * healer_increase_per_minute)
 
 func spawn_mob(mob_name: String, container: Node, limit: int):
 	if container.get_child_count() > limit:

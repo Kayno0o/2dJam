@@ -34,7 +34,7 @@ var move_target
 signal moving
 signal heal(healing_amount: int, max_health: int)
 
-var casting_cooldown = 0.0
+var casting_cooldown = 5000.0
 
 func _ready() -> void:
 	healing_zone_instance = healing_zone_scene.instantiate()
@@ -42,13 +42,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	casting_cooldown -= delta
+	if casting_cooldown <= 0 :
+		heal.emit(1, max_health)
+		casting_cooldown = 2.0
 	
-	if health < max_health:
-		add_to_group("hurt allied")
-	else:
-		remove_from_group("hurt allied")
-	
-	if not get_tree().get_nodes_in_group("hurt allied").is_empty() and casting_cooldown <= 0:
+	if not get_tree().get_nodes_in_group("hurt allied").is_empty() :
 		move_target = _find_closest(get_tree().get_nodes_in_group("hurt allied"))
 		
 		if move_target.global_position.distance_to($".".global_position) > move_to_heal:
@@ -74,6 +72,7 @@ func _find_closest(group):
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
+		casting_cooldown = 2.0
 		health -= PlayerStats.damage
 
 		hurt.emit(health, max_health)
@@ -87,7 +86,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		if health <= 0:
 			Game.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
-			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration * acceleration_mult, PlayerStats.max_speed)
+			PlayerStats.accelerate(acceleration_mult)
 			Game.score += score_on_death
 
 			queue_free()

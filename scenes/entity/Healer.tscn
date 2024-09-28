@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvh4ekt2l237d"]
+[gd_scene load_steps=13 format=3 uid="uid://doowua4gnftcj"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/healer/healer.gd" id="1_26165"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_2hxj8"]
-[ext_resource type="PackedScene" path="res://scenes/entity/healing_zone.tscn" id="2_j15oy"]
+[ext_resource type="PackedScene" uid="uid://dknoglcn475n0" path="res://scenes/entity/healing_zone.tscn" id="2_j15oy"]
 [ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_xkqdv"]
 [ext_resource type="Texture2D" uid="uid://d36f1ci0iakc8" path="res://assets/ennemies/Healer.png" id="4_6oeue"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_ysycl"]
