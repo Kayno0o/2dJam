@@ -14,4 +14,4 @@ func _draw():
 	rotation_label.text = str(PlayerStats.rotation_velocity * 10)
 	damage_label.text = str(PlayerStats.damage)
 	friction_label.text = str(PlayerStats.friction * 10_000)
-	size_label.text = str(PlayerStats.size)
+	size_label.text = str(PlayerStats.size * 100)

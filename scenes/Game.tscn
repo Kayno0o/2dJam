@@ -36,22 +36,21 @@ gradient = SubResource("Gradient_m4xxa")
 width = 384
 height = 24
 
-[sub_resource type="Gradient" id="Gradient_16bhl"]
+[sub_resource type="Gradient" id="Gradient_5eqg5"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lrpj"]
-gradient = SubResource("Gradient_16bhl")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06ite"]
+gradient = SubResource("Gradient_5eqg5")
 width = 512
-height = 10
+height = 8
 
-[sub_resource type="Gradient" id="Gradient_mendx"]
-offsets = PackedFloat32Array(0.00793651, 1)
-colors = PackedColorArray(0.811241, 1, 0.792306, 1, 0, 0.78852, 0, 1)
+[sub_resource type="Gradient" id="Gradient_t7km0"]
+colors = PackedColorArray(0.488179, 1, 0.456277, 1, 0.764948, 1, 0.742479, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5obn"]
-gradient = SubResource("Gradient_mendx")
-width = 510
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6k4tx"]
+gradient = SubResource("Gradient_t7km0")
+width = 512
 height = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tdam"]
@@ -955,15 +954,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -256.0
-offset_top = 8.0
-offset_right = 256.0
-offset_bottom = 16.0
+offset_left = -257.0
+offset_top = 11.0
+offset_right = 255.0
+offset_bottom = 19.0
 grow_horizontal = 2
 value = 50.0
-texture_under = SubResource("GradientTexture2D_6lrpj")
-texture_progress = SubResource("GradientTexture2D_r5obn")
-texture_progress_offset = Vector2(1, 1)
+texture_under = SubResource("GradientTexture2D_06ite")
+texture_progress = SubResource("GradientTexture2D_6k4tx")
 script = ExtResource("4_i5vmn")
 
 [node name="PauseMenu" parent="UiCanvas" instance=ExtResource("7_eglqn")]
@@ -979,8 +977,7 @@ process_thread_messages = 0
 resources = [PackedStringArray("entity-archer", "entity-courageux", "entity-curieux", "props-box"), [ExtResource("6_0ytbt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("4_b5ru5")]]
 
 [node name="LoadingScreen" parent="Loader" instance=ExtResource("6_0mrfq")]
-offset_left = 1.0
-offset_right = 1.0
+visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
 process_mode = 3

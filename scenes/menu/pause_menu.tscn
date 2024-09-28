@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn3vxh5edu8rs"]
+[gd_scene load_steps=12 format=3 uid="uid://bn3vxh5edu8rs"]
 
 [ext_resource type="Script" path="res://scripts/menu/pause_menu.gd" id="1_k60cj"]
+[ext_resource type="Texture2D" uid="uid://f8ddhnl4d1wl" path="res://assets/ui/panel.png" id="2_qchgp"]
 [ext_resource type="Script" path="res://scripts/menu/stats_container.gd" id="3_bcl8w"]
 [ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="3_cquig"]
 [ext_resource type="Theme" uid="uid://djrpxahlfvckq" path="res://material/theme.tres" id="5_61deh"]
@@ -39,37 +40,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k60cj")
 
-[node name="Title" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -115.5
-offset_top = 78.0
-offset_right = 115.5
-offset_bottom = 188.0
+offset_left = -91.0
+offset_top = 118.0
+offset_right = 93.0
+offset_bottom = 180.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 64
 text = "Pause"
 
-[node name="Stats" type="Control" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Stats" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = 424.0
-offset_right = 314.0
-offset_bottom = -23.0
+offset_left = 65.0
+offset_top = 393.0
+offset_right = 358.0
+offset_bottom = -29.0
 grow_vertical = 2
+texture = ExtResource("2_qchgp")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="Title" type="Label" parent="Stats"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -60.0
-offset_right = 60.0
-offset_bottom = 69.0
+offset_left = -68.5
+offset_top = 10.0
+offset_right = 68.5
+offset_bottom = 58.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "Stats"

@@ -4,6 +4,9 @@ extends Control
 
 signal finish
 
+func _ready():
+	visible = true
+
 func _on_load(loading_value: int, loading_max_value: int) -> void:
 	progress_bar.value = loading_value
 	progress_bar.max_value = loading_max_value
