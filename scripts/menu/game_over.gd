@@ -13,4 +13,4 @@ func _on_restart_pressed() -> void:
 
 
 func _on_go_to_menu_pressed() -> void:
-	Globals.goto_scene("res://scenes/menu/MainMenu.tscn")
+	Globals.goto_scene("res://scenes/menu/main_menu.tscn")
