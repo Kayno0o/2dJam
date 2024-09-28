@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" path="res://scenes/props/campfire.tscn" id="13_ck662"]
 [ext_resource type="PackedScene" uid="uid://ctvlm0uiwlqnm" path="res://scenes/particles/box_explosion.tscn" id="14_xhtd7"]
 [ext_resource type="PackedScene" uid="uid://i31fd172rdit" path="res://scenes/particles/mob_kill.tscn" id="15_dl4mm"]
-[ext_resource type="AudioStream" uid="uid://b6vg2ap2ihhkd" path="res://assets/sounds/hit_box.wav" id="26_ln73m"]
+[ext_resource type="AudioStream" uid="uid://dn72y42y4m1y6" path="res://assets/sounds/hit_box.wav" id="26_ln73m"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
