@@ -10,6 +10,7 @@ signal hurt(health: int, max_health: int)
 
 @onready var particles_scene = Game.resource_preloader.get_resource("particles-mob_kill")
 @onready var death_sound: AudioStreamPlayer = $DeathSound
+@onready var bow_sound: AudioStreamPlayer = $BowSound
 @onready var arrow_scene = Game.resource_preloader.get_resource("entity-arrow")
 
 var score_on_death: int = 750
@@ -66,6 +67,7 @@ func _shoot():
 	arrow.global_position = $Bow.global_position
 	cooldown = 2.0
 	shooting.emit()
+	bow_sound.play()
 	get_tree().current_scene.add_child(arrow)
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
