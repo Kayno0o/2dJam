@@ -39,8 +39,8 @@ atlas = ExtResource("4_q04sx")
 region = Rect2(0, 0, 32, 32)
 
 [node name="Courageux" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 132
+collision_mask = 132
 script = ExtResource("1_hlj1m")
 initial_health = 5
 
@@ -90,6 +90,7 @@ texture = SubResource("AtlasTexture_47wdt")
 [node name="Box" parent="SpriteController" instance=ExtResource("5_s8nl5")]
 position = Vector2(42, 0)
 
+[connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
 [connection signal="moving" from="." to="SpriteController" method="_on_curieux_moving"]
 [connection signal="scared" from="." to="SpriteController" method="_on_curieux_scared"]

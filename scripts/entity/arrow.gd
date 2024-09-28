@@ -14,7 +14,8 @@ var player
 
 var self_destruct = 3.0
 
-const ARROW_SPEED = 50
+const ARROW_SPEED = 175
+
 
 func _ready() -> void:
 	
@@ -46,5 +47,4 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		if health <= 0:
 			#slow the player if the arrow hit
 			PlayerStats.speed = min(PlayerStats.speed - PlayerStats.acceleration, PlayerStats.max_speed)
-
 			queue_free()

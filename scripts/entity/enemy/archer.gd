@@ -27,6 +27,7 @@ var cooldown = 2.0
 
 signal moving
 signal shooting
+signal heal(healing_amount: int, max_health: int)
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -34,6 +35,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	cooldown -= delta
 	look_at(player.position)
+	
+	if health < max_health :
+		add_to_group("hurt allied")
+	else :
+		remove_from_group("hurt allied")
 	
 	# make the enemy goal position to the player if far enough
 	if position.distance_to(player.position) > DISTANCE_MOVE_TOWARD:
@@ -78,3 +84,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 			Game.score += score_on_death
 
 			queue_free()
+
+
+func _on_heal(healing_amount, max_health):
+	if health < max_health :
+		health += healing_amount
