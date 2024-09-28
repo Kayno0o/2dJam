@@ -13,6 +13,8 @@ signal hurt(health: int, max_health: int)
 @onready var particles_scene = Game.resource_preloader.get_resource("particles-mob_kill")
 @onready var healing_zone_scene = Game.resource_preloader.get_resource("entity-healing_zone")
 
+@onready var sprite = $SpriteController
+
 var score_on_death: int = 250
 
 var acceleration_mult = 0.5
@@ -60,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector2(0, 0)
 	if move_target:
-		look_at(move_target.position)
+		sprite.look_at(move_target.position)
 	move_and_slide()
 
 func _find_closest(group):
