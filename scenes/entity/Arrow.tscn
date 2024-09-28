@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://byqdtl8wn3cnt"]
+
+[ext_resource type="Script" path="res://scripts/entity/arrow.gd" id="1_hxdib"]
+[ext_resource type="Texture2D" uid="uid://byfsrys2c88dj" path="res://assets/ennemies/archer.png" id="4_rc010"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
+radius = 30.0167
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lns65"]
+radius = 47.0
+
+[node name="Arrow" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_hxdib")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_uukpb")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lns65")
+debug_color = Color(0.489687, 0.433176, 1, 0.42)
+
+[node name="SpriteController" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="SpriteController"]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_rc010")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

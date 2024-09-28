@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt1ljp5hmc4lc"]
+[gd_scene load_steps=13 format=3 uid="uid://c4nk1mb2veohg"]
 
-[ext_resource type="Script" path="res://scripts/entity/enemy/curieux.gd" id="1_804xh"]
-[ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="2_xg61o"]
-[ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="3_f7fjr"]
-[ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_vqvkm"]
+[ext_resource type="Script" path="res://scripts/entity/enemy/archer.gd" id="1_aovkn"]
+[ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_vabvl"]
+[ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_owdj8"]
+[ext_resource type="Texture2D" uid="uid://byfsrys2c88dj" path="res://assets/ennemies/archer.png" id="4_68w0r"]
+[ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_jofwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
@@ -29,18 +30,14 @@ gradient = SubResource("Gradient_vwtdg")
 width = 48
 height = 3
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rueyo"]
-atlas = ExtResource("2_xg61o")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv6qy"]
-atlas = ExtResource("2_xg61o")
+atlas = ExtResource("4_jofwm")
 region = Rect2(416, 0, 32, 32)
 
-[node name="Curieux" type="CharacterBody2D" groups=["enemy"]]
+[node name="Archer" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_804xh")
+script = ExtResource("1_aovkn")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
@@ -69,23 +66,26 @@ offset_bottom = -34.0
 value = 50.0
 texture_under = SubResource("GradientTexture2D_aohou")
 texture_progress = SubResource("GradientTexture2D_6dcf7")
-script = ExtResource("3_f7fjr")
+script = ExtResource("2_vabvl")
 
 [node name="SpriteController" type="Node2D" parent="."]
-script = ExtResource("3_vqvkm")
+script = ExtResource("3_owdj8")
 
 [node name="Idle" type="Sprite2D" parent="SpriteController"]
 rotation = 1.5708
 scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_rueyo")
+texture = ExtResource("4_68w0r")
 
-[node name="Scared" type="Sprite2D" parent="SpriteController"]
+[node name="Shooting" type="Sprite2D" parent="SpriteController"]
 visible = false
 rotation = 1.5708
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_nv6qy")
 
+[node name="Bow" type="Node2D" parent="."]
+position = Vector2(37, 0)
+
 [connection signal="hurt" from="." to="Ui/HealthBar" method="_on_curieux_hurt"]
 [connection signal="moving" from="." to="SpriteController" method="_on_curieux_moving"]
-[connection signal="scared" from="." to="SpriteController" method="_on_curieux_scared"]
+[connection signal="shooting" from="." to="SpriteController" method="_on_curieux_shooting"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
