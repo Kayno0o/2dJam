@@ -12,7 +12,7 @@ signal hurt(health: int, max_health: int)
 
 var score_on_death: int = 500
 
-var acceleration_mult = 1
+var acceleration_mult = 0.75
 
 var player
 

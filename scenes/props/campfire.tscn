@@ -28,6 +28,7 @@ atlas = ExtResource("2_2giy4")
 region = Rect2(32, 16, 16, 16)
 
 [node name="Campfire" type="Node2D" groups=["campfire"]]
+scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8f66b")

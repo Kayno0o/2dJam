@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=41 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://qjfwitthe0n5" path="res://scenes/props/campfire.tscn" id="13_ck662"]
 [ext_resource type="PackedScene" uid="uid://ctvlm0uiwlqnm" path="res://scenes/particles/box_explosion.tscn" id="14_xhtd7"]
 [ext_resource type="PackedScene" uid="uid://i31fd172rdit" path="res://scenes/particles/mob_kill.tscn" id="15_dl4mm"]
+[ext_resource type="AudioStream" uid="uid://b6vg2ap2ihhkd" path="res://assets/sounds/hit_box.wav" id="26_ln73m"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
@@ -980,7 +981,7 @@ process_mode = 3
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-resources = [PackedStringArray("entity-archer", "entity-arrow", "entity-courageux", "entity-curieux", "entity-healer", "entity-healing_zone", "particles-box_explosion", "particles-mob_kill", "props-box", "props-campfire"), [ExtResource("6_0ytbt"), ExtResource("9_1xcjt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("11_js36p"), ExtResource("13_4fd6u"), ExtResource("14_xhtd7"), ExtResource("15_dl4mm"), ExtResource("4_b5ru5"), ExtResource("13_ck662")]]
+resources = [PackedStringArray("entity-archer", "entity-arrow", "entity-courageux", "entity-curieux", "entity-healer", "entity-healing_zone", "particles-box_explosion", "particles-mob_kill", "props-box", "props-campfire", "sound-box_destroy"), [ExtResource("6_0ytbt"), ExtResource("9_1xcjt"), ExtResource("6_jv2x1"), ExtResource("2_2b8ll"), ExtResource("11_js36p"), ExtResource("13_4fd6u"), ExtResource("14_xhtd7"), ExtResource("15_dl4mm"), ExtResource("4_b5ru5"), ExtResource("13_ck662"), ExtResource("26_ln73m")]]
 
 [node name="LoadingScreen" parent="Loader" instance=ExtResource("6_0mrfq")]
 visible = false
