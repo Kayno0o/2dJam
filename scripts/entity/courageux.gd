@@ -75,7 +75,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		if health <= 0:
 			Game.ennemy_death.emit()
 			PlayerStats.xp += xp_gain
-			PlayerStats.speed = min(PlayerStats.speed + PlayerStats.acceleration * acceleration_mult, PlayerStats.max_speed)
+			PlayerStats.accelerate(acceleration_mult)
 			Game.score += score_on_death
 
 			queue_free()
