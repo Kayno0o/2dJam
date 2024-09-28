@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdyea1elrji2g"]
+
+[ext_resource type="PackedScene" uid="uid://vni7l2y6murl" path="res://scenes/menu/background.tscn" id="1_uf503"]
+[ext_resource type="Script" path="res://scripts/menu/credits.gd" id="1_wi2ba"]
+[ext_resource type="Theme" uid="uid://djrpxahlfvckq" path="res://material/theme.tres" id="3_3m5gy"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wi2ba")
+
+[node name="Background" parent="." instance=ExtResource("1_uf503")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 118.0
+offset_right = 93.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -86.0
+offset_right = 178.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="Developers" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Developers" type="Label" parent="HBoxContainer/Developers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Developers:"
+
+[node name="Kayno0o" type="LinkButton" parent="HBoxContainer/Developers"]
+layout_mode = 2
+text = "Kayno0o"
+uri = "https://kaynooo.itch.io"
+
+[node name="AxelToutain" type="LinkButton" parent="HBoxContainer/Developers"]
+layout_mode = 2
+text = "AxelToutain (Pediluve)"
+uri = "https://itch.io/profile/axeltoutain"
+
+[node name="Tools" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Tools" type="Label" parent="HBoxContainer/Tools"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Tools:"
+
+[node name="PixelFont" type="LinkButton" parent="HBoxContainer/Tools"]
+layout_mode = 2
+text = "PixelFont"
+uri = "https://yellowafterlife.itch.io/pixelfont"
+
+[node name="BackMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -252.0
+offset_right = 145.0
+offset_bottom = -189.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = ExtResource("3_3m5gy")
+text = "Back to main menu"
+
+[connection signal="pressed" from="BackMenu" to="." method="_on_back_menu_pressed"]
