@@ -4,8 +4,8 @@ extends Control
 
 func _input(event: InputEvent) -> void:
 	# pauses when pressing P
-	if event is InputEventKey:
-		if event.keycode == 80 and event.is_pressed() == true and not Game.is_shop_open:
+	if event is InputEventKey and event.is_pressed():
+		if (event.keycode == KEY_P or event.keycode == KEY_ESCAPE) and not Game.is_shop_open:
 			toggle_pause()
 
 func toggle_pause():

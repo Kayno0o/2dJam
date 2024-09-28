@@ -1,25 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://daxao48fj6h47"]
+[gd_scene load_steps=3 format=3 uid="uid://daxao48fj6h47"]
 
 [ext_resource type="Script" path="res://scripts/menu/loading_screen.gd" id="1_ptm7v"]
 [ext_resource type="PackedScene" uid="uid://vni7l2y6murl" path="res://scenes/menu/background.tscn" id="2_803i8"]
-
-[sub_resource type="Gradient" id="Gradient_0ygkr"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a13gl"]
-gradient = SubResource("Gradient_0ygkr")
-width = 512
-height = 32
-
-[sub_resource type="Gradient" id="Gradient_eqxl4"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 1, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_723be"]
-gradient = SubResource("Gradient_eqxl4")
-width = 512
-height = 32
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -33,7 +15,7 @@ script = ExtResource("1_ptm7v")
 [node name="Background" parent="." instance=ExtResource("2_803i8")]
 layout_mode = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,15 +23,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
-offset_top = -8.0
+offset_top = -17.5
 offset_right = 256.0
-offset_bottom = 8.0
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 1000.0
 value = 100.0
-texture_under = SubResource("GradientTexture2D_a13gl")
-texture_progress = SubResource("GradientTexture2D_723be")
+show_percentage = false
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

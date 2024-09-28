@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/PerksCards.gd" id="1_8wi3j"]
 [ext_resource type="Texture2D" uid="uid://dsq7j5ayi4es6" path="res://assets/icons/icons.png" id="2_1rfpd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mmvj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hch4x"]
 bg_color = Color(0.255, 0.184, 0.086, 0.8)
 border_width_left = 3
 border_width_top = 3
@@ -21,7 +21,7 @@ region = Rect2(0, 0, 32, 32)
 
 [node name="Panel2" type="Panel"]
 custom_minimum_size = Vector2(150, 200)
-theme_override_styles/panel = SubResource("StyleBoxFlat_5mmvj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hch4x")
 script = ExtResource("1_8wi3j")
 icon = SubResource("AtlasTexture_rpcq5")
 stat_description = "- 10"
