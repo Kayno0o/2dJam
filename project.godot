@@ -34,6 +34,7 @@ window/stretch/aspect="expand"
 "world border"=""
 tilemap=""
 ui=""
+"hurt allied"=""
 
 [gui]
 
@@ -53,6 +54,7 @@ font_data_dynamic={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="props"
+2d_physics/layer_8="healing zone"
 
 [rendering]
 
