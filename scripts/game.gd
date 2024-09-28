@@ -8,7 +8,7 @@ extends Control
 
 var last_second = 0
 
-var curieux_limit = 20
+var curieux_limit = 10
 var curieux_min_distance: int = 400
 var curieux_max_distance_init: int = 500
 var curieux_max_distance_over_time: int = 3000
@@ -36,7 +36,7 @@ func spawn_curieux() -> void:
 	if curieux_mob_container.get_child_count() > curieux_limit:
 		return
 
-	var new_curieux: CharacterBody2D = resource_preloader.get_resource("entity-courageux").instantiate()
+	var new_curieux: CharacterBody2D = resource_preloader.get_resource("entity-archer").instantiate()
 
 	# random angle between 0 and 2 * PI
 	var angle = randf_range(0, TAU)

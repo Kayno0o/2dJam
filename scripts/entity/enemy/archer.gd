@@ -9,6 +9,7 @@ signal hurt(health: int, max_health: int)
 @onready var max_health = health
 
 @onready var particles_scene = preload("res://scenes/particles/mob_kill.tscn")
+@onready var arrow_scene = preload("res://scenes/entity/Arrow.tscn")
 
 var score_on_death: int = 500
 
@@ -16,44 +17,47 @@ var player
 
 const SPEED_TOWARD = 4000
 const SPEED_AWAY = 6000
-const DISTANCE_MOVE_TOWARD = 600
-const DISTANCE_MOVE_AWAY = 200
+const DISTANCE_MOVE_TOWARD = 500
+const DISTANCE_MOVE_AWAY = 300
 
-const xp_gain = 10
+const xp_gain = 1
 
 var is_move_toward = false
-
-var box_destroyed : bool
+var cooldown = 2.0
 
 signal moving
-signal scared
+signal shooting
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-	health = 5.0 + floor(Game.get_elapsed_time() / 60.0)
-	max_health = health
-
 func _physics_process(delta: float) -> void:
-	$SpriteController.look_at(player.position)
+	cooldown -= delta
+	look_at(player.position)
 	
 	# make the enemy goal position to the player if far enough
-	if box_destroyed == false:
+	if position.distance_to(player.position) > DISTANCE_MOVE_TOWARD:
 		moving.emit()
 		is_move_toward = true
+	# make the enemy goal position away from the player if too close
+	elif position.distance_to(player.position) < DISTANCE_MOVE_AWAY:
+		shooting.emit()
+		is_move_toward = false
 
 	if is_move_toward:
 		velocity = position.direction_to(player.position) * delta * SPEED_TOWARD
-	else:
-		velocity = -position.direction_to(player.position) * delta * SPEED_AWAY
+	elif cooldown <= 0 and is_move_toward == false:
+		_shoot()
+		velocity = Vector2(0,0)
 
-	var movement: Vector2 = velocity * delta
-	var collision: KinematicCollision2D = move_and_collide(movement)
-	if collision :
-		var collider: Node2D = collision.get_collider()
+	move_and_slide()
 
-		if collider is Node2D and collider.is_in_group("world border"):
-			queue_free()
+func _shoot() :
+	var arrow : CharacterBody2D = arrow_scene.instantiate()
+	arrow.global_position = $Bow.global_position
+	cooldown = 2.0
+	shooting.emit()
+	get_tree().current_scene.add_child(arrow)
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group("player"):
@@ -74,11 +78,3 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 			Game.score += score_on_death
 
 			queue_free()
-
-
-func _on_box_destroyed():
-	
-	#make the Courageux run away when the box in his hand is destroyed
-	scared.emit()
-	is_move_toward = false
-	box_destroyed = true

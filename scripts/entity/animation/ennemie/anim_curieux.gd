@@ -2,9 +2,8 @@ extends Node2D
 
 func _on_curieux_moving():
 	$Idle.visible = true
-	$Scared.visible = false
+	$Shooting.visible = false
 
-
-func _on_curieux_scared():
+func _on_curieux_shooting():
 	$Idle.visible = false
-	$Scared.visible = true
+	$Shooting.visible = true
