@@ -41,7 +41,7 @@ func _init() -> void:
 
 	level = 0
 	xp = 0.0
-	required_xp = 10.0
+	required_xp = 5.0
 
 func add_upgrades(upgrade, stats):
 	if upgrade == upgrades.ADD_DAMAGE:
