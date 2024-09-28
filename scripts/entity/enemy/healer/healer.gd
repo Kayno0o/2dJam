@@ -34,7 +34,7 @@ var move_target
 signal moving
 signal heal(healing_amount: int, max_health: int)
 
-var casting_cooldown = 0.0
+var casting_cooldown = 2.0
 
 func _ready() -> void:
 	healing_zone_instance = healing_zone_scene.instantiate()
@@ -42,13 +42,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	casting_cooldown -= delta
+	if casting_cooldown <= 0 :
+		heal.emit(1, max_health)
+		casting_cooldown = 2.0
 	
-	if health < max_health:
-		add_to_group("hurt allied")
-	else:
-		remove_from_group("hurt allied")
-	
-	if not get_tree().get_nodes_in_group("hurt allied").is_empty() and casting_cooldown <= 0:
+	if not get_tree().get_nodes_in_group("hurt allied").is_empty() :
 		move_target = _find_closest(get_tree().get_nodes_in_group("hurt allied"))
 		
 		if move_target.global_position.distance_to($".".global_position) > move_to_heal:
