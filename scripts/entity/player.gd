@@ -15,49 +15,6 @@ func _ready() -> void:
 	# set initial speed
 	velocity = Vector2(PlayerStats.speed, 0)
 
-# mouse: 1 = left, 2 = right
-var inputs: Array[int] = []
-
-func _input(event):
-	# Handle click on left/right of the screen
-	if event is InputEventMouseButton or event is InputEventScreenTouch:
-		var screen_width = get_viewport().get_visible_rect().size.x
-		var mouse_x = event.position.x
-		if event.is_pressed():
-			if mouse_x < screen_width / 2:
-				inputs.erase(1)
-				inputs.append(1)
-			else:
-				inputs.erase(2)
-				inputs.append(2)
-		else:
-			if mouse_x < screen_width / 2:
-				inputs.erase(1)
-			else:
-				inputs.erase(2)
-
-	# Handle left/right arrow keys
-	if event is InputEventKey:
-		if event.is_pressed():
-			if event.keycode == KEY_LEFT:
-				inputs.erase(1)
-				inputs.append(1)
-			elif event.keycode == KEY_RIGHT:
-				inputs.erase(2)
-				inputs.append(2)
-		else:
-			if event.keycode == KEY_LEFT:
-				inputs.erase(1)
-			elif event.keycode == KEY_RIGHT:
-				inputs.erase(2)
-
-func get_input_axis() -> float:
-	if inputs.is_empty():
-		return 0.0
-	if inputs[inputs.size() - 1] == 1:
-		return -1.0
-	return 1.0
-
 func _process(_delta: float) -> void:
 	# check if you need to level up
 	if PlayerStats.xp >= PlayerStats.required_xp:
@@ -90,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	scale = Vector2(PlayerStats.size, PlayerStats.size)
 
 	# rotate player depending on user input
-	var input_axis = get_input_axis()
+	var input_axis = Game.get_input_axis()
 	if input_axis:
 		var angle = input_axis * PlayerStats.rotation_velocity * delta
 		rotate(angle)

@@ -33,6 +33,7 @@ func _init():
 func _ready():
 	Game.resource_preloader = resource_preloader
 	Game.score = 0
+	Game.reset_inputs()
 	compute_limits()
 
 func _process(delta: float) -> void:
