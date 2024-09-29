@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2dJam"
+config/name="PerilousPropulsion"
 run/main_scene="res://scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/icon.png"
@@ -65,3 +65,4 @@ font_data_dynamic={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
