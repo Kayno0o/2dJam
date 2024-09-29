@@ -91,6 +91,7 @@ texture = SubResource("AtlasTexture_47wdt")
 position = Vector2(42, 0)
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_b3y3b")
 volume_db = -8.0
 pitch_scale = 2.55

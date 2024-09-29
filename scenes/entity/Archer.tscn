@@ -87,11 +87,13 @@ z_index = 9
 position = Vector2(15, 0)
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("5_1ce1p")
 volume_db = -13.0
 pitch_scale = 2.24
 
 [node name="BowSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_wmt40")
 volume_db = -20.0
 pitch_scale = 3.39
