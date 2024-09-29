@@ -1,9 +1,10 @@
 extends Control
 
 @onready var upgrade_card_container = $HBoxContainer
-
+@onready var level_up_sound: AudioStreamPlayer = $LevelUp
 
 func _ready():
+	level_up_sound.play()
 	Game.is_shop_open = true
 	get_tree().paused = true
 

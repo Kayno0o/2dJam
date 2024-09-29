@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dncyeonb0qnjo"]
+[gd_scene load_steps=4 format=3 uid="uid://dncyeonb0qnjo"]
 
 [ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/ItemShop.gd" id="1_ie2ya"]
 [ext_resource type="Script" path="res://scripts/menu/ui/upgradeCards/SpawnCards.gd" id="2_vl6px"]
+[ext_resource type="AudioStream" uid="uid://bhhgxkxmrx2je" path="res://assets/sounds/level_up.wav" id="3_2u1wk"]
 
 [node name="UpgradeMenu" type="Control"]
 process_mode = 3
@@ -39,3 +40,8 @@ grow_vertical = 2
 theme_override_constants/separation = 100
 alignment = 1
 script = ExtResource("2_vl6px")
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_2u1wk")
+volume_db = -17.0

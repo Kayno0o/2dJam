@@ -1,6 +1,13 @@
 extends Control
 
+@onready var button_one : AudioStreamPlayer = $"../../Button1"
+@onready var button_two : AudioStreamPlayer = $"../../Button2"
+
 func resume():
+	if randi_range(0, 1) == 0 :
+		button_one.play()
+	else :
+		button_two.play()
 	visible = false
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	get_tree().paused = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=44 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -26,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://ctvlm0uiwlqnm" path="res://scenes/particles/box_explosion.tscn" id="14_xhtd7"]
 [ext_resource type="PackedScene" uid="uid://i31fd172rdit" path="res://scenes/particles/mob_kill.tscn" id="15_dl4mm"]
 [ext_resource type="AudioStream" uid="uid://dn72y42y4m1y6" path="res://assets/sounds/hit_box.wav" id="26_ln73m"]
+[ext_resource type="AudioStream" uid="uid://drjjbk0y5hrb" path="res://assets/sounds/button_1.wav" id="28_1yd4x"]
+[ext_resource type="AudioStream" uid="uid://b618b2t1il55g" path="res://assets/sounds/hit_wall.wav" id="28_as3ng"]
+[ext_resource type="AudioStream" uid="uid://d0e4516ijuhm0" path="res://assets/sounds/button_2.wav" id="29_ijonx"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
@@ -1024,6 +1027,17 @@ z_index = 8
 [node name="Box" type="Node2D" parent="PropsContainer"]
 
 [node name="Campfire" type="Node2D" parent="PropsContainer"]
+
+[node name="WallBounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_as3ng")
+
+[node name="Button1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("28_1yd4x")
+
+[node name="Button2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("29_ijonx")
 
 [connection signal="finish" from="Loader/LoadingScreen" to="." method="_on_loading_screen_finish"]
 [connection signal="loading" from="TileMapLayer" to="Loader/LoadingScreen" method="_on_load"]

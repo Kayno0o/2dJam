@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var movement_particles: GPUParticles2D
 
+@onready var bounce_sound: AudioStreamPlayer = $"../WallBounce"
+
 signal level_up
 
 func _ready() -> void:
@@ -59,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		var collider: Node2D = collision.get_collider()
 
 		if collider is Node2D and collider.is_in_group("world border"):
+			bounce_sound.play()
 			move_and_collide(-movement)
 			velocity = velocity.bounce(normal)
 			rotation = velocity.angle()
