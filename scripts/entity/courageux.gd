@@ -10,6 +10,7 @@ signal hurt(health: int, max_health: int)
 
 @onready var particles_scene = Game.resource_preloader.get_resource("particles-mob_kill")
 @onready var death_sound: AudioStreamPlayer = $DeathSound
+@onready var sprite = $SpriteController
 
 var score_on_death: int = 1000
 
@@ -36,7 +37,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
-	$SpriteController.look_at(player.position)
+	sprite.look_at(player.position)
 	
 	if health < max_health:
 		add_to_group("hurt allied")

@@ -1,10 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://dknoglcn475n0"]
+[gd_scene load_steps=12 format=3 uid="uid://dknoglcn475n0"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/healer/healing_zone.gd" id="1_v5ohf"]
 [ext_resource type="Texture2D" uid="uid://bx0eiss13ci0q" path="res://assets/heal_zone.png" id="2_ocjjq"]
+[ext_resource type="Texture2D" uid="uid://c0nvbj4opk3fh" path="res://assets/ennemies/healing_zone-Sheet.png" id="3_8lfnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqxs6"]
 radius = 80.025
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4aob"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53vfm"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfrka"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y180c"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xocqw"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0miwg"]
+atlas = ExtResource("3_8lfnu")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gx54o"]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_f4aob")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_53vfm")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_pfrka")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_y180c")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_xocqw")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_0miwg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,9 +69,16 @@ rotation = -0.261799
 shape = SubResource("CircleShape2D_wqxs6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Healing_Zone/CollisionShape2D"]
+visible = false
 rotation = 0.261799
 scale = Vector2(5, 5)
 texture = ExtResource("2_ocjjq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Healing_Zone/CollisionShape2D"]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_gx54o")
+autoplay = "default"
+frame_progress = 0.673878
 
 [connection signal="body_entered" from="Healing_Zone" to="Healing_Zone" method="_on_body_entered"]
 [connection signal="body_exited" from="Healing_Zone" to="Healing_Zone" method="_on_body_exited"]

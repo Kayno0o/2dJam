@@ -12,6 +12,8 @@ signal hurt(health: int, max_health: int)
 @onready var death_sound: AudioStreamPlayer = $DeathSound
 @onready var bow_sound: AudioStreamPlayer = $BowSound
 @onready var arrow_scene = Game.resource_preloader.get_resource("entity-arrow")
+@onready var sprite = $SpriteController
+@onready var bow = $SpriteController/Bow
 
 var score_on_death: int = 750
 
@@ -38,7 +40,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	cooldown -= delta
-	look_at(player.position)
+	sprite.look_at(player.position)
 	
 	if health < max_health:
 		add_to_group("hurt allied")
@@ -64,7 +66,7 @@ func _physics_process(delta: float) -> void:
 
 func _shoot():
 	var arrow: CharacterBody2D = arrow_scene.instantiate()
-	arrow.global_position = $Bow.global_position
+	arrow.global_position = bow.global_position
 	cooldown = 2.0
 	shooting.emit()
 	bow_sound.play()
