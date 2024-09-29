@@ -138,3 +138,7 @@ func _on_loading_screen_finish() -> void:
 		spawn_campfire()
 
 	process_mode = ProcessMode.PROCESS_MODE_INHERIT
+
+
+func _on_main_theme_finished():
+	$MainTheme.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn3vxh5edu8rs"]
+[gd_scene load_steps=12 format=3 uid="uid://b2vgj4cg7u8pk"]
 
 [ext_resource type="Script" path="res://scripts/menu/pause_menu.gd" id="1_k60cj"]
 [ext_resource type="Texture2D" uid="uid://f8ddhnl4d1wl" path="res://assets/ui/panel.png" id="2_qchgp"]
@@ -272,6 +272,36 @@ size_flags_horizontal = 4
 theme = ExtResource("5_61deh")
 text = "Back to main menu"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 428.0
+offset_top = -93.0
+offset_right = 602.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="MusicOn" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_61deh")
+text = "Music : on"
+
+[node name="MusicOff" type="Button" parent="VBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_61deh")
+text = "Music : off"
+
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackMenu" to="." method="_on_back_menu_pressed"]
+[connection signal="button_down" from="VBoxContainer2/MusicOn" to="." method="_on_music_on_button_down"]
+[connection signal="button_down" from="VBoxContainer2/MusicOff" to="." method="_on_music_off_button_down"]

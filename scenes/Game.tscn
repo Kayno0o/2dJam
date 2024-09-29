@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bf0ha836ro2xb"]
+[gd_scene load_steps=45 format=3 uid="uid://bf0ha836ro2xb"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_tfrv0"]
 [ext_resource type="PackedScene" uid="uid://bt1ljp5hmc4lc" path="res://scenes/entity/Curieux.tscn" id="2_2b8ll"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://daxao48fj6h47" path="res://scenes/menu/loading_screen.tscn" id="6_0mrfq"]
 [ext_resource type="PackedScene" uid="uid://c4nk1mb2veohg" path="res://scenes/entity/Archer.tscn" id="6_0ytbt"]
 [ext_resource type="PackedScene" uid="uid://doxetv26vy8gq" path="res://scenes/entity/Courageux.tscn" id="6_jv2x1"]
-[ext_resource type="PackedScene" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
+[ext_resource type="PackedScene" uid="uid://b2vgj4cg7u8pk" path="res://scenes/menu/pause_menu.tscn" id="7_eglqn"]
 [ext_resource type="Script" path="res://scripts/menu/ui/speed_bar.gd" id="8_nh0vy"]
 [ext_resource type="PackedScene" uid="uid://byqdtl8wn3cnt" path="res://scenes/entity/Arrow.tscn" id="9_1xcjt"]
 [ext_resource type="Script" path="res://scripts/menu/ui/game_ui.gd" id="11_3h1yb"]
@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://drjjbk0y5hrb" path="res://assets/sounds/button_1.wav" id="28_1yd4x"]
 [ext_resource type="AudioStream" uid="uid://b618b2t1il55g" path="res://assets/sounds/hit_wall.wav" id="28_as3ng"]
 [ext_resource type="AudioStream" uid="uid://d0e4516ijuhm0" path="res://assets/sounds/button_2.wav" id="29_ijonx"]
+[ext_resource type="AudioStream" uid="uid://chabwlpwpvp3m" path="res://assets/sounds/main_theme.wav" id="30_40o1r"]
 
 [sub_resource type="Gradient" id="Gradient_w0e4c"]
 colors = PackedColorArray(1, 1, 1, 0.235294, 1, 1, 1, 0.235294)
@@ -1039,6 +1040,13 @@ stream = ExtResource("28_1yd4x")
 process_mode = 3
 stream = ExtResource("29_ijonx")
 
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("30_40o1r")
+volume_db = -17.0
+autoplay = true
+
 [connection signal="finish" from="Loader/LoadingScreen" to="." method="_on_loading_screen_finish"]
 [connection signal="loading" from="TileMapLayer" to="Loader/LoadingScreen" method="_on_load"]
 [connection signal="level_up" from="Player" to="UiCanvas/Ui" method="_on_player_level_up"]
+[connection signal="finished" from="MainTheme" to="." method="_on_main_theme_finished"]
