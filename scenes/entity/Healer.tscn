@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://doowua4gnftcj"]
+[gd_scene load_steps=13 format=3 uid="uid://doowua4gnftcj"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/healer/healer.gd" id="1_26165"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_2hxj8"]
 [ext_resource type="PackedScene" uid="uid://dknoglcn475n0" path="res://scenes/entity/healing_zone.tscn" id="2_j15oy"]
-[ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_xkqdv"]
 [ext_resource type="Texture2D" uid="uid://d36f1ci0iakc8" path="res://assets/ennemies/Healer.png" id="4_6oeue"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_ysycl"]
 [ext_resource type="AudioStream" uid="uid://c726asc4amv8e" path="res://assets/sounds/healer_death.wav" id="7_q5vno"]
@@ -66,7 +65,6 @@ texture_progress = SubResource("GradientTexture2D_6dcf7")
 script = ExtResource("2_2hxj8")
 
 [node name="SpriteController" type="Node2D" parent="."]
-script = ExtResource("3_xkqdv")
 
 [node name="Idle" type="Sprite2D" parent="SpriteController"]
 rotation = 1.5708
