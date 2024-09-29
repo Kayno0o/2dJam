@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt1ljp5hmc4lc"]
+[gd_scene load_steps=14 format=3 uid="uid://bt1ljp5hmc4lc"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/curieux.gd" id="1_804xh"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="2_xg61o"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="3_f7fjr"]
 [ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_vqvkm"]
+[ext_resource type="AudioStream" uid="uid://g1upvjfd1p75" path="res://assets/sounds/curieux_death.wav" id="5_4xk16"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
@@ -84,6 +85,11 @@ visible = false
 rotation = 1.5708
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_nv6qy")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4xk16")
+volume_db = -13.0
+pitch_scale = 1.68
 
 [connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="heal" from="." to="Ui/HealthBar" method="_on_healing"]

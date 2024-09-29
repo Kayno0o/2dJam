@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4nk1mb2veohg"]
+[gd_scene load_steps=14 format=3 uid="uid://c4nk1mb2veohg"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemy/archer.gd" id="1_aovkn"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_vabvl"]
 [ext_resource type="Texture2D" uid="uid://byfsrys2c88dj" path="res://assets/ennemies/archer.png" id="4_68w0r"]
 [ext_resource type="Texture2D" uid="uid://bb0m0ks102maq" path="res://assets/ennemies/Curieux-Sheet.png" id="4_jofwm"]
+[ext_resource type="AudioStream" uid="uid://bd1a5s4txtofy" path="res://assets/sounds/archer_death.wav" id="5_1ce1p"]
+[ext_resource type="AudioStream" uid="uid://brr44uk6qrrau" path="res://assets/sounds/bow_release.wav" id="6_wmt40"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
@@ -82,6 +84,16 @@ texture = SubResource("AtlasTexture_nv6qy")
 
 [node name="Bow" type="Node2D" parent="."]
 position = Vector2(37, 0)
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1ce1p")
+volume_db = -13.0
+pitch_scale = 2.24
+
+[node name="BowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wmt40")
+volume_db = -20.0
+pitch_scale = 3.39
 
 [connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="heal" from="." to="Ui/HealthBar" method="_on_healing"]

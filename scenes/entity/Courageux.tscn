@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://doxetv26vy8gq"]
+[gd_scene load_steps=15 format=3 uid="uid://doxetv26vy8gq"]
 
 [ext_resource type="Script" path="res://scripts/entity/courageux.gd" id="1_hlj1m"]
 [ext_resource type="Script" path="res://scripts/entity/health_bar.gd" id="2_2oy64"]
 [ext_resource type="Script" path="res://scripts/entity/animation/ennemie/anim_curieux.gd" id="3_511qu"]
 [ext_resource type="Texture2D" uid="uid://bh64dka2aym2f" path="res://assets/ennemies/courageux-Sheet.png" id="4_q04sx"]
 [ext_resource type="PackedScene" uid="uid://kpcuumkbw6dg" path="res://scenes/props/box.tscn" id="5_s8nl5"]
+[ext_resource type="AudioStream" uid="uid://c780gvwl8lpgl" path="res://assets/sounds/courageux_death.wav" id="6_b3y3b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uukpb"]
 radius = 30.0167
@@ -88,6 +89,11 @@ texture = SubResource("AtlasTexture_47wdt")
 
 [node name="Box" parent="SpriteController" instance=ExtResource("5_s8nl5")]
 position = Vector2(42, 0)
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b3y3b")
+volume_db = -8.0
+pitch_scale = 2.55
 
 [connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="heal" from="." to="Ui/HealthBar" method="_on_healing"]
