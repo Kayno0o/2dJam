@@ -92,7 +92,7 @@ pitch_scale = 2.24
 
 [node name="BowSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wmt40")
-volume_db = -17.0
+volume_db = -20.0
 pitch_scale = 3.39
 
 [connection signal="heal" from="." to="." method="_on_heal"]
