@@ -114,7 +114,7 @@ func get_random_position() -> Vector2:
 	var angle = randf_range(0, TAU)
 
 	# random distance between min and max
-	var max_distance = max(
+	var max_distance = min(
 		lerp(mob_max_distance_init, mob_max_distance_over_time, Game.get_elapsed_time() / mob_max_distance_time),
 		mob_max_distance_over_time
 	)
