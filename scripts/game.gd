@@ -78,17 +78,21 @@ func spawn_mob(mob_name: String, container: Node, limit: int):
 
 	container.add_child(new_mob)
 
-func spawn_curieux() -> void:
-	spawn_mob("entity-curieux", curieux_mob_container, curieux_limit)
+func spawn_curieux(nb: int = 1) -> void:
+	for i in range(nb):
+		spawn_mob("entity-curieux", curieux_mob_container, curieux_limit)
 
-func spawn_healer() -> void:
-	spawn_mob("entity-healer", healer_mob_container, healer_limit)
+func spawn_healer(nb: int = 1) -> void:
+	for i in range(nb):
+		spawn_mob("entity-healer", healer_mob_container, healer_limit)
 
-func spawn_archer() -> void:
-	spawn_mob("entity-archer", archer_mob_container, archer_limit)
+func spawn_archer(nb: int = 1) -> void:
+	for i in range(nb):
+		spawn_mob("entity-archer", archer_mob_container, archer_limit)
 
-func spawn_courageux() -> void:
-	spawn_mob("entity-courageux", courageux_mob_container, courageux_limit)
+func spawn_courageux(nb: int = 1) -> void:
+	for i in range(nb):
+		spawn_mob("entity-courageux", courageux_mob_container, courageux_limit)
 
 func spawn_box():
 	var new_box = resource_preloader.get_resource("props-box").instantiate()
